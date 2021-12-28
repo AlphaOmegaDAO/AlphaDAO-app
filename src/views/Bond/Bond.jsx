@@ -77,10 +77,10 @@ function Bond({ bond, nft }) {
                 <BondHeader bond={bond} nft />
                 <Box direction="column" className="bond-price-data-column">
                   <Typography variant="h6" color="textSecondary">
-                    Bond with real world assets
+                    Bond with educational assets
                   </Typography>
                   <Typography variant="h5" color="textPrimary">
-                    Gold, Fine Wine, Real Estate and Art
+                    Pi is a stable coin backed by knoweldge
                   </Typography>
                 </Box>
 
@@ -108,8 +108,8 @@ function Bond({ bond, nft }) {
                       COMING SOON
                     </Button>
                     <Typography className="bond-nft-description">
-                      OX is the first algorithmic currency backed by real world assets. Enabled by our partnership
-                      with Tangible, the AlphaDAO treasury is filled with gold, fine wine and other tangible assets.
+                      Pi is the first algorithmic currency backed by educational assets. Enabled by our partnership
+                      with EdX and Udemy, the AlphaDAO treasury is filled with bonds created for educational providers assets.
                     </Typography>
                     <Button
                       href="https://medium.com/tangible/introducing-tangible-5f3947276125"

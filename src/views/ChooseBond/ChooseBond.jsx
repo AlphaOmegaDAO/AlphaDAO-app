@@ -120,9 +120,9 @@ function ChooseBond() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <Typography variant="h5">Bond with real world assets</Typography>
+              <Typography variant="h5">Bond with educational assets</Typography>
               <TableContainer>
-                <Table aria-label="Bond with real world assets">
+                <Table aria-label="Bond with educational assets">
                   <TableBody>{realBonds && realBonds.map(rb => <BondTableData key={rb.name} bond={rb} />)}</TableBody>
                 </Table>
               </TableContainer>
