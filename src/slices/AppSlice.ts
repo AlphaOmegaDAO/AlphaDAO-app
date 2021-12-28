@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as OlympusStakingv2ABI } from "../abi/OlympusStakingv2.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import { abi as sOXv2 } from "../abi/sOhmv2.json";
 import { abi as GuruABI } from "../abi/Guru.json";
 import { setAll, getTokenPrice, getMarketPrice } from "../helpers";
 import allBonds from "../helpers/AllBonds";
@@ -42,7 +42,7 @@ export const loadAppDetails = createAsyncThunk(
 
     const sohmMainContract = new ethers.Contract(
       addresses[networkID].SOX_ADDRESS as string,
-      sOHMv2,
+      sOXv2,
       provider,
     ) as SOhmv2;
 
@@ -133,7 +133,7 @@ export const findOrLoadMarketPrice = createAsyncThunk(
 );
 
 /**
- * - fetches the OHM price from CoinGecko (via getTokenPrice)
+ * - fetches the OX price from CoinGecko (via getTokenPrice)
  * - falls back to fetch marketPrice from ohm-dai contract
  * - updates the App.slice when it runs
  */

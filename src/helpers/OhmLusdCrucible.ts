@@ -9,7 +9,7 @@ import { getTokenPrice } from "../helpers";
 // import { OhmLusdCrucible, UniswapIERC20 } from "src/typechain";
 
 export const calcAludelDetes = async (networkID: NetworkID, provider: StaticJsonRpcProvider) => {
-  // const crucibleAddress = addresses[networkID].CRUCIBLE_OHM_LUSD;
+  // const crucibleAddress = addresses[networkID].CRUCIBLE_OX_LUSD;
   // const aludelContract = new ethers.Contract(
   //   crucibleAddress as string,
   //   OhmLusdCrucibleABI,
@@ -18,7 +18,7 @@ export const calcAludelDetes = async (networkID: NetworkID, provider: StaticJson
   // const aludelData = await aludelContract.getAludelData();
   // // getting contractAddresses & Pricing for calculations below
   // let ohmPrice = await getTokenPrice("olympus");
-  // let ohmContractAddress = addresses[networkID].OHM_ADDRESS.toLowerCase();
+  // let ohmContractAddress = addresses[networkID].OX_ADDRESS.toLowerCase();
   // let lusdPrice = await getTokenPrice("liquity-usd");
   // let lusdContractAddress = lusd.getAddressForReserve(networkID).toLowerCase();
   // let ohmLusdPrice = await ohm_lusd.getBondReservePrice(networkID, provider);
@@ -60,7 +60,7 @@ export const calcAludelDetes = async (networkID: NetworkID, provider: StaticJson
   // let avgRemainingDuration = remainingDurations.reduce((a, b) => a + b, 0) / remainingDurations.length;
   // // furthest start date for past funds
   // let oldestDepositDate = Math.max.apply(null, pastDurations);
-  // // rewardToken is OHM for this Crucible
+  // // rewardToken is OX for this Crucible
   // const rewardTokenContract = new ethers.Contract(
   //   aludelData.rewardToken as string,
   //   UniswapIERC20ABI,

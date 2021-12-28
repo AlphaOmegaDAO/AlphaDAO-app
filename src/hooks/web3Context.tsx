@@ -6,10 +6,12 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { IFrameEthereumProvider } from "@ledgerhq/iframe-provider";
 import { EnvHelper } from "../helpers/Environment";
 import { NodeHelper } from "src/helpers/NodeHelper";
+
 /**
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
+ 
 function getTestnetURI() {
   return EnvHelper.alchemyTestnetURI;
 }
@@ -18,6 +20,7 @@ function getTestnetURI() {
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
+ 
 function getMumbaiTestnetURI() {
   return EnvHelper.mumbaiTestnetURI;
 }
@@ -26,6 +29,7 @@ function getMumbaiTestnetURI() {
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
+ 
 function getPolygonURI() {
   return EnvHelper.polygonURI;
 }
@@ -33,6 +37,7 @@ function getPolygonURI() {
 /**
  * determine if in IFrame for Ledger Live
  */
+ 
 function isIframe() {
   return window.location !== window.parent.location;
 }
@@ -43,6 +48,7 @@ const ALL_URIs = NodeHelper.getNodesUris();
  * "intelligently" loadbalances production API Keys
  * @returns string
  */
+ 
 function getMainnetURI(): string {
   // Shuffles the URIs for "intelligent" loadbalancing
   const allURIs = ALL_URIs.sort(() => Math.random() - 0.5);
@@ -56,6 +62,7 @@ function getMainnetURI(): string {
 /*
   Types
 */
+
 type onChainProvider = {
   connect: () => void;
   disconnect: () => void;

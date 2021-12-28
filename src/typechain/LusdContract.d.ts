@@ -22,7 +22,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 interface LusdContractInterface extends ethers.utils.Interface {
   functions: {
     "DAO()": FunctionFragment;
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "adjustment()": FunctionFragment;
     "bondCalculator()": FunctionFragment;
     "bondInfo(address)": FunctionFragment;
@@ -59,7 +59,7 @@ interface LusdContractInterface extends ethers.utils.Interface {
   };
 
   encodeFunctionData(functionFragment: "DAO", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "adjustment", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondCalculator", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondInfo", values: [string]): string;
@@ -101,7 +101,7 @@ interface LusdContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "useHelper", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "DAO", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "adjustment", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondCalculator", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondInfo", data: BytesLike): Result;
@@ -237,7 +237,7 @@ export class LusdContract extends BaseContract {
   functions: {
     DAO(overrides?: CallOverrides): Promise<[string]>;
 
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     adjustment(overrides?: CallOverrides): Promise<
       [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -379,7 +379,7 @@ export class LusdContract extends BaseContract {
 
   DAO(overrides?: CallOverrides): Promise<string>;
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   adjustment(overrides?: CallOverrides): Promise<
     [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -515,7 +515,7 @@ export class LusdContract extends BaseContract {
   callStatic: {
     DAO(overrides?: CallOverrides): Promise<string>;
 
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     adjustment(overrides?: CallOverrides): Promise<
       [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -746,7 +746,7 @@ export class LusdContract extends BaseContract {
   estimateGas: {
     DAO(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     adjustment(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -850,7 +850,7 @@ export class LusdContract extends BaseContract {
   populateTransaction: {
     DAO(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     adjustment(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

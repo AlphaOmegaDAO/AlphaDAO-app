@@ -19,7 +19,7 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface WsOHMInterface extends ethers.utils.Interface {
+interface WsOXInterface extends ethers.utils.Interface {
   functions: {
     "allowance(address,address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
@@ -28,14 +28,14 @@ interface WsOHMInterface extends ethers.utils.Interface {
     "decreaseAllowance(address,uint256)": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
     "name()": FunctionFragment;
-    "sOHM()": FunctionFragment;
-    "sOHMTowOHM(uint256)": FunctionFragment;
+    "sOX()": FunctionFragment;
+    "sOXTowOX(uint256)": FunctionFragment;
     "symbol()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "unwrap(uint256)": FunctionFragment;
-    "wOHMTosOHM(uint256)": FunctionFragment;
+    "wOXTosOX(uint256)": FunctionFragment;
     "wrap(uint256)": FunctionFragment;
   };
 
@@ -46,14 +46,14 @@ interface WsOHMInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "decreaseAllowance", values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: "increaseAllowance", values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
-  encodeFunctionData(functionFragment: "sOHM", values?: undefined): string;
-  encodeFunctionData(functionFragment: "sOHMTowOHM", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "sOX", values?: undefined): string;
+  encodeFunctionData(functionFragment: "sOXTowOX", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
   encodeFunctionData(functionFragment: "transfer", values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: "transferFrom", values: [string, string, BigNumberish]): string;
   encodeFunctionData(functionFragment: "unwrap", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "wOHMTosOHM", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "wOXTosOX", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "wrap", values: [BigNumberish]): string;
 
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
@@ -63,14 +63,14 @@ interface WsOHMInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "decreaseAllowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "increaseAllowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sOHM", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sOHMTowOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "sOX", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "sOXTowOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transferFrom", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "unwrap", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "wOHMTosOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "wOXTosOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "wrap", data: BytesLike): Result;
 
   events: {
@@ -92,7 +92,7 @@ export type ApprovalEvent = TypedEvent<
 
 export type TransferEvent = TypedEvent<[string, string, BigNumber] & { from: string; to: string; value: BigNumber }>;
 
-export class WsOHM extends BaseContract {
+export class WsOX extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -133,7 +133,7 @@ export class WsOHM extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: WsOHMInterface;
+  interface: WsOXInterface;
 
   functions: {
     allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -162,9 +162,9 @@ export class WsOHM extends BaseContract {
 
     name(overrides?: CallOverrides): Promise<[string]>;
 
-    sOHM(overrides?: CallOverrides): Promise<[string]>;
+    sOX(overrides?: CallOverrides): Promise<[string]>;
 
-    sOHMTowOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
+    sOXTowOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
@@ -188,7 +188,7 @@ export class WsOHM extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    wOHMTosOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
+    wOXTosOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     wrap(
       _amount: BigNumberish,
@@ -222,9 +222,9 @@ export class WsOHM extends BaseContract {
 
   name(overrides?: CallOverrides): Promise<string>;
 
-  sOHM(overrides?: CallOverrides): Promise<string>;
+  sOX(overrides?: CallOverrides): Promise<string>;
 
-  sOHMTowOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+  sOXTowOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -248,7 +248,7 @@ export class WsOHM extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  wOHMTosOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+  wOXTosOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
   wrap(
     _amount: BigNumberish,
@@ -270,9 +270,9 @@ export class WsOHM extends BaseContract {
 
     name(overrides?: CallOverrides): Promise<string>;
 
-    sOHM(overrides?: CallOverrides): Promise<string>;
+    sOX(overrides?: CallOverrides): Promise<string>;
 
-    sOHMTowOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+    sOXTowOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -284,7 +284,7 @@ export class WsOHM extends BaseContract {
 
     unwrap(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
-    wOHMTosOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+    wOXTosOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
     wrap(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
   };
@@ -342,9 +342,9 @@ export class WsOHM extends BaseContract {
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
-    sOHM(overrides?: CallOverrides): Promise<BigNumber>;
+    sOX(overrides?: CallOverrides): Promise<BigNumber>;
 
-    sOHMTowOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+    sOXTowOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -365,7 +365,7 @@ export class WsOHM extends BaseContract {
 
     unwrap(_amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    wOHMTosOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+    wOXTosOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
     wrap(_amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
   };
@@ -397,9 +397,9 @@ export class WsOHM extends BaseContract {
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    sOHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    sOX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    sOHMTowOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    sOXTowOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -423,7 +423,7 @@ export class WsOHM extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    wOHMTosOHM(_amount: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    wOXTosOX(_amount: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     wrap(
       _amount: BigNumberish,

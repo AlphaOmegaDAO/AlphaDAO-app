@@ -1,14 +1,14 @@
 import { ethers, BigNumber } from "ethers";
 import { addresses } from "../constants";
 import { abi as ierc20ABI } from "../abi/IERC20.json";
-import { abi as wsOHM } from "../abi/wsOHM.json";
+import { abi as wsOX } from "../abi/wsOX.json";
 import { clearPendingTxn, fetchPendingTxns, getWrappingTypeText } from "./PendingTxnsSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAccountSuccess, getBalances } from "./AccountSlice";
 import { error, info } from "../slices/MessagesSlice";
 import { IActionValueAsyncThunk, IChangeApprovalAsyncThunk, IJsonRPCError } from "./interfaces";
 import { segmentUA } from "../helpers/userAnalyticHelpers";
-import { IERC20, WsOHM } from "src/typechain";
+import { IERC20, WsOX } from "src/typechain";
 
 interface IUAData {
   address: string;
@@ -45,15 +45,15 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, ierc20ABI, signer) as IERC20;
+    const sohmContract = new ethers.Contract(addresses[networkID].SOX_ADDRESS as string, ierc20ABI, signer) as IERC20;
     const wsohmContract = new ethers.Contract(
-      addresses[networkID].WSOHM_ADDRESS as string,
+      addresses[networkID].WSOX_ADDRESS as string,
       ierc20ABI,
       signer,
     ) as IERC20;
     let approveTx;
-    let wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
-    let unwrapAllowance = await wsohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
+    let wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
+    let unwrapAllowance = await wsohmContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
 
     // return early if approval has already happened
     if (alreadyApprovedToken(token, wrapAllowance, unwrapAllowance)) {
@@ -72,12 +72,12 @@ export const changeApproval = createAsyncThunk(
       if (token === "sohm") {
         // won't run if wrapAllowance > 0
         approveTx = await sohmContract.approve(
-          addresses[networkID].WSOHM_ADDRESS,
+          addresses[networkID].WSOX_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
       } else if (token === "wsohm") {
         approveTx = await wsohmContract.approve(
-          addresses[networkID].WSOHM_ADDRESS,
+          addresses[networkID].WSOX_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
       }
@@ -99,8 +99,8 @@ export const changeApproval = createAsyncThunk(
     }
 
     // go get fresh allowances
-    wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
-    unwrapAllowance = await wsohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
+    wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
+    unwrapAllowance = await wsohmContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
 
     return dispatch(
       fetchAccountSuccess({
@@ -122,7 +122,7 @@ export const changeWrap = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const wsohmContract = new ethers.Contract(addresses[networkID].WSOHM_ADDRESS as string, wsOHM, signer) as WsOHM;
+    const wsohmContract = new ethers.Contract(addresses[networkID].WSOX_ADDRESS as string, wsOX, signer) as WsOX;
 
     let wrapTx;
     let uaData: IUAData = {

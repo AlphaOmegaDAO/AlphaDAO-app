@@ -21,7 +21,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
 interface OlympusStakingv2Interface extends ethers.utils.Interface {
   functions: {
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "claim(address)": FunctionFragment;
     "contractBalance()": FunctionFragment;
     "distributor()": FunctionFragment;
@@ -36,7 +36,7 @@ interface OlympusStakingv2Interface extends ethers.utils.Interface {
     "rebase()": FunctionFragment;
     "renounceManagement()": FunctionFragment;
     "returnLockBonus(uint256)": FunctionFragment;
-    "sOHM()": FunctionFragment;
+    "sOX()": FunctionFragment;
     "setContract(uint8,address)": FunctionFragment;
     "setWarmup(uint256)": FunctionFragment;
     "stake(uint256,address)": FunctionFragment;
@@ -48,7 +48,7 @@ interface OlympusStakingv2Interface extends ethers.utils.Interface {
     "warmupPeriod()": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "claim", values: [string]): string;
   encodeFunctionData(functionFragment: "contractBalance", values?: undefined): string;
   encodeFunctionData(functionFragment: "distributor", values?: undefined): string;
@@ -63,7 +63,7 @@ interface OlympusStakingv2Interface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "rebase", values?: undefined): string;
   encodeFunctionData(functionFragment: "renounceManagement", values?: undefined): string;
   encodeFunctionData(functionFragment: "returnLockBonus", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "sOHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "sOX", values?: undefined): string;
   encodeFunctionData(functionFragment: "setContract", values: [BigNumberish, string]): string;
   encodeFunctionData(functionFragment: "setWarmup", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "stake", values: [BigNumberish, string]): string;
@@ -74,7 +74,7 @@ interface OlympusStakingv2Interface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "warmupInfo", values: [string]): string;
   encodeFunctionData(functionFragment: "warmupPeriod", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "claim", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "contractBalance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "distributor", data: BytesLike): Result;
@@ -89,7 +89,7 @@ interface OlympusStakingv2Interface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "rebase", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "renounceManagement", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "returnLockBonus", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "sOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setContract", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setWarmup", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
@@ -157,7 +157,7 @@ export class OlympusStakingv2 extends BaseContract {
   interface: OlympusStakingv2Interface;
 
   functions: {
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     claim(
       _recipient: string,
@@ -206,7 +206,7 @@ export class OlympusStakingv2 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    sOHM(overrides?: CallOverrides): Promise<[string]>;
+    sOX(overrides?: CallOverrides): Promise<[string]>;
 
     setContract(
       _contract: BigNumberish,
@@ -252,7 +252,7 @@ export class OlympusStakingv2 extends BaseContract {
     warmupPeriod(overrides?: CallOverrides): Promise<[BigNumber]>;
   };
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   claim(_recipient: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
@@ -298,7 +298,7 @@ export class OlympusStakingv2 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  sOHM(overrides?: CallOverrides): Promise<string>;
+  sOX(overrides?: CallOverrides): Promise<string>;
 
   setContract(
     _contract: BigNumberish,
@@ -344,7 +344,7 @@ export class OlympusStakingv2 extends BaseContract {
   warmupPeriod(overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     claim(_recipient: string, overrides?: CallOverrides): Promise<void>;
 
@@ -381,7 +381,7 @@ export class OlympusStakingv2 extends BaseContract {
 
     returnLockBonus(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    sOHM(overrides?: CallOverrides): Promise<string>;
+    sOX(overrides?: CallOverrides): Promise<string>;
 
     setContract(_contract: BigNumberish, _address: string, overrides?: CallOverrides): Promise<void>;
 
@@ -435,7 +435,7 @@ export class OlympusStakingv2 extends BaseContract {
   };
 
   estimateGas: {
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     claim(_recipient: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
@@ -471,7 +471,7 @@ export class OlympusStakingv2 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    sOHM(overrides?: CallOverrides): Promise<BigNumber>;
+    sOX(overrides?: CallOverrides): Promise<BigNumber>;
 
     setContract(
       _contract: BigNumberish,
@@ -508,7 +508,7 @@ export class OlympusStakingv2 extends BaseContract {
   };
 
   populateTransaction: {
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     claim(
       _recipient: string,
@@ -550,7 +550,7 @@ export class OlympusStakingv2 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    sOHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    sOX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setContract(
       _contract: BigNumberish,

@@ -24,13 +24,13 @@ interface DaiBondContractInterface extends ethers.utils.Interface {
     "DAI()": FunctionFragment;
     "DAOShare()": FunctionFragment;
     "DAOWallet()": FunctionFragment;
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "bondControlVariable()": FunctionFragment;
     "calculateBondInterest(uint256)": FunctionFragment;
     "calculatePendingPayout(address)": FunctionFragment;
     "calculatePercentVested(address)": FunctionFragment;
     "calculatePremium()": FunctionFragment;
-    "circulatingOHMContract()": FunctionFragment;
+    "circulatingOXContract()": FunctionFragment;
     "deposit(uint256,uint256,address)": FunctionFragment;
     "depositWithPermit(uint256,uint256,address,uint256,uint8,bytes32,bytes32)": FunctionFragment;
     "depositorInfo(address)": FunctionFragment;
@@ -54,13 +54,13 @@ interface DaiBondContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "DAI", values?: undefined): string;
   encodeFunctionData(functionFragment: "DAOShare", values?: undefined): string;
   encodeFunctionData(functionFragment: "DAOWallet", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondControlVariable", values?: undefined): string;
   encodeFunctionData(functionFragment: "calculateBondInterest", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "calculatePendingPayout", values: [string]): string;
   encodeFunctionData(functionFragment: "calculatePercentVested", values: [string]): string;
   encodeFunctionData(functionFragment: "calculatePremium", values?: undefined): string;
-  encodeFunctionData(functionFragment: "circulatingOHMContract", values?: undefined): string;
+  encodeFunctionData(functionFragment: "circulatingOXContract", values?: undefined): string;
   encodeFunctionData(functionFragment: "deposit", values: [BigNumberish, BigNumberish, string]): string;
   encodeFunctionData(
     functionFragment: "depositWithPermit",
@@ -89,13 +89,13 @@ interface DaiBondContractInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "DAI", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "DAOShare", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "DAOWallet", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondControlVariable", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "calculateBondInterest", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "calculatePendingPayout", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "calculatePercentVested", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "calculatePremium", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "circulatingOHMContract", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "circulatingOXContract", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "depositWithPermit", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "depositorInfo", data: BytesLike): Result;
@@ -174,7 +174,7 @@ export class DaiBondContract extends BaseContract {
 
     DAOWallet(overrides?: CallOverrides): Promise<[string]>;
 
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     bondControlVariable(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -192,7 +192,7 @@ export class DaiBondContract extends BaseContract {
 
     calculatePremium(overrides?: CallOverrides): Promise<[BigNumber] & { _premium: BigNumber }>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<[string]>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<[string]>;
 
     deposit(
       amount_: BigNumberish,
@@ -283,7 +283,7 @@ export class DaiBondContract extends BaseContract {
 
   DAOWallet(overrides?: CallOverrides): Promise<string>;
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   bondControlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -295,7 +295,7 @@ export class DaiBondContract extends BaseContract {
 
   calculatePremium(overrides?: CallOverrides): Promise<BigNumber>;
 
-  circulatingOHMContract(overrides?: CallOverrides): Promise<string>;
+  circulatingOXContract(overrides?: CallOverrides): Promise<string>;
 
   deposit(
     amount_: BigNumberish,
@@ -384,7 +384,7 @@ export class DaiBondContract extends BaseContract {
 
     DAOWallet(overrides?: CallOverrides): Promise<string>;
 
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     bondControlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -396,7 +396,7 @@ export class DaiBondContract extends BaseContract {
 
     calculatePremium(overrides?: CallOverrides): Promise<BigNumber>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<string>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<string>;
 
     deposit(
       amount_: BigNumberish,
@@ -495,7 +495,7 @@ export class DaiBondContract extends BaseContract {
 
     DAOWallet(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     bondControlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -507,7 +507,7 @@ export class DaiBondContract extends BaseContract {
 
     calculatePremium(overrides?: CallOverrides): Promise<BigNumber>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<BigNumber>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<BigNumber>;
 
     deposit(
       amount_: BigNumberish,
@@ -577,7 +577,7 @@ export class DaiBondContract extends BaseContract {
 
     DAOWallet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     bondControlVariable(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -589,7 +589,7 @@ export class DaiBondContract extends BaseContract {
 
     calculatePremium(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     deposit(
       amount_: BigNumberish,

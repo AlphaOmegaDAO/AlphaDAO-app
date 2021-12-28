@@ -142,7 +142,7 @@ function TreasuryDashboard() {
                   Treasury Balance
                   {/*<InfoTooltip*/}
                   {/*  message={*/}
-                  {/*    "wsOHM = sOHM * index\n\nThe price of wsOHM is equal to the price of OHM multiplied by the current index"*/}
+                  {/*    "wsOX = sOX * index\n\nThe price of wsOX is equal to the price of OX multiplied by the current index"*/}
                   {/*  }*/}
                   {/*/>*/}
                 </Typography>
@@ -157,7 +157,7 @@ function TreasuryDashboard() {
                   Current Index
                   {/*<InfoTooltip*/}
                   {/*  message={*/}
-                  {/*    "The current index tracks the amount of sOHM accumulated since the beginning of staking. Basically, how much sOX one would have if they staked and held a single OX from day 1."*/}
+                  {/*    "The current index tracks the amount of sOX accumulated since the beginning of staking. Basically, how much sOX one would have if they staked and held a single OX from day 1."*/}
                   {/*  }*/}
                   {/*/>*/}
                 </Typography>
@@ -248,7 +248,7 @@ function TreasuryDashboard() {
         {/*      data={data}*/}
         {/*      dataKey={["treasuryOhmDaiPOL"]}*/}
         {/*      stopColor={[["rgba(128, 204, 131, 1)", "rgba(128, 204, 131, 0)"]]}*/}
-        {/*      headerText="Protocol Owned Liquidity OHM-DAI"*/}
+        {/*      headerText="Protocol Owned Liquidity OX-DAI"*/}
         {/*      headerSubText={`${data && trim(data[0].treasuryOhmDaiPOL, 2)}% `}*/}
         {/*      dataFormat="percent"*/}
         {/*      bulletpointColors={bulletpoints.pol}*/}
@@ -286,7 +286,7 @@ function TreasuryDashboard() {
         {/*      data={staked}*/}
         {/*      dataKey={["staked"]}*/}
         {/*      stopColor={[["#55EBC7", "#47ACEB"]]}*/}
-        {/*      headerText="OHM Staked"*/}
+        {/*      headerText="OX Staked"*/}
         {/*      dataFormat="percent"*/}
         {/*      headerSubText={`${staked && trim(staked[0].staked, 2)}% `}*/}
         {/*      isStaked={true}*/}

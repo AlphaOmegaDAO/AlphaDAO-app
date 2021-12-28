@@ -90,7 +90,7 @@ export default function ExternalStakePool() {
                     <TableCell>
                       <Box className="ohm-pairs">
                         <BondLogo bond={{ bondIconSvg: GuruLusdImg, isLP: true }}></BondLogo>
-                        <Typography>OHM-LUSD</Typography>
+                        <Typography>OX-LUSD</Typography>
                       </Box>
                     </TableCell>
                     <TableCell align="left">

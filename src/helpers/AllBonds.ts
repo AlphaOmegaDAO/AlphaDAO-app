@@ -165,7 +165,7 @@ export const guru_dai = new LPBond({
 
 // export const ohm_lusd = new LPBond({
 //   name: "ohm_lusd_lp",
-//   displayName: "OHM-LUSD LP",
+//   displayName: "OX-LUSD LP",
 //   bondToken: "LUSD",
 //   isAvailable: { [NetworkID.Mainnet]: false, [NetworkID.Testnet]: true },
 //   bondIconSvg: GuruLusdImg,
@@ -223,7 +223,7 @@ export const guru_dai = new LPBond({
 //         (Number(valuation.toString()) / Math.pow(10, 9)) * (Number(markdown.toString()) / Math.pow(10, 18));
 //       return tokenUSD * Number(ethPrice.toString());
 //     } else {
-//       // NOTE (appleseed): using OHM-DAI on rinkeby
+//       // NOTE (appleseed): using OX-DAI on rinkeby
 //       const token = this.getContractForReserve(networkID, provider);
 //       const tokenAddress = this.getAddressForReserve(networkID);
 //       const bondCalculator = getBondCalculator(networkID, provider);

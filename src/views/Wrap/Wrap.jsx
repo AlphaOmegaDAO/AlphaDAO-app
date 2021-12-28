@@ -101,14 +101,14 @@ function Wrap() {
       action === "wrap" &&
       ethers.utils.parseUnits(quantity, "gwei").gt(ethers.utils.parseUnits(sohmBalance, "gwei"))
     ) {
-      return dispatch(error("You cannot wrap more than your sOHM balance."));
+      return dispatch(error("You cannot wrap more than your sOX balance."));
     }
 
     if (
       action === "unwrap" &&
       ethers.utils.parseUnits(quantity, "ether").gt(ethers.utils.parseUnits(wsohmBalance, "ether"))
     ) {
-      return dispatch(error("You cannot unwrap more than your wsOHM balance."));
+      return dispatch(error("You cannot unwrap more than your wsOX balance."));
     }
 
     await dispatch(changeWrap({ address, action, value: quantity.toString(), provider, networkID: chainID }));
@@ -157,7 +157,7 @@ function Wrap() {
               <div className="stake-top-metrics">
                 <Grid container spacing={2} alignItems="flex-end">
                   <Grid item xs={12} sm={4} md={4} lg={4}>
-                    <div className="wrap-sOHM">
+                    <div className="wrap-sOX">
                       <Typography variant="h5" color="textSecondary">
                         sOX Price
                       </Typography>
@@ -177,7 +177,7 @@ function Wrap() {
                     </div>
                   </Grid>
                   <Grid item xs={12} sm={4} md={4} lg={4}>
-                    <div className="wrap-wsOHM">
+                    <div className="wrap-wsOX">
                       <Typography variant="h5" color="textSecondary">
                         wsOX Price
                         <InfoTooltip
@@ -201,7 +201,7 @@ function Wrap() {
                   <div className="wallet-menu" id="wallet-menu">
                     {modalButton}
                   </div>
-                  <Typography variant="h6">Connect your wallet to wrap sOHM</Typography>
+                  <Typography variant="h6">Connect your wallet to wrap sOX</Typography>
                 </div>
               ) : (
                 <>
@@ -269,7 +269,7 @@ function Wrap() {
                               onChangeWrap("wrap");
                             }}
                           >
-                            {txnButtonText(pendingTransactions, "wrapping", "Wrap sOHM")}
+                            {txnButtonText(pendingTransactions, "wrapping", "Wrap sOX")}
                           </Button>
                         ) : (
                           <Button
@@ -296,7 +296,7 @@ function Wrap() {
                             onChangeWrap("unwrap");
                           }}
                         >
-                          {txnButtonText(pendingTransactions, "unwrapping", "Unwrap sOHM")}
+                          {txnButtonText(pendingTransactions, "unwrapping", "Unwrap sOX")}
                         </Button>
                       </TabPanel>
                     </Box>
@@ -306,13 +306,13 @@ function Wrap() {
                     <div className="data-row">
                       <Typography variant="body1">Wrappable Balance</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(sohmBalance, 4)} sOHM</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(sohmBalance, 4)} sOX</>}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography variant="body1">Unwrappable Balance</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(wsohmBalance, 4)} wsOHM</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(wsohmBalance, 4)} wsOX</>}
                       </Typography>
                     </div>
                   </div>

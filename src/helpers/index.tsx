@@ -5,8 +5,8 @@ import { abi as PairContractABI } from "../abi/PairContract.json";
 import { abi as RedeemHelperABI } from "../abi/RedeemHelper.json";
 
 import { SvgIcon } from "@material-ui/core";
-import { ReactComponent as OhmImg } from "../assets/tokens/token_OHM.svg";
-import { ReactComponent as SOhmImg } from "../assets/tokens/token_sOHM.svg";
+import { ReactComponent as OhmImg } from "../assets/tokens/token_OX.svg";
+import { ReactComponent as SOhmImg } from "../assets/tokens/token_sOX.svg";
 
 import { guru_dai } from "./AllBonds";
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";

@@ -62,7 +62,7 @@ export const PoolInfo = props => {
               </div>
               <div className="data-row">
                 <Typography>Your wallet balance</Typography>
-                <Typography>{props.isAccountLoading ? <Skeleton width={100} /> : props.sohmBalance} sOHM</Typography>
+                <Typography>{props.isAccountLoading ? <Skeleton width={100} /> : props.sohmBalance} sOX</Typography>
               </div>
             </Box>
             <Divider color="secondary" />

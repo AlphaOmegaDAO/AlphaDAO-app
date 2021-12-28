@@ -24,13 +24,13 @@ interface BondContractInterface extends ethers.utils.Interface {
     "DAO()": FunctionFragment;
     "DAOShare()": FunctionFragment;
     "LP()": FunctionFragment;
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "bondCalculator()": FunctionFragment;
     "bondInfo(address)": FunctionFragment;
     "bondPrice()": FunctionFragment;
     "bondPriceInDAI()": FunctionFragment;
     "bondPriceWithoutFloor()": FunctionFragment;
-    "circulatingOHMContract()": FunctionFragment;
+    "circulatingOXContract()": FunctionFragment;
     "controlVariable()": FunctionFragment;
     "debtRatio()": FunctionFragment;
     "deposit(uint256,uint256,address)": FunctionFragment;
@@ -56,13 +56,13 @@ interface BondContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "DAO", values?: undefined): string;
   encodeFunctionData(functionFragment: "DAOShare", values?: undefined): string;
   encodeFunctionData(functionFragment: "LP", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondCalculator", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondInfo", values: [string]): string;
   encodeFunctionData(functionFragment: "bondPrice", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondPriceInDAI", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondPriceWithoutFloor", values?: undefined): string;
-  encodeFunctionData(functionFragment: "circulatingOHMContract", values?: undefined): string;
+  encodeFunctionData(functionFragment: "circulatingOXContract", values?: undefined): string;
   encodeFunctionData(functionFragment: "controlVariable", values?: undefined): string;
   encodeFunctionData(functionFragment: "debtRatio", values?: undefined): string;
   encodeFunctionData(functionFragment: "deposit", values: [BigNumberish, BigNumberish, string]): string;
@@ -90,13 +90,13 @@ interface BondContractInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "DAO", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "DAOShare", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "LP", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondCalculator", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondInfo", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondPrice", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondPriceInDAI", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondPriceWithoutFloor", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "circulatingOHMContract", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "circulatingOXContract", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "controlVariable", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "debtRatio", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
@@ -181,7 +181,7 @@ export class BondContract extends BaseContract {
 
     LP(overrides?: CallOverrides): Promise<[string]>;
 
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     bondCalculator(overrides?: CallOverrides): Promise<[string]>;
 
@@ -204,7 +204,7 @@ export class BondContract extends BaseContract {
 
     bondPriceWithoutFloor(overrides?: CallOverrides): Promise<[BigNumber] & { _price: BigNumber }>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<[string]>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<[string]>;
 
     controlVariable(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -277,7 +277,7 @@ export class BondContract extends BaseContract {
 
   LP(overrides?: CallOverrides): Promise<string>;
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   bondCalculator(overrides?: CallOverrides): Promise<string>;
 
@@ -300,7 +300,7 @@ export class BondContract extends BaseContract {
 
   bondPriceWithoutFloor(overrides?: CallOverrides): Promise<BigNumber>;
 
-  circulatingOHMContract(overrides?: CallOverrides): Promise<string>;
+  circulatingOXContract(overrides?: CallOverrides): Promise<string>;
 
   controlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -367,7 +367,7 @@ export class BondContract extends BaseContract {
 
     LP(overrides?: CallOverrides): Promise<string>;
 
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     bondCalculator(overrides?: CallOverrides): Promise<string>;
 
@@ -390,7 +390,7 @@ export class BondContract extends BaseContract {
 
     bondPriceWithoutFloor(overrides?: CallOverrides): Promise<BigNumber>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<string>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<string>;
 
     controlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -474,7 +474,7 @@ export class BondContract extends BaseContract {
 
     LP(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     bondCalculator(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -486,7 +486,7 @@ export class BondContract extends BaseContract {
 
     bondPriceWithoutFloor(overrides?: CallOverrides): Promise<BigNumber>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<BigNumber>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<BigNumber>;
 
     controlVariable(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -548,7 +548,7 @@ export class BondContract extends BaseContract {
 
     LP(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     bondCalculator(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -560,7 +560,7 @@ export class BondContract extends BaseContract {
 
     bondPriceWithoutFloor(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    circulatingOHMContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    circulatingOXContract(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     controlVariable(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

@@ -173,7 +173,7 @@ function Stake() {
                 {/*    target="_blank"*/}
                 {/*  >*/}
                 {/*    <NewReleases viewBox="0 0 24 24" />*/}
-                {/*    <Typography>Migrate sOHM!</Typography>*/}
+                {/*    <Typography>Migrate sOX!</Typography>*/}
                 {/*  </Link>*/}
                 {/*)}*/}
               </div>
