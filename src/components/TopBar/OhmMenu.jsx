@@ -5,16 +5,16 @@ import { useSelector } from "react-redux";
 import { Link, SvgIcon, Popper, Button, Paper, Typography, Divider, Box, Fade, Slide } from "@material-ui/core";
 import { ReactComponent as InfoIcon } from "../../assets/icons/info-fill.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
-import { ReactComponent as sOhmTokenImg } from "../../assets/tokens/token_sOX.svg";
-import { ReactComponent as ohmTokenImg } from "../../assets/tokens/token_OX.svg";
+import { ReactComponent as sOhmTokenImg } from "../../assets/tokens/token_sOHM.svg";
+import { ReactComponent as ohmTokenImg } from "../../assets/tokens/token_OHM.svg";
 import { ReactComponent as t33TokenImg } from "../../assets/tokens/token_33T.svg";
 
 import "./ohmmenu.scss";
 import { dai } from "src/helpers/AllBonds";
 import { useWeb3Context } from "../../hooks/web3Context";
 
-import OhmImg from "src/assets/tokens/token_OX.svg";
-import SOhmImg from "src/assets/tokens/token_sOX.svg";
+import OhmImg from "src/assets/tokens/token_OHM.svg";
+import SOhmImg from "src/assets/tokens/token_sOHM.svg";
 import token33tImg from "src/assets/tokens/token_33T.svg";
 
 const addTokenToWallet = (tokenSymbol, tokenAddress) => async () => {
