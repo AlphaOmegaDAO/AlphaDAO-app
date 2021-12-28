@@ -21,7 +21,7 @@ function getTestnetURI() {
  * @returns string
  */
  
-function getMumbaiTestnetURI() {
+function getBSCTestnetTestnetURI() {
   return EnvHelper.mumbaiTestnetURI;
 }
 
@@ -30,7 +30,7 @@ function getMumbaiTestnetURI() {
  * @returns string
  */
  
-function getPolygonURI() {
+function getBSCURI() {
   return EnvHelper.polygonURI;
 }
 
@@ -98,12 +98,12 @@ export const useAddress = () => {
 
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
-  // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
-  // ... you also need to set getTestnetURI() as the default uri state below
+  // NOTE - Testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet
+  // NOTE - You also need to set getTestnetURI() as the default uri state below
   const [chainID, setChainID] = useState(97);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getPolygonURI());
+  const [uri, setUri] = useState(getBSCURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -125,8 +125,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               1: getMainnetURI(),
               4: getTestnetURI(),
-              97: getMumbaiTestnetURI(),
-              56: getPolygonURI(),
+              97: getBSCTestnetTestnetURI(),
+              56: getBSCURI(),
             },
           },
         },
@@ -143,6 +143,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   // NOTE (appleseed): none of these listeners are needed for Backend API Providers
   // ... so I changed these listeners so that they only apply to walletProviders, eliminating
   // ... polling to the backend providers for network changes
+  
   const _initListeners = useCallback(
     rawProvider => {
       if (!rawProvider.on) {
@@ -168,6 +169,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   /**
    * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
    */
+   
   const _checkNetwork = (otherChainID: number): Boolean => {
     if (chainID !== 97 && otherChainID !== 56) {
       return false;
@@ -178,8 +180,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
         setChainID(otherChainID);
         // if (otherChainID === 1) setUri(getMainnetURI());
         // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 97) setUri(getMumbaiTestnetURI);
-        else if (otherChainID === 56) setUri(getPolygonURI);
+        if (otherChainID === 97) setUri(getBSCTestnetTestnetURI);
+        else if (otherChainID === 56) setUri(getBSCURI);
         // else setUri(getTestnetURI());
         return true;
       }
@@ -206,7 +208,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to Polygon");
+      console.error("Wrong network, please switch to BSC");
       return;
     }
     // Save everything after we've validated the right network.

@@ -16,7 +16,7 @@ interface IAddresses {
 }
 
 export const addresses: IAddresses = {
- // Mumbai
+ // BSCTestnet
    97: {
 		PRESALE_ADDRESS:"0x2193FAaC1910e002b87589C5d34F1737C1f02Cc0",
     DAI_ADDRESS: "0x8301f2213c0eed49a7e28ae4c3e91722919b8b47",
@@ -31,7 +31,7 @@ export const addresses: IAddresses = {
     CLAIM_ADDRESS: "0xd35CE7D18366236DF830B1ecAF5C37ceBF42294F",
     AOX_ADDRESS: "0x5Ce27014C06a473E786f21CA916517731497465b"
   },
-  // Polygon
+  // BSC
    56: {
     PRESALE_ADDRESS:"0x9c0E2603FEF3Acc82Ad291CF8F07ef17f4E12939",
 		DAI_ADDRESS: "0x8301f2213c0eed49a7e28ae4c3e91722919b8b47",

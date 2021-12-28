@@ -8,8 +8,8 @@ import { addresses } from "src/constants";
 import React from "react";
 
 export enum NetworkID {
-  Mumbai = 80001,
-  Polygon = 137,
+  BSCTestnet = 80001,
+  BSC = 137,
 }
 
 export enum BondType {
@@ -23,13 +23,13 @@ export interface BondAddresses {
 }
 
 export interface NetworkAddresses {
-  [NetworkID.Mumbai]: BondAddresses;
-  [NetworkID.Polygon]: BondAddresses;
+  [NetworkID.BSCTestnet]: BondAddresses;
+  [NetworkID.BSC]: BondAddresses;
 }
 
 export interface Available {
-  [NetworkID.Mumbai]?: boolean;
-  [NetworkID.Polygon]?: boolean;
+  [NetworkID.BSCTestnet]?: boolean;
+  [NetworkID.BSC]?: boolean;
 }
 
 interface BondOpts {

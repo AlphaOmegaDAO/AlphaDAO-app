@@ -35,15 +35,15 @@ export const dai = new StableBond({
   name: "dai",
   displayName: "DAI",
   bondToken: "DAI",
-  isAvailable: { [NetworkID.Mumbai]: true, [NetworkID.Polygon]: true },
+  isAvailable: { [NetworkID.BSCTestnet]: true, [NetworkID.BSC]: true },
   bondIconSvg: DaiImg,
   bondContractABI: DaiBondContract,
   networkAddrs: {
-    [NetworkID.Mumbai]: {
+    [NetworkID.BSCTestnet]: {
       bondAddress: "0x3c2b484057e7ba8832c2abc7774b30fba691c789",
       reserveAddress: "0x52439209dc5f526375b8ab036ef9ea15bf0ce63b",
     },
-    [NetworkID.Polygon]: {
+    [NetworkID.BSC]: {
       bondAddress: "0xFDAACD04f8ad605e928F4A44864FF825dCd4796d",
       reserveAddress: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
     },
@@ -123,16 +123,16 @@ export const guru_dai = new LPBond({
   name: "guru_dai_lp",
   displayName: "OX-DAI LP",
   bondToken: "DAI",
-  isAvailable: { [NetworkID.Mumbai]: true, [NetworkID.Polygon]: true },
+  isAvailable: { [NetworkID.BSCTestnet]: true, [NetworkID.BSC]: true },
   bondIconSvg: GuruDaiImg,
   bondContractABI: BondOhmDaiContract,
   reserveContract: ReserveOhmDaiContract,
   networkAddrs: {
-    [NetworkID.Mumbai]: {
+    [NetworkID.BSCTestnet]: {
       bondAddress: "0x695e445610c2dad7fb166acae7636a3b29936364",
       reserveAddress: "0xf86868748f973322e38152f75275777a34d8e3fd",
     },
-    [NetworkID.Polygon]: {
+    [NetworkID.BSC]: {
       bondAddress: "0xbbA07bd5B20B63249398b831082ace6415afB7E0",
       reserveAddress: "0x7c9B16d845FE163F464d265193cC2B4eE3faC326",
     },
