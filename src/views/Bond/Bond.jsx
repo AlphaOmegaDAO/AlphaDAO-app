@@ -112,7 +112,7 @@ function Bond({ bond, nft }) {
                       with EdX and Udemy, the AlphaDAO treasury is filled with bonds created for educational providers assets.
                     </Typography>
                     <Button
-                      href="https://medium.com/tangible/introducing-tangible-5f3947276125"
+                      href="https://docs.alphadao.financial/alpha-omega-dao/phase-iii-paideia-connecting-students-educators-and-mentors-worldwide"
                       target="_blank"
                       variant="contained"
                       color="primary"
