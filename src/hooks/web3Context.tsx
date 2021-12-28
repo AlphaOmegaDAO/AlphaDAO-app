@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Hodlsage 
+AlphaOmegaDAO
+/
+AlphaDAO-frontend
+Private
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+AlphaDAO-frontend/src/hooks/web3Context.tsx /
+@Hodlsage
+Hodlsage Update web3Context.tsx
+Latest commit 9d4cc73 12 days ago
+ History
+ 2 contributors
+@Hodlsage@slowell
+244 lines (215 sloc)  7.56 KB
+   
 import React, { useState, ReactElement, useContext, useEffect, useMemo, useCallback } from "react";
 import Web3Modal from "web3modal";
 import { StaticJsonRpcProvider, JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
@@ -5,7 +35,6 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { IFrameEthereumProvider } from "@ledgerhq/iframe-provider";
 import { EnvHelper } from "../helpers/Environment";
 import { NodeHelper } from "src/helpers/NodeHelper";
-
 /**
  * kept as function to mimic `getMainnetURI()`
  * @returns string
@@ -93,10 +122,10 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [connected, setConnected] = useState(false);
   // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
   // ... you also need to set getTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(1);
+  const [chainID, setChainID] = useState(56);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getMainnetURI());
+  const [uri, setUri] = useState(getPolygonURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -118,8 +147,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               1: getMainnetURI(),
               4: getTestnetURI(),
-              80001: getMumbaiTestnetURI(),
-              137: getPolygonURI(),
+              97: getMumbaiTestnetURI(),
+              56: getPolygonURI(),
             },
           },
         },
@@ -162,17 +191,17 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
    * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
    */
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 80001 && otherChainID !== 137) {
+    if (chainID !== 97 && otherChainID !== 56) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 80001 || otherChainID === 137) {
+      if (otherChainID === 97 || otherChainID === 56) {
         setChainID(otherChainID);
         // if (otherChainID === 1) setUri(getMainnetURI());
         // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
-        else if (otherChainID === 137) setUri(getPolygonURI);
+        if (otherChainID === 97) setUri(getMumbaiTestnetURI);
+        else if (otherChainID === 56) setUri(getPolygonURI);
         // else setUri(getTestnetURI());
         return true;
       }
@@ -243,3 +272,16 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   return <Web3Context.Provider value={{ onChainProvider }}>{children}</Web3Context.Provider>;
 };
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
