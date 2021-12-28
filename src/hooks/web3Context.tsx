@@ -1,33 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
  
-@Hodlsage 
-AlphaOmegaDAO
-/
-AlphaDAO-frontend
-Private
-Code
-Issues
-Pull requests
-1
-Actions
-Projects
-Wiki
-Security
-Insights
-AlphaDAO-frontend/src/hooks/web3Context.tsx /
-@Hodlsage
-Hodlsage Update web3Context.tsx
-Latest commit 9d4cc73 12 days ago
- History
- 2 contributors
-@Hodlsage@slowell
-244 lines (215 sloc)  7.56 KB
-   
 import React, { useState, ReactElement, useContext, useEffect, useMemo, useCallback } from "react";
 import Web3Modal from "web3modal";
 import { StaticJsonRpcProvider, JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
@@ -272,16 +243,3 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   return <Web3Context.Provider value={{ onChainProvider }}>{children}</Web3Context.Provider>;
 };
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
