@@ -177,7 +177,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
         setChainID(otherChainID);
         if (otherChainID === 97) setUri(getBSCTestnetURI);
         else if (otherChainID === 56) setUri(getBSCURI);
-        //else setUri(getTestnetURI());
+        else setUri(getTestnetURI());
         return true;
       }
       return false;
