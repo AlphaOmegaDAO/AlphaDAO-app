@@ -10,6 +10,7 @@ import { NodeHelper } from "src/helpers/NodeHelper";
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
+ 
 function getTestnetURI() {
   return EnvHelper.alchemyTestnetURI;
 }
@@ -18,21 +19,24 @@ function getTestnetURI() {
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
-function getMumbaiTestnetURI() {
-  return EnvHelper.mumbaiTestnetURI;
+ 
+function getBSCTestnetURI() {
+  return EnvHelper.bscTestnetURI;
 }
 
 /**
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
-function getPolygonURI() {
-  return EnvHelper.polygonURI;
+ 
+function getBSCURI() {
+  return EnvHelper.bscURI;
 }
 
 /**
  * determine if in IFrame for Ledger Live
  */
+ 
 function isIframe() {
   return window.location !== window.parent.location;
 }
@@ -43,6 +47,7 @@ const ALL_URIs = NodeHelper.getNodesUris();
  * "intelligently" loadbalances production API Keys
  * @returns string
  */
+ 
 function getMainnetURI(): string {
   // Shuffles the URIs for "intelligent" loadbalancing
   const allURIs = ALL_URIs.sort(() => Math.random() - 0.5);
@@ -56,6 +61,7 @@ function getMainnetURI(): string {
 /*
   Types
 */
+
 type onChainProvider = {
   connect: () => void;
   disconnect: () => void;
@@ -91,12 +97,12 @@ export const useAddress = () => {
 
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
-  // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
-  // ... you also need to set getTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(1);
+  // NOTE - Testing on bsctestnet you need to set chainId === 97 as the default for non-connected wallet
+  // NOTE - You also need to set getTestnetURI() as the default uri state below
+  const [chainID, setChainID] = useState(97);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getMainnetURI());
+  const [uri, setUri] = useState(getBSCTestnetURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -116,10 +122,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           package: WalletConnectProvider,
           options: {
             rpc: {
-              1: getMainnetURI(),
-              4: getTestnetURI(),
-              80001: getMumbaiTestnetURI(),
-              137: getPolygonURI(),
+              97: getBSCTestnetURI(),
+              56: getBSCURI(),
             },
           },
         },
@@ -136,6 +140,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   // NOTE (appleseed): none of these listeners are needed for Backend API Providers
   // ... so I changed these listeners so that they only apply to walletProviders, eliminating
   // ... polling to the backend providers for network changes
+  
   const _initListeners = useCallback(
     rawProvider => {
       if (!rawProvider.on) {
@@ -159,21 +164,20 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   );
 
   /**
-   * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
+   * throws an error if networkID is not 97 (testnet) or 56 (mainnet)
    */
+   
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 80001 && otherChainID !== 137) {
+    if (chainID !== 97 && otherChainID !== 56) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 80001 || otherChainID === 137) {
+      if (otherChainID === 97 || otherChainID === 56) {
         setChainID(otherChainID);
-        // if (otherChainID === 1) setUri(getMainnetURI());
-        // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
-        else if (otherChainID === 137) setUri(getPolygonURI);
-        // else setUri(getTestnetURI());
+        if (otherChainID === 97) setUri(getBSCTestnetURI);
+        else if (otherChainID === 56) setUri(getBSCURI);
+        //else setUri(getTestnetURI());
         return true;
       }
       return false;
@@ -199,7 +203,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to Polygon");
+      console.error("Wrong network, please switch to BSC");
       return;
     }
     // Save everything after we've validated the right network.
