@@ -10,10 +10,10 @@ export class EnvHelper {
    */
   static env = process.env;
   static alchemyTestnetURI = `https://eth-rinkeby.alchemyapi.io/v2/${EnvHelper.env.REACT_APP_TESTNET_ALCHEMY}`;
-  static bscTestnetURI = `https://bsc-mumbai.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
-  static bscURI = `https://bsc-mainnet.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
+  static bscTestnetURI = `https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/testnet`;
+  static bscURI = `https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/mainnet`;
   
-  https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/mainnet
+  
   
   
   static whitespaceRegex = /\s+/;
