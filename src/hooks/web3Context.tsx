@@ -21,7 +21,7 @@ function getTestnetURI() {
  * @returns string
  */
  
-function getBSCTestnetTestnetURI() {
+function getBSCTestnetURI() {
   return EnvHelper.mumbaiTestnetURI;
 }
 
@@ -103,7 +103,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [chainID, setChainID] = useState(97);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getBSCURI());
+  const [uri, setUri] = useState(getBSCTestnetURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -125,7 +125,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               1: getMainnetURI(),
               4: getTestnetURI(),
-              97: getBSCTestnetTestnetURI(),
+              97: getBSCTestnetURI(),
               56: getBSCURI(),
             },
           },
@@ -180,7 +180,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
         setChainID(otherChainID);
         // if (otherChainID === 1) setUri(getMainnetURI());
         // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 97) setUri(getBSCTestnetTestnetURI);
+        if (otherChainID === 97) setUri(getBSCTestnetURI);
         else if (otherChainID === 56) setUri(getBSCURI);
         // else setUri(getTestnetURI());
         return true;
