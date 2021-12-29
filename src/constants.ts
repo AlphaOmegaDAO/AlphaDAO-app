@@ -4,7 +4,7 @@ export const EPOCH_INTERVAL = 2200;
 // NOTE could get this from an outside source since it changes slightly over time
 export const BLOCK_RATE_SECONDS = 2.2;
 
-export const TOKEN_DECIMALS = 18;
+export const TOKEN_DECIMALS = 9;
 
 export const POOL_GRAPH_URLS = {
   97: "https://api.thegraph.com/subgraphs/name/pooltogether/rinkeby-v3_4_3",
