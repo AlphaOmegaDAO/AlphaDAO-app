@@ -22,7 +22,7 @@ function getTestnetURI() {
  */
  
 function getBSCTestnetURI() {
-  return EnvHelper.mumbaiTestnetURI;
+  return EnvHelper.bscTestnetURI;
 }
 
 /**
@@ -31,7 +31,7 @@ function getBSCTestnetURI() {
  */
  
 function getBSCURI() {
-  return EnvHelper.polygonURI;
+  return EnvHelper.bscURI;
 }
 
 /**
