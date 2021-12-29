@@ -4,7 +4,6 @@
  * - Other static methods can be added as needed per
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
  */
- 
 export class EnvHelper {
   
   /**
@@ -13,15 +12,20 @@ export class EnvHelper {
    
   static env = process.env;
   static alchemyTestnetURI = `https://eth-rinkeby.alchemyapi.io/v2/${EnvHelper.env.REACT_APP_TESTNET_ALCHEMY}`;
-  static bscTestnetURI = `https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/testnet`;
+  static bscTestnetURI = `https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/mainnet`;
   static bscURI = `https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/mainnet`;
+ 
+ /**
+  *https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/mainnet
+  *https://speedy-nodes-nyc.moralis.io/db3e0d37d362b91923817eec/bsc/testnet
+  */
+  
   static whitespaceRegex = /\s+/;
 
   /**
    * Returns env contingent segment api key
    * @returns segment
    */
-   
   static getSegmentKey() {
     return EnvHelper.env.REACT_APP_SEGMENT_API_KEY;
   }
@@ -38,12 +42,10 @@ export class EnvHelper {
    * in development environment will return the `ethers` community api key so that devs don't need to add elements to their .env
    * @returns Array of Alchemy API URIs or empty set
    */
-   
   static getAlchemyAPIKeyList() {
     let ALCHEMY_ID_LIST: string[];
 
     // split the provided API keys on whitespace
-    
     if (EnvHelper.env.REACT_APP_ALCHEMY_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_ALCHEMY_IDS)) {
       ALCHEMY_ID_LIST = EnvHelper.env.REACT_APP_ALCHEMY_IDS.split(EnvHelper.whitespaceRegex);
     } else {
@@ -51,7 +53,6 @@ export class EnvHelper {
     }
 
     // now add the uri path
-    
     if (ALCHEMY_ID_LIST.length > 0) {
       ALCHEMY_ID_LIST = ALCHEMY_ID_LIST.map(alchemyID => `https://eth-mainnet.alchemyapi.io/v2/${alchemyID}`);
     } else {
@@ -64,12 +65,10 @@ export class EnvHelper {
    * NOTE(appleseed): Infura IDs are only used as Fallbacks & are not Mandatory
    * @returns {Array} Array of Infura API Ids
    */
-   
   static getInfuraIdList() {
     let INFURA_ID_LIST: string[];
 
     // split the provided API keys on whitespace
-    
     if (EnvHelper.env.REACT_APP_INFURA_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_INFURA_IDS)) {
       INFURA_ID_LIST = EnvHelper.env.REACT_APP_INFURA_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
     } else {
@@ -77,7 +76,6 @@ export class EnvHelper {
     }
 
     // now add the uri path
-    
     if (INFURA_ID_LIST.length > 0) {
       INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => `https://mainnet.infura.io/v3/${infuraID}`);
     } else {
@@ -92,7 +90,6 @@ export class EnvHelper {
    * - functionality for Websocket addresses has been deprecated due to issues with WalletConnect
    *     - WalletConnect Issue: https://github.com/WalletConnect/walletconnect-monorepo/issues/193
    */
-   
   static getSelfHostedNode() {
     let URI_LIST: string[];
     if (EnvHelper.env.REACT_APP_SELF_HOSTED_NODE && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_SELF_HOSTED_NODE)) {
@@ -108,13 +105,10 @@ export class EnvHelper {
    * in prod if .env is blank API connections will fail
    * @returns array of API urls
    */
-   
   static getAPIUris() {
     let ALL_URIs = EnvHelper.getSelfHostedNode();
     if (EnvHelper.env.NODE_ENV === "development" && ALL_URIs.length === 0) {
-      
       // push in the common ethers key in development
-      
       ALL_URIs.push("https://eth-mainnet.alchemyapi.io/v2/_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC");
     }
     if (ALL_URIs.length === 0) console.error("API keys must be set in the .env");
