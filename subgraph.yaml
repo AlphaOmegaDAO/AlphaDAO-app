@@ -7,7 +7,7 @@ dataSources:
     name: OxVault
     network: bsc
     source:
-      address: "0xE9C178CFDFEb917A46429714E5D51f6d4f296b75"
+      address: "0x39E51dD56a36E5b12125247C7286Cea78f5A949F"
       abi: OxVault
       startBlock: 10469135
     mapping:
