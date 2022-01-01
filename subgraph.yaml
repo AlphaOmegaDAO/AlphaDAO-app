@@ -16,7 +16,19 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - OxVault
- 
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: UniswapV2Pair
+          file: ./abis/UniswapV2Pair.json
+        - name: OxERC20
+          file: ./abis/Ox.json
+        - name: xOxERC20
+          file: ./abis/xOx.json
+        - name: OxVault
+          file: ./abis/OxVault.json
+        - name: OxBond
+          file: ./abis/OxBond.json
       eventHandlers:
         - event: LogStake(indexed address,indexed address,uint256,uint256)
           handler: handleStake
