@@ -16,8 +16,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - OxVault
-      abis:
-   
+ 
       eventHandlers:
         - event: LogStake(indexed address,indexed address,uint256,uint256)
           handler: handleStake
