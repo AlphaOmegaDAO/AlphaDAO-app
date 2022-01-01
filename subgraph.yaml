@@ -6,7 +6,7 @@ dataSources:
   - kind: ethereum/contract
     name: OxVault
     network: bsc
-    source:
+    source: 
       address: "0x39E51dD56a36E5b12125247C7286Cea78f5A949F"
       abi: OxVault
       startBlock: 10469135
