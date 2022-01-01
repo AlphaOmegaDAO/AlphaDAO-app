@@ -9,7 +9,7 @@ dataSources:
     source:
       address: "0x39E51dD56a36E5b12125247C7286Cea78f5A949F"
       abi: OxVault
-      startBlock: 10469135
+      startBlock: 15478869
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
