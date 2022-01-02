@@ -52,10 +52,10 @@
     "which" "2.0.2"
     "yaml" "^1.5.1"
 
-"@graphprotocol/graph-ts@^0.20.1":
+"@graphprotocol/graph-ts@^0.22.0":
   "integrity" "sha512-JATb0tERXt+JZUYuW9rwfnLzIM4EOBHf/EEZir5JMiIVMP55CoOyQGAwH2dvKSm5O8WQ1BfdbnOvk7YNVMFHsg=="
-  "resolved" "https://registry.npmjs.org/@graphprotocol/graph-ts/-/graph-ts-0.20.1.tgz"
-  "version" "0.20.1"
+  "resolved" "https://registry.npmjs.org/@graphprotocol/graph-ts/-/graph-ts-0.22.0.tgz"
+  "version" "0.22.0"
   dependencies:
     "assemblyscript" "git+https://github.com/AssemblyScript/assemblyscript.git#v0.6"
 
