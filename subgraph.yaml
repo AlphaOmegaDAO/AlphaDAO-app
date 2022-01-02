@@ -1,0 +1,36 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: OxVault
+    network: bsc
+    source:
+      address: "0x39E51dD56a36E5b12125247C7286Cea78f5A949F"
+      abi: OxVault
+      startBlock: 10469135
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - OxVault
+      abis:
+        - name: ERC20
+          file: OxVault\abis\ERC20.json
+        - name: UniswapV2Pair
+          file: OxVault\abis\UniswapV2Pair.json
+        - name: OxERC20
+          file: OxVault\abis\Ox.json
+        - name: xOxERC20
+          file: OxVault\abis\xOx.json
+        - name: OxVault
+          file: OxVault\abis\OxVault.json
+        - name: OxBond
+          file: OxVault\abis\OxBond.json
+      eventHandlers:
+        - event: LogStake(indexed address,indexed address,uint256,uint256)
+          handler: handleStake
+        - event: LogRedeem(indexed address,uint256,bool)
+          handler: handleRedeem
+      file: OxVault\OxVault.wasm
