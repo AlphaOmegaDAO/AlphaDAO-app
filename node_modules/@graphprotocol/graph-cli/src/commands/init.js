@@ -9,100 +9,112 @@ const {
   getSubgraphBasename,
   validateSubgraphName,
 } = require('../command-helpers/subgraph')
+const DataSourcesExtractor = require('../command-helpers/data-sources')
+const { validateStudioNetwork } = require('../command-helpers/studio')
 const { withSpinner, step } = require('../command-helpers/spinner')
 const { fixParameters } = require('../command-helpers/gluegun')
 const { chooseNodeUrl } = require('../command-helpers/node')
-const { abiEvents, generateScaffold, writeScaffold } = require('../scaffold')
-const ABI = require('../abi')
+const { generateScaffold, writeScaffold } = require('../command-helpers/scaffold')
+const { abiEvents } = require('../scaffold/schema')
+const { validateContract } = require('../validation')
+const Protocol = require('../protocols')
 
-const networkChoices = [
-  'mainnet',
-  'kovan',
-  'rinkeby',
-  'ropsten',
-  'goerli',
-  'poa-core',
-  'poa-sokol',
-  'xdai',
-  'matic',
-  'mumbai',
-  'fantom',
-  'bsc',
-  'chapel',
-  'clover',
-  'avalanche',
-  'fuji',
-  'celo',
-  'celo-alfajores',
-  'fuse',
-  'mbase',
-  'arbitrum-one',
-  'arbitrum-rinkeby',
-  'optimism',
-  'optimism-kovan'
-]
+const protocolChoices = Array.from(Protocol.availableProtocols().keys())
+const availableNetworks = Protocol.availableNetworks()
 
 const HELP = `
 ${chalk.bold('graph init')} [options] [subgraph-name] [directory]
 
 ${chalk.dim('Options:')}
 
+      --protocol <${protocolChoices.join('|')}>
       --product <subgraph-studio|hosted-service>
-                                Selects the product for which to initialize
-      --studio                  Shortcut for --product subgraph-studio
-  -g, --node <node>             Graph node for which to initialize
-      --allow-simple-name       Use a subgraph name without a prefix (default: false)
-  -h, --help                    Show usage information
+                                 Selects the product for which to initialize
+      --studio                   Shortcut for --product subgraph-studio
+  -g, --node <node>              Graph node for which to initialize
+      --allow-simple-name        Use a subgraph name without a prefix (default: false)
+  -h, --help                     Show usage information
 
 ${chalk.dim('Choose mode with one of:')}
 
-      --from-contract <address> Creates a scaffold based on an existing contract
-      --from-example            Creates a scaffold based on an example subgraph
+      --from-contract <contract> Creates a scaffold based on an existing contract
+      --from-example             Creates a scaffold based on an example subgraph
 
 ${chalk.dim('Options for --from-contract:')}
 
-      --abi <path>              Path to the contract ABI (default: download from Etherscan)
-      --network <${networkChoices.join('|')}>
-                                Selects the network the contract is deployed to
-      --index-events            Index contract events as entities
-      --contract-name           Name of the contract (default: Contract)      
+      --contract-name            Name of the contract (default: Contract)
+      --index-events             Index contract events as entities
+
+${chalk.dim.underline('Ethereum:')}
+
+      --abi <path>               Path to the contract ABI (default: download from Etherscan)
+      --network <${availableNetworks.get('ethereum').join('|')}>
+                                 Selects the network the contract is deployed to
+
+${chalk.dim.underline('NEAR:')}
+
+      --network <${availableNetworks.get('near').join('|')}>
+                                 Selects the network the contract is deployed to
 `
 
 const processInitForm = async (
   toolbox,
   {
+    protocol,
     product,
     studio,
     node,
     abi,
     allowSimpleName,
     directory,
-    address,
+    contract,
     fromExample,
     network,
     subgraphName,
     contractName
   },
 ) => {
-  let addressPattern = /^(0x)?[0-9a-fA-F]{40}$/
-
   let abiFromEtherscan = undefined
   let abiFromFile = undefined
+  let protocolInstance
+  let ProtocolContract
+  let ABI
 
   let questions = [
+    {
+      type: 'select',
+      name: 'protocol',
+      message: 'Protocol',
+      choices: protocolChoices,
+      skip: protocolChoices.includes(protocol),
+      result: value => {
+        protocol = protocol || value
+        protocolInstance = new Protocol(protocol)
+        return protocol
+      },
+    },
     {
       type: 'select',
       name: 'product',
       message: 'Product for which to initialize',
       choices: ['subgraph-studio', 'hosted-service'],
-      skip: 
+      skip: () =>
+        protocol === 'near' ||
         product === 'subgraph-studio' ||
         product === 'hosted-service' ||
         studio !== undefined || node !== undefined,
       result: value => {
+        // For now we only support NEAR subgraphs in the Hosted Service
+        if (protocol === 'near') {
+          // Can be overwritten because the question will be skipped (product === undefined)
+          product = 'hosted-service'
+          return product
+        }
+
         if (value == 'subgraph-studio') {
           allowSimpleName = true
         }
+
         product = value
         return value
       },
@@ -143,8 +155,11 @@ const processInitForm = async (
     {
       type: 'select',
       name: 'network',
-      message: 'Ethereum network',
-      choices: networkChoices,
+      message: () => `${protocolInstance.displayName()} network`,
+      choices: () =>
+        availableNetworks
+          .get(protocol) // Get networks related to the chosen protocol.
+          .toArray(), // Needed because of gluegun. It can't even receive a JS iterable.
       skip: fromExample !== undefined,
       initial: network || 'mainnet',
       result: value => {
@@ -154,35 +169,39 @@ const processInitForm = async (
     },
     {
       type: 'input',
-      name: 'address',
-      message: 'Contract address',
+      name: 'contract',
+      message: () => {
+        ProtocolContract = protocolInstance.getContract()
+        return `Contract ${ProtocolContract.identifierName()}`
+      },
       skip: fromExample !== undefined,
-      initial: address,
+      initial: contract,
       validate: async value => {
         if (fromExample !== undefined) {
           return true
         }
 
-        // Validate whether the address is valid
-        if (!addressPattern.test(value)) {
-          return `Contract address "${value}" is invalid.
-  Must be 40 hexadecimal characters, with an optional '0x' prefix.`
-        }
+        // Validate whether the contract is valid
+        const { valid, error } = validateContract(value, ProtocolContract)
 
-        return true
+        return valid
+          ? true
+          : error
       },
       result: async value => {
         if (fromExample !== undefined) {
           return value
         }
 
+        ABI = protocolInstance.getABI()
+
         // Try loading the ABI from Etherscan, if none was provided
-        if (!abi) {
+        if (protocolInstance.hasABIs() && !abi) {
           try {
             if (network === 'poa-core') {
-              abiFromBlockScout = await loadAbiFromBlockScout(network, value)
+              abiFromBlockScout = await loadAbiFromBlockScout(ABI, network, value)
             } else {
-              abiFromEtherscan = await loadAbiFromEtherscan(network, value)
+              abiFromEtherscan = await loadAbiFromEtherscan(ABI, network, value)
             }
           } catch (e) {}
         }
@@ -194,14 +213,17 @@ const processInitForm = async (
       name: 'abi',
       message: 'ABI file (path)',
       initial: abi,
-      skip: () => fromExample !== undefined || abiFromEtherscan !== undefined,
+      skip: () =>
+        !protocolInstance.hasABIs() ||
+        fromExample !== undefined ||
+        abiFromEtherscan !== undefined,
       validate: async value => {
-        if (fromExample || abiFromEtherscan) {
+        if (fromExample || abiFromEtherscan || !protocolInstance.hasABIs()) {
           return true
         }
 
         try {
-          abiFromFile = await loadAbiFromFile(value)
+          abiFromFile = await loadAbiFromFile(ABI, value)
           return true
         } catch (e) {
           return e.message
@@ -224,13 +246,13 @@ const processInitForm = async (
 
   try {
     let answers = await toolbox.prompt.ask(questions)
-    return { ...answers, abi: abiFromEtherscan || abiFromFile }
+    return { ...answers, abi: abiFromEtherscan || abiFromFile, protocolInstance }
   } catch (e) {
     return undefined
   }
 }
 
-const loadAbiFromBlockScout = async (network, address) =>
+const loadAbiFromBlockScout = async (ABI, network, address) =>
   await withSpinner(
     `Fetching ABI from BlockScout`,
     `Failed to fetch ABI from BlockScout`,
@@ -254,16 +276,25 @@ const loadAbiFromBlockScout = async (network, address) =>
     },
   )
 
-const loadAbiFromEtherscan = async (network, address) =>
+const getEtherscanLikeAPIUrl = (network) => {
+  switch(network){
+    case "mainnet": return `https://api.etherscan.io/api`;
+    case "bsc": return `https://api.bscscan.com/api`;
+    case "matic": return `https://api.polygonscan.com/api`;
+    case "mumbai": return `https://api-testnet.polygonscan.com/api`;
+    default: return `https://api-${network}.etherscan.io/api`;
+  }
+} 
+
+const loadAbiFromEtherscan = async (ABI, network, address) =>
   await withSpinner(
     `Fetching ABI from Etherscan`,
     `Failed to fetch ABI from Etherscan`,
     `Warnings while fetching ABI from Etherscan`,
     async spinner => {
+      const scanApiUrl = getEtherscanLikeAPIUrl(network);
       let result = await fetch(
-        `https://${
-          network === 'mainnet' ? 'api' : `api-${network}`
-        }.etherscan.io/api?module=contract&action=getabi&address=${address}`,
+        `${scanApiUrl}?module=contract&action=getabi&address=${address}`,
       )
       let json = await result.json()
 
@@ -278,7 +309,7 @@ const loadAbiFromEtherscan = async (network, address) =>
     },
   )
 
-const loadAbiFromFile = async filename => {
+const loadAbiFromFile = async (ABI, filename) => {
   let exists = await toolbox.filesystem.exists(filename)
 
   if (!exists) {
@@ -303,6 +334,7 @@ module.exports = {
 
     // Read CLI parameters
     let {
+      protocol,
       product,
       studio,
       node,
@@ -381,47 +413,61 @@ module.exports = {
     if (fromExample && subgraphName && directory) {
       return await initSubgraphFromExample(
         toolbox,
-        { allowSimpleName, directory, subgraphName },
+        { allowSimpleName, directory, subgraphName, studio, product },
         { commands },
       )
     }
 
     // If all parameters are provided from the command-line,
     // go straight to creating the subgraph from an existing contract
-    if (fromContract && subgraphName && directory && network && node) {
-      if (abi) {
-        try {
-          abi = await loadAbiFromFile(abi)
-        } catch (e) {
-          print.error(`Failed to load ABI: ${e.message}`)
-          process.exitCode = 1
-          return
-        }
-      } else {
-        try {
-          if (network === 'poa-core') {
-            abi = await loadAbiFromBlockScout(network, fromContract)
-          } else {
-            abi = await loadAbiFromEtherscan(network, fromContract)
+    if (fromContract && protocol && subgraphName && directory && network && node) {
+      if (!protocolChoices.includes(protocol)) {
+        print.error(`Protocol '${protocol}' is not supported, choose from these options: ${protocolChoices.join(', ')}`)
+        process.exitCode = 1
+        return
+      }
+
+      const protocolInstance = new Protocol(protocol)
+
+      if (protocolInstance.hasABIs()) {
+        const ABI = protocolInstance.getABI()
+        if (abi) {
+          try {
+            abi = await loadAbiFromFile(ABI, abi)
+          } catch (e) {
+            print.error(`Failed to load ABI: ${e.message}`)
+            process.exitCode = 1
+            return
           }
-        } catch (e) {
-          process.exitCode = 1
-          return
+        } else {
+          try {
+            if (network === 'poa-core') {
+              abi = await loadAbiFromBlockScout(ABI, network, fromContract)
+            } else {
+              abi = await loadAbiFromEtherscan(ABI, network, fromContract)
+            }
+          } catch (e) {
+            process.exitCode = 1
+            return
+          }
         }
       }
 
       return await initSubgraphFromContract(
         toolbox,
         {
+          protocolInstance,
           abi,
           allowSimpleName,
           directory,
-          address: fromContract,
+          contract: fromContract,
           indexEvents,
           network,
           subgraphName,
           contractName,
-          node
+          node,
+          studio,
+          product,
         },
         { commands },
       )
@@ -429,13 +475,14 @@ module.exports = {
 
     // Otherwise, take the user through the interactive form
     let inputs = await processInitForm(toolbox, {
+      protocol,
       product,
       studio,
       node,
       abi,
       allowSimpleName,
       directory,
-      address: fromContract,
+      contract: fromContract,
       fromExample,
       network,
       subgraphName,
@@ -455,6 +502,8 @@ module.exports = {
         {
           subgraphName: inputs.subgraphName,
           directory: inputs.directory,
+          studio: inputs.studio,
+          product: inputs.product,
         },
         { commands },
       )
@@ -468,15 +517,18 @@ module.exports = {
       await initSubgraphFromContract(
         toolbox,
         {
+          protocolInstance: inputs.protocolInstance,
           allowSimpleName,
           subgraphName: inputs.subgraphName,
           directory: inputs.directory,
           abi: inputs.abi,
           network: inputs.network,
-          address: inputs.address,
+          contract: inputs.contract,
           indexEvents,
           contractName: inputs.contractName,
-          node
+          node,
+          studio: inputs.studio,
+          product: inputs.product,
         },
         { commands },
       )
@@ -521,12 +573,26 @@ const initRepository = async (toolbox, directory) =>
     },
   )
 
+// Only used for local testing / continuous integration.
+//
+// This requires that the command `npm link` is called
+// on the root directory of this repository, as described here:
+// https://docs.npmjs.com/cli/v7/commands/npm-link.
+const npmLinkToLocalCli = async (toolbox, directory) => {
+  if (process.env.GRAPH_CLI_TESTS) {
+    await toolbox.system.run('npm link @graphprotocol/graph-cli', { cwd: directory })
+  }
+}
+
 const installDependencies = async (toolbox, directory, installCommand) =>
   await withSpinner(
     `Install dependencies with ${toolbox.print.colors.muted(installCommand)}`,
     `Failed to install dependencies`,
     `Warnings while installing dependencies`,
     async spinner => {
+      // Links to local graph-cli if we're running the automated tests
+      await npmLinkToLocalCli(toolbox, directory)
+
       await toolbox.system.run(installCommand, { cwd: directory })
       return true
     },
@@ -567,7 +633,7 @@ Make sure to visit the documentation on https://thegraph.com/docs/ for further i
 
 const initSubgraphFromExample = async (
   toolbox,
-  { allowSimpleName, subgraphName, directory },
+  { allowSimpleName, subgraphName, directory, studio, product },
   { commands },
 ) => {
   let { filesystem, print, system } = toolbox
@@ -602,6 +668,20 @@ const initSubgraphFromExample = async (
     return
   }
 
+  try {
+    // It doesn't matter if we changed the URL we clone the YAML,
+    // we'll check it's network anyway. If it's a studio subgraph we're dealing with.
+    const dataSourcesAndTemplates = await DataSourcesExtractor.fromFilePath(path.join(directory, 'subgraph.yaml'))
+
+    for (const { network } of dataSourcesAndTemplates) {
+      validateStudioNetwork({ studio, product, network })
+    }
+  } catch (e) {
+    print.error(e.message)
+    process.exitCode = 1
+    return
+  }
+
   // Update package.json to match the subgraph name
   let prepared = await withSpinner(
     `Update subgraph name and commands in package.json`,
@@ -619,6 +699,11 @@ const initSubgraphFromExample = async (
         })
         delete pkgJson['license']
         delete pkgJson['repository']
+
+        // Remove example's cli in favor of the local one (added via `npm link`)
+        if (process.env.GRAPH_CLI_TESTS) {
+          delete pkgJson['devDependencies']['@graphprotocol/graph-cli']
+        }
 
         // Write package.json
         await filesystem.write(pkgJsonFilename, pkgJson, { jsonIndent: 2 })
@@ -661,7 +746,20 @@ const initSubgraphFromExample = async (
 
 const initSubgraphFromContract = async (
   toolbox,
-  {allowSimpleName, subgraphName, directory, abi, network, address, indexEvents, contractName, node},
+  {
+    protocolInstance,
+    allowSimpleName,
+    subgraphName,
+    directory,
+    abi,
+    network,
+    contract,
+    indexEvents,
+    contractName,
+    node,
+    studio,
+    product,
+  },
   { commands },
 ) => {
   let { print } = toolbox
@@ -679,14 +777,25 @@ const initSubgraphFromContract = async (
     return
   }
 
-  if (abiEvents(abi).length === 0) {
+  if (protocolInstance.hasABIs() && abiEvents(abi).length === 0) {
     // Fail if the ABI does not contain any events
     print.error(`ABI does not contain any events`)
     process.exitCode = 1
     return
   }
 
-  // Scaffold subgraph from ABI
+  // We can validate this before the scaffold because we receive
+  // the network from the form or via command line argument.
+  // We don't need to read the manifest in this case.
+  try {
+    validateStudioNetwork({ studio, product, network })
+  } catch (e) {
+    print.error(e.message)
+    process.exitCode = 1
+    return
+  }
+
+  // Scaffold subgraph
   let scaffold = await withSpinner(
     `Create subgraph scaffold`,
     `Failed to create subgraph scaffold`,
@@ -694,10 +803,11 @@ const initSubgraphFromContract = async (
     async spinner => {
       let scaffold = await generateScaffold(
         {
+          protocolInstance,
           subgraphName,
           abi,
           network,
-          address,
+          contract,
           indexEvents,
           contractName,
           node,
