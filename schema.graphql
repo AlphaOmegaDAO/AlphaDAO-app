@@ -8,7 +8,7 @@ type Referral @entity {
 type UserBalance @entity {
   id: ID!
   user: User!
-  xOxBalance: BigDecimal!
+  sOxBalance: BigDecimal!
   oxBalance: BigDecimal!
   bondBalance: BigDecimal!
   dollarBalance: BigDecimal!
@@ -85,7 +85,7 @@ type ProtocolMetric @entity {
   id: ID!
   timestamp: BigInt!
   oxCirculatingSupply: BigDecimal!
-  xOxCirculatingSupply: BigDecimal!
+  sOxCirculatingSupply: BigDecimal!
   totalSupply: BigDecimal!
   oxPrice: BigDecimal!
   marketCap: BigDecimal!
