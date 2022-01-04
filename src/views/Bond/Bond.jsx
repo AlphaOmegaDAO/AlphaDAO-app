@@ -77,10 +77,10 @@ function Bond({ bond, nft }) {
                 <BondHeader bond={bond} nft />
                 <Box direction="column" className="bond-price-data-column">
                   <Typography variant="h6" color="textSecondary">
-                    Bond with real world assets
+                    Bond with educational assets
                   </Typography>
                   <Typography variant="h5" color="textPrimary">
-                    Gold, Fine Wine, Real Estate and Art
+                    Pi is pegged to educational credit hours
                   </Typography>
                 </Box>
 
@@ -108,11 +108,11 @@ function Bond({ bond, nft }) {
                       COMING SOON
                     </Button>
                     <Typography className="bond-nft-description">
-                      OX is the first algorithmic currency backed by real world assets. Enabled by our partnership
-                      with Tangible, the AlphaDAO treasury is filled with gold, fine wine and other tangible assets.
+                      OX is the first algorithmic currency backed by educational based assets. Enabled by our partnership
+                      with Paideia, the AlphaDAO treasury is filled with educational credit hours in the form of Pi as well as other educational based assets.
                     </Typography>
                     <Button
-                      href="https://medium.com/tangible/introducing-tangible-5f3947276125"
+                      href="https://docs.alphadao.financial/alpha-omega-dao/paideia-your-second-chance-at-life"
                       target="_blank"
                       variant="contained"
                       color="primary"
@@ -175,7 +175,7 @@ function Bond({ bond, nft }) {
                 aria-label="bond tabs"
               >
                 <Tab label={<span className={classes.customStyleOnTab}>BOND</span>} {...a11yProps(0)} />
-                <Tab label={<span className={classes.customStyleOnTab}>REDEEM</span>} {...a11yProps(1)} />
+                  <Tab label={<span className={classes.customStyleOnTab}></span>} {...a11yProps(1)} />
               </Tabs>
 
               <TabPanel value={view} index={0}>

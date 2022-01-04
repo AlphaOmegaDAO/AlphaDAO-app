@@ -8,7 +8,7 @@ import { addresses } from "src/constants";
 import React from "react";
 
 export enum NetworkID {
-  Mumbai = 80001,
+  Mumbai = 97,
   Polygon = 137,
 }
 

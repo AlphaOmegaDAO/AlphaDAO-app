@@ -57,135 +57,134 @@ const addTokenToWallet = (tokenSymbol, tokenAddress) => async () => {
 };
 
 function OhmMenu() {
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const isEthereumAPIAvailable = window.ethereum;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isEthereumAPIAvailable = window.ethereum;
   const { chainID } = useWeb3Context();
 
   const networkID = chainID;
 
-  // const SOHM_ADDRESS = addresses[networkID].SOHM_ADDRESS;
+  const SOHM_ADDRESS = addresses[networkID].OX_ADDRESS;
   // const OHM_ADDRESS = addresses[networkID].OHM_ADDRESS;
   // const PT_TOKEN_ADDRESS = addresses[networkID].PT_TOKEN_ADDRESS;
 
   const OX_ADDRESS = addresses[networkID]?.OX_ADDRESS;
 
-  // const handleClick = event => {
-  //   setAnchorEl(anchorEl ? null : event.currentTarget);
-  // };
+  const handleClick = event => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
-  // const open = Boolean(anchorEl);
-  // const id = "ohm-popper";
+  const open = Boolean(anchorEl);
+  const id = "ohm-popper";
   const daiAddress = dai.getAddressForReserve(networkID);
   // const fraxAddress = frax.getAddressForReserve(networkID);
+// 	<Link
+// 	href={`https://app.alphadao.financial/#/presale`}
+// 	target="_blank"
+// 	rel="noreferrer"
+// >
+// 	<Button className="guru-menu-button" size="large" variant="contained" color="secondary">
+// 		<Typography align="left">BUY OX</Typography>
+// 	</Button>
+// </Link>
   return (
-    // <Box
-    //   component="div"
-    //   onMouseEnter={e => handleClick(e)}
-    //   onMouseLeave={e => handleClick(e)}
-    //   id="guru-menu-button-hover"
-    // >
-    //   <Button id="guru-menu-button" size="large" variant="contained" color="secondary" title="OX" aria-describedby={id}>
-    //     <SvgIcon component={InfoIcon} color="primary" />
-    //     <Typography>BUY OX</Typography>
-    //   </Button>
-    //
-    //   <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start" transition>
-    //     {({ TransitionProps }) => {
-    //       return (
-    //         <Fade {...TransitionProps} timeout={100}>
-    //           <Paper className="ohm-menu" elevation={1}>
-    //             <Box component="div" className="buy-tokens">
-    //               <Link
-    //                 href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=${OHM_ADDRESS}`}
-    //                 target="_blank"
-    //                 rel="noreferrer"
-    //               >
-    //                 <Button size="large" variant="contained" color="secondary" fullWidth>
-    //                   <Typography align="left">
-    //                     Buy on Sushiswap <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
-    //                   </Typography>
-    //                 </Button>
-    //               </Link>
-    //
-    <Link
-      href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=${OX_ADDRESS}`}
-      target="_blank"
-      rel="noreferrer"
+    <Box
+      component="div"
+      onMouseEnter={e => handleClick(e)}
+      onMouseLeave={e => handleClick(e)}
+      className="guru-menu-button-hover"
     >
-      <Button id="guru-menu-button" size="large" variant="contained" color="secondary">
-        <Typography align="left">BUY OX</Typography>
+      <Button className="guru-menu-button" size="large" variant="contained" color="secondary" title="OX" aria-describedby={id}>
+        <SvgIcon component={InfoIcon} color="primary" />
+        <Typography>Infinite OX</Typography>
       </Button>
-    </Link>
-    //
-    //               <Link href={`https://abracadabra.money/pool/10`} target="_blank" rel="noreferrer">
-    //                 <Button size="large" variant="contained" color="secondary" fullWidth>
-    //                   <Typography align="left">
-    //                     Wrap sOHM on Abracadabra <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
-    //                   </Typography>
-    //                 </Button>
-    //               </Link>
-    //             </Box>
-    //
-    //             <Box component="div" className="data-links">
-    //               <Divider color="secondary" className="less-margin" />
-    //               <Link href={`https://dune.xyz/shadow/Olympus-(OHM)`} target="_blank" rel="noreferrer">
-    //                 <Button size="large" variant="contained" color="secondary" fullWidth>
-    //                   <Typography align="left">
-    //                     Shadow's Dune Dashboard <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
-    //                   </Typography>
-    //                 </Button>
-    //               </Link>
-    //             </Box>
-    //
-    //             {isEthereumAPIAvailable ? (
-    //               <Box className="add-tokens">
-    //                 <Divider color="secondary" />
-    //                 <p>ADD TOKEN TO WALLET</p>
-    //                 <Box display="flex" flexDirection="row" justifyContent="space-between">
-    //                   <Button variant="contained" color="secondary" onClick={addTokenToWallet("OHM", OHM_ADDRESS)}>
-    //                     <SvgIcon
-    //                       component={ohmTokenImg}
-    //                       viewBox="0 0 32 32"
-    //                       style={{ height: "25px", width: "25px" }}
-    //                     />
-    //                     <Typography variant="body1">OHM</Typography>
-    //                   </Button>
-    //                   <Button variant="contained" color="secondary" onClick={addTokenToWallet("sOHM", SOHM_ADDRESS)}>
-    //                     <SvgIcon
-    //                       component={sOhmTokenImg}
-    //                       viewBox="0 0 100 100"
-    //                       style={{ height: "25px", width: "25px" }}
-    //                     />
-    //                     <Typography variant="body1">sOHM</Typography>
-    //                   </Button>
-    //                   <Button variant="contained" color="secondary" onClick={addTokenToWallet("33T", PT_TOKEN_ADDRESS)}>
-    //                     <SvgIcon
-    //                       component={t33TokenImg}
-    //                       viewBox="0 0 1000 1000"
-    //                       style={{ height: "25px", width: "25px" }}
-    //                     />
-    //                     <Typography variant="body1">33T</Typography>
-    //                   </Button>
-    //                 </Box>
-    //               </Box>
-    //             ) : null}
-    //
-    //             <Divider color="secondary" />
-    //             <Link
-    //               href="https://docs.olympusdao.finance/using-the-website/unstaking_lp"
-    //               target="_blank"
-    //               rel="noreferrer"
-    //             >
-    //               <Button size="large" variant="contained" color="secondary" fullWidth>
-    //                 <Typography align="left">Unstake Legacy LP Token</Typography>
-    //               </Button>
-    //             </Link>
-    //           </Paper>
-    //         </Fade>
-    //       );
-    //     }}
-    //   </Popper>
-    // </Box>
+
+      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start" transition>
+        {({ TransitionProps }) => {
+          return (
+            <Fade {...TransitionProps} timeout={100}>
+              <Paper className="ohm-menu" elevation={1}>
+                <Box style={{paddingLeft:'40px', paddingRight:'40px'}} component="div" className="buy-tokens">
+                  {/* <Link
+                    href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=${OHM_ADDRESS}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Button size="large" variant="contained" color="secondary" fullWidth>
+                      <Typography align="left">
+                        Buy on Sushiswap <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
+                      </Typography>
+                    </Button>
+                  </Link> */}
+
+
+
+                  <Link href={`#/presale`}  rel="noreferrer">
+										<Box align="center">
+
+                    <Button align="center" size="large" variant="contained" color="secondary" >
+                      <Typography align="left">
+                        Buy iOX
+                      </Typography>
+                    </Button>
+										</Box>
+                  </Link>
+                </Box>
+
+                {/* <Box component="div" className="data-links">
+                  <Divider color="secondary" className="less-margin" />
+                  <Link href={`/presale`} target="_blank" rel="noreferrer">
+                    <Button size="large" variant="contained" color="secondary" fullWidth>
+                      <Typography align="left">
+                        Shadow's Dune Dashboard <SvgIcon component={ArrowUpIcon} htmlColor="#A3A3A3" />
+                      </Typography>
+                    </Button>
+                  </Link>
+                </Box> */}
+
+                {isEthereumAPIAvailable ? (
+                  <Box className="add-tokens">
+                    <Divider style={{margin:'20px'}} color="secondary" />
+                    <p style={{textAlign:'center'}}>ADD TOKEN TO WALLET</p>
+                    <Box  align="center">
+                      <Button variant="contained" color="secondary" onClick={addTokenToWallet("iOX", SOHM_ADDRESS)}>
+                        <Typography variant="body1">Add iOX</Typography>
+                      </Button>
+                      {/* <Button variant="contained" color="secondary" onClick={addTokenToWallet("sOHM", SOHM_ADDRESS)}>
+                        <SvgIcon
+                          component={sOhmTokenImg}
+                          viewBox="0 0 100 100"
+                          style={{ height: "25px", width: "25px" }}
+                        />
+                        <Typography variant="body1">sOHM</Typography>
+                      </Button>
+                      <Button variant="contained" color="secondary" onClick={addTokenToWallet("33T", PT_TOKEN_ADDRESS)}>
+                        <SvgIcon
+                          component={t33TokenImg}
+                          viewBox="0 0 1000 1000"
+                          style={{ height: "25px", width: "25px" }}
+                        />
+                        <Typography variant="body1">33T</Typography>
+                      </Button> */}
+                    </Box>
+                  </Box>
+                ) : null}
+
+                {/* <Divider color="secondary" />
+                <Link
+                  href="https://docs.olympusdao.finance/using-the-website/unstaking_lp"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button size="large" variant="contained" color="secondary" fullWidth>
+                    <Typography align="left">Unstake Legacy LP Token</Typography>
+                  </Button>
+                </Link> */}
+              </Paper>
+            </Fade>
+          );
+        }}
+      </Popper>
+    </Box>
   );
 }
 

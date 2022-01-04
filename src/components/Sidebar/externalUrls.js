@@ -5,12 +5,12 @@ import { SvgIcon } from "@material-ui/core";
 const externalUrls = [
   {
     title: "Docs",
-    url: "https://docs.alphadao.finance/",
+    url: "https://docs.alphadao.financial",
     icon: <SvgIcon component={DocsIcon} />,
   },
   {
     title: "Alpha home",
-    url: "https://alphadao.finance",
+    url: "https://alphadao.financial",
     icon: <SvgIcon color="primary" component={AlphaHomeIcon} />,
   },
 ];

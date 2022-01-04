@@ -50,8 +50,8 @@ function ConnectMenu({ theme }) {
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
   // const getEtherscanUrl = txnHash => {
-  //   return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://etherscan.io/tx/" + txnHash;
-  // };
+    // return chainID === 56 ? "https://bscscan.com/tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
+//   };
 
   // useEffect(() => {
   //   if (pendingTransactions.length === 0) {

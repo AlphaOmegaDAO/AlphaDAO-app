@@ -1,5 +1,5 @@
-# [Alpha Frontend](https://app.alphadao.finance/)
-This is the front-end repo for Alpha that allows users be part of the future. 
+# [Alpha Frontend](https://app.alphadao.financial)
+This is the front-end repo for Alpha DAO that allows users be part of the future. 
 
 ##  🔧 Setting up Local Development
 
@@ -10,7 +10,7 @@ Required:
 
 
 ```bash
-$ git clone https://github.com/AlphaDAO/AlphaDAO-frontend.git
+
 $ cd AlphaDAO-frontend
 
 # set up your environment variables
@@ -33,7 +33,7 @@ The files/folder structure are a  **WIP** and may contain some unused files. The
 ```
 ./src/
 ├── App.jsx       // Main app page
-├── abi/          // Contract ABIs from etherscan.io
+├── abi/          // Contract ABIs from bscscan.com
 ├── actions/      // Redux actions 
 ├── assets/       // Static assets (SVGs)
 ├── components/   // Reusable individual components
@@ -52,10 +52,10 @@ Each PR into master will get its own custom URL that is visible on the PR page. 
 **Defenders of the code**: 
 
 Only the following people have merge access for the master branch. 
-* [@Balarama-AlphaDAO](https://github.com/Balarama-AlphaDAO)
+* [Hodlsage]
 
 
 ## 🗣 Community
 
-* [Join our Discord](https://discord.com/invite/AlphaDAO) and ask how you can get involved with the DAO!
+* [Join our Discord](https://discord.gg/wPuVRRyZ) and ask how you can get involved with the DAO and learn about Paideia!
 
