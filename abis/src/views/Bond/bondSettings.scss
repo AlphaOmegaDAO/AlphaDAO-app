@@ -1,0 +1,41 @@
+#hades {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background-color: #55555555;
+  .ohm-popover {
+    padding: 10px;
+    max-width: 577px;
+    height: 577px;
+    display: flex;
+    flex-direction: column;
+    .settings-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    h3 {
+      margin-top: 50px;
+      align-self: center;
+      justify-self: center;
+      width: 100%;
+      text-align: center;
+    }
+    label {
+      margin: 45px 0 10px;
+    }
+    .help-text {
+      margin: 20px 0;
+    }
+  }
+  .mobile .ohm-popover {
+    max-width: 400px;
+  }
+}
+
+.card-settings {
+  margin: 0 50px;
+}
