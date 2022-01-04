@@ -33,7 +33,7 @@ import { BigNumberish } from "ethers";
 //   and include that in the definition of a bond
 export const dai = new StableBond({
   name: "dai",
-  displayName: "BUSD",
+  displayName: "DAI",
   bondToken: "DAI",
   isAvailable: { [NetworkID.Mumbai]: true, [NetworkID.Polygon]: true },
   bondIconSvg: DaiImg,
@@ -121,7 +121,7 @@ export const dai = new StableBond({
 
 export const guru_dai = new LPBond({
   name: "guru_dai_lp",
-  displayName: "OX-BUSD LP",
+  displayName: "OX-DAI LP",
   bondToken: "DAI",
   isAvailable: { [NetworkID.Mumbai]: true, [NetworkID.Polygon]: true },
   bondIconSvg: GuruDaiImg,
@@ -138,7 +138,7 @@ export const guru_dai = new LPBond({
     },
   },
   lpUrl:
-    "https://pancakeswap.finance/swap",
+    "https://app.sushi.com/add/0x383518188c0c6d7730d91b2c03a03c837814a899/0x6b175474e89094c44da98b954eedeac495271d0f",
 });
 
 // export const ohm_frax = new LPBond({
@@ -160,7 +160,7 @@ export const guru_dai = new LPBond({
 //     },
 //   },
 //   lpUrl:
-//     "https://pancakeswap.finance",
+//     "https://app.uniswap.org/#/add/v2/0x853d955acef822db058eb8505911ed77f175b99e/0x383518188c0c6d7730d91b2c03a03c837814a899",
 // });
 
 // export const ohm_lusd = new LPBond({
@@ -183,7 +183,7 @@ export const guru_dai = new LPBond({
 //     },
 //   },
 //   lpUrl:
-//     "https://pancakeswap.finance",
+//     "https://app.sushi.com/add/0x383518188C0C6d7730D91b2c03a03C837814a899/0x5f98805A4E8be255a32880FDeC7F6728C6568bA0",
 // });
 
 // export const ohm_weth = new CustomBond({
@@ -207,7 +207,7 @@ export const guru_dai = new LPBond({
 //   },
 //   bondType: BondType.LP,
 //   lpUrl:
-//     "https://pancakeswap.finance",
+//     "https://app.sushi.com/add/0x383518188c0c6d7730d91b2c03a03c837814a899/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
 //   customTreasuryBalanceFunc: async function (this: CustomBond, networkID, provider) {
 //     if (networkID === NetworkID.Mainnet) {
 //       const ethBondContract = this.getContractForBond(networkID, provider);

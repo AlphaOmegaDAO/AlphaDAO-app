@@ -28,13 +28,14 @@ const darkTheme = {
   textHighlightColor: colors.gold[500],
   backgroundColor: colors.dark[800],
   background: `
-    radial-gradient(circle at 50% 50%, rgba(0, 96, 209, 0.25), rgba(0, 209, 197, 0) 33%)
+    radial-gradient(circle at 44% 35%, rgba(255, 109, 0, .25), rgba(255, 109, 0, 0) 27%),
+    radial-gradient(circle at 75% 59%, rgba(0, 209, 197, .25), rgba(0, 209, 197, 0) 33%)
   `,
   paperBg: `${colors.dark[900]}40`,
   modalBg: "#24242699",
   popoverBg: colors.dark[900],
   menuBg: "#36384080",
-  backdropBg: "rgba(54, 56, 64, 0.85)",
+  backdropBg: "rgba(54, 56, 64, 0.5)",
   largeTextColor: colors.gold[500],
   activeLinkColor: colors.gold[500],
   activeLinkSvgColor:
@@ -114,7 +115,7 @@ export const dark = responsiveFontSizes(
           root: {
             backgroundColor: darkTheme.paperBg,
             backdropFilter: "blur(200px)",
-            background: `radial-gradient(circle at 25% 13%, rgba(0, 49, 255, 0.06), rgba(255, 109, 0, 0) 24%)`,
+            background: `radial-gradient(circle at 28% 13%, rgba(255, 109, 0, .06), rgba(255, 109, 0, 0) 24%)`,
             "&.ohm-card": {
               background: "rgba(255, 255, 255, 0.05)",
               border: "0.5px solid rgba(255, 255, 255, 0.2)",

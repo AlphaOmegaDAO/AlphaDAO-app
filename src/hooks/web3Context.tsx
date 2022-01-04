@@ -5,6 +5,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { IFrameEthereumProvider } from "@ledgerhq/iframe-provider";
 import { EnvHelper } from "../helpers/Environment";
 import { NodeHelper } from "src/helpers/NodeHelper";
+
 /**
  * kept as function to mimic `getMainnetURI()`
  * @returns string
@@ -92,10 +93,10 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [connected, setConnected] = useState(false);
   // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
   // ... you also need to set getTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(56);
+  const [chainID, setChainID] = useState(1);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getPolygonURI());
+  const [uri, setUri] = useState(getMainnetURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -117,8 +118,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               1: getMainnetURI(),
               4: getTestnetURI(),
-              97: getMumbaiTestnetURI(),
-              56: getPolygonURI(),
+              80001: getMumbaiTestnetURI(),
+              137: getPolygonURI(),
             },
           },
         },
@@ -161,17 +162,17 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
    * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
    */
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 97 && otherChainID !== 56) {
+    if (chainID !== 80001 && otherChainID !== 137) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 97 || otherChainID === 56) {
+      if (otherChainID === 80001 || otherChainID === 137) {
         setChainID(otherChainID);
         // if (otherChainID === 1) setUri(getMainnetURI());
         // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 97) setUri(getMumbaiTestnetURI);
-        else if (otherChainID === 56) setUri(getPolygonURI);
+        if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
+        else if (otherChainID === 137) setUri(getPolygonURI);
         // else setUri(getTestnetURI());
         return true;
       }

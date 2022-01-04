@@ -7,6 +7,9 @@ import { IBondDetails } from "src/slices/BondSlice";
 
 // TODO REPLACE TO ANOTHER FILE AFTER REMOVING THE MOCK
 import { ReactComponent as GoldImg } from "src/assets/tokens/GOLD.svg";
+import { ReactComponent as FineWineImg } from "src/assets/tokens/WINE.svg";
+import { ReactComponent as RealEstateImg } from "src/assets/tokens/ESTATE.svg";
+import { ReactComponent as ArtImg } from "src/assets/tokens/ART.svg";
 
 interface IBondingStateView {
   account: {
@@ -39,12 +42,60 @@ function useBonds(chainID: number) {
       bondContractABI: [],
       bondIconSvg: GoldImg,
       bondToken: "GOLD",
-      displayName: "Pi",
+      displayName: "GOLD",
       displayUnits: "LP",
       isAvailable: false,
       isLP: false,
       lpUrl: "",
       name: "gold",
+      networkAddrs: {},
+      reserveContract: [],
+      bondDiscount: "Coming soon",
+      type: 1,
+      price: "-",
+    },
+    {
+      bondContractABI: [],
+      bondIconSvg: FineWineImg,
+      bondToken: "FINE WINE",
+      displayName: "FINE WINE",
+      displayUnits: "LP",
+      isAvailable: false,
+      isLP: false,
+      lpUrl: "",
+      name: "fine_wine",
+      networkAddrs: {},
+      reserveContract: [],
+      bondDiscount: "Coming soon",
+      type: 1,
+      price: "-",
+    },
+    {
+      bondContractABI: [],
+      bondIconSvg: RealEstateImg,
+      bondToken: "REAL ESTATE",
+      displayName: "REAL ESTATE",
+      displayUnits: "LP",
+      isAvailable: false,
+      isLP: false,
+      lpUrl: "",
+      name: "real_estate",
+      networkAddrs: {},
+      reserveContract: [],
+      bondDiscount: "Coming soon",
+      type: 1,
+      price: "-",
+    },
+    {
+      bondContractABI: [],
+      bondIconSvg: ArtImg,
+      bondToken: "ART",
+      displayName: "ART",
+      displayUnits: "LP",
+      isAvailable: false,
+      isLP: false,
+      lpUrl: "",
+      name: "art",
       networkAddrs: {},
       reserveContract: [],
       bondDiscount: "Coming soon",
