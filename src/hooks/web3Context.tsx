@@ -11,7 +11,7 @@ import { NodeHelper } from "src/helpers/NodeHelper";
  * @returns string
  */
 function getTestnetURI() {
-  return EnvHelper.alchemyTestnetURI;
+  return EnvHelper.testnetURI;
 }
 
 /**
@@ -93,7 +93,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [connected, setConnected] = useState(false);
   // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
   // ... you also need to set getTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(97);
+  const [chainID, setChainID] = useState("97");
   const [address, setAddress] = useState("");
 
   const [uri, setUri] = useState(getTestnetURI());
@@ -117,7 +117,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           options: {
             rpc: {
               1: getMainnetURI(),
-              4: getTestnetURI(),
+              97: getTestnetURI(),
               80001: getMumbaiTestnetURI(),
               137: getPolygonURI(),
             },
@@ -162,18 +162,18 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
    * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
    */
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 80001 && otherChainID !== 137) {
+    if (chainID !== 97 && otherChainID !== 56) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 80001 || otherChainID === 137) {
+      if (otherChainID === 97 || otherChainID === 56) {
         setChainID(otherChainID);
-        // if (otherChainID === 1) setUri(getMainnetURI());
-        // else if (otherChainID === 4) setUri(getTestnetURI());
-        if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
-        else if (otherChainID === 137) setUri(getPolygonURI);
-         else setUri(getTestnetURI());
+         if (otherChainID === 56) setUri(getMainnetURI());
+         else if (otherChainID === 97) setUri(getTestnetURI());
+        //if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
+        //else if (otherChainID === 137) setUri(getPolygonURI);
+        //else setUri(getTestnetURI());
         return true;
       }
       return false;
