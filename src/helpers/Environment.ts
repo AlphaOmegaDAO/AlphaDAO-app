@@ -9,9 +9,8 @@ export class EnvHelper {
    * @returns `process.env`
    */
   static env = process.env;
- // static alchemyTestnetURI = `https://eth-rinkeby.alchemyapi.io/v2/${EnvHelper.env.REACT_APP_TESTNET_ALCHEMY}`;
-  static mumbaiTestnetURI = `https://polygon-mumbai.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
-  static polygonURI = `https://polygon-mainnet.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
+  static mumbaiTestnetURI = ``;
+  static polygonURI = ``;
   static whitespaceRegex = /\s+/;
 
   /**
@@ -31,32 +30,10 @@ export class EnvHelper {
   }
 
   /**
-   * in development environment will return the `ethers` community api key so that devs don't need to add elements to their .env
-   * @returns Array of Alchemy API URIs or empty set
-   */
- // static getAlchemyAPIKeyList() {
- //   let ALCHEMY_ID_LIST: string[];
-
-    // split the provided API keys on whitespace
-  //  if (EnvHelper.env.REACT_APP_ALCHEMY_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_ALCHEMY_IDS)) {
-  //    ALCHEMY_ID_LIST = EnvHelper.env.REACT_APP_ALCHEMY_IDS.split(EnvHelper.whitespaceRegex);
-  //  } else {
-  //    ALCHEMY_ID_LIST = [];
-  //  }
-
-    // now add the uri path
-  //  if (ALCHEMY_ID_LIST.length > 0) {
-  //    ALCHEMY_ID_LIST = ALCHEMY_ID_LIST.map(alchemyID => `https://eth-mainnet.alchemyapi.io/v2/${alchemyID}`);
-  //  } else {
-  //    ALCHEMY_ID_LIST = [];
-   // }
-   // return ALCHEMY_ID_LIST;
- // }
-
-  /**
    * NOTE(appleseed): Infura IDs are only used as Fallbacks & are not Mandatory
    * @returns {Array} Array of Infura API Ids
    */
+   
   static getInfuraIdList() {
     let INFURA_ID_LIST: string[];
 
@@ -69,7 +46,7 @@ export class EnvHelper {
 
     // now add the uri path
     if (INFURA_ID_LIST.length > 0) {
-      INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => `https://mainnet.infura.io/v3/${infuraID}`);
+      INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => ``);
     } else {
       INFURA_ID_LIST = [];
     }

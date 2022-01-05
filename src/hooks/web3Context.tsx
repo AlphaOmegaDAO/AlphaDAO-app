@@ -10,14 +10,6 @@ import { NodeHelper } from "src/helpers/NodeHelper";
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
-//function getTestnetURI() {
-//  return EnvHelper.alchemyTestnetURI;
-//}
-
-/**
- * kept as function to mimic `getMainnetURI()`
- * @returns string
- */
 function getMumbaiTestnetURI() {
   return EnvHelper.mumbaiTestnetURI;
 }
@@ -116,8 +108,6 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           package: WalletConnectProvider,
           options: {
             rpc: {
-             // 1: getMainnetURI(),
-             // 4: getTestnetURI(),
               80001: getMumbaiTestnetURI(),
               137: getPolygonURI(),
             },
@@ -159,7 +149,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   );
 
   /**
-   * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
+   * throws an error if networkID is not 137 (mainnet) or 80001 (testnet)
    */
   const _checkNetwork = (otherChainID: number): Boolean => {
     if (chainID !== 80001 && otherChainID !== 137) {
@@ -169,8 +159,6 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
       console.warn("You are switching networks");
       if (otherChainID === 80001 || otherChainID === 137) {
         setChainID(otherChainID);
-        // if (otherChainID === 1) setUri(getMainnetURI());
-        // else if (otherChainID === 4) setUri(getTestnetURI());
         if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
         else if (otherChainID === 137) setUri(getPolygonURI);
         // else setUri(getTestnetURI());
