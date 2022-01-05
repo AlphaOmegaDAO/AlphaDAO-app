@@ -13,7 +13,7 @@ export class EnvHelper {
   static env = process.env;
   static mumbaiTestnetURI = ``;
   static polygonURI = ``;
-    static bscTestnetURI = ``;
+  static bscTestnetURI = ``;
   static whitespaceRegex = /\s+/;
 
   /**
@@ -33,29 +33,37 @@ export class EnvHelper {
     }
   }
 
+
+ /**
+   * NOTE(appleseed): Moralis IDs are only used as Fallbacks & are not Mandatory
+   * @returns {Array} Array of Moralis API Ids
+   */
+   
+  static getMoralisIdList() {
+    let MORALIS_ID_LIST: string[];
+
+    // split the provided API keys on whitespace
+    if (EnvHelper.env.REACT_APP_MORALIS_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_MORALIS_IDS)) {
+      MORALIS_ID_LIST = EnvHelper.env.REACT_APP_MORALIS_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
+    } else {
+      MORALIS_ID_LIST = [];
+    }
+
+    // now add the uri path
+    if (MORALIS_ID_LIST.length > 0) {
+      MORALIS_ID_LIST = MORALIS_ID_LIST.map(moralisID => ``);
+    } else {
+      MORALIS_ID_LIST = [];
+    }
+    return MORALIS_ID_LIST;
+  }
+
   /**
    * NOTE(appleseed): Infura IDs are only used as Fallbacks & are not Mandatory
    * @returns {Array} Array of Infura API Ids
    */
    
-  static getInfuraIdList() {
-    let INFURA_ID_LIST: string[];
 
-    // split the provided API keys on whitespace
-    if (EnvHelper.env.REACT_APP_INFURA_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_INFURA_IDS)) {
-      INFURA_ID_LIST = EnvHelper.env.REACT_APP_INFURA_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
-    } else {
-      INFURA_ID_LIST = [];
-    }
-
-    // now add the uri path
-    if (INFURA_ID_LIST.length > 0) {
-      INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => ``);
-    } else {
-      INFURA_ID_LIST = [];
-    }
-    return INFURA_ID_LIST;
-  }
 
   /**
    * @returns {Array} Array of node url addresses or empty set
@@ -91,7 +99,7 @@ export class EnvHelper {
   }
 
   static getFallbackURIs() {
-    const ALL_URIs = [...EnvHelper.getInfuraIdList()];
+    const ALL_URIs = [...EnvHelper.getMoralisIdList()];
     return ALL_URIs;
   }
 

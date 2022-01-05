@@ -33,28 +33,29 @@ export class EnvHelper {
     }
   }
 
-  /**
-   * NOTE(appleseed): Infura IDs are only used as Fallbacks & are not Mandatory
-   * @returns {Array} Array of Infura API Ids
+
+ /**
+   * NOTE(appleseed): Moralis IDs are only used as Fallbacks & are not Mandatory
+   * @returns {Array} Array of Moralis API Ids
    */
    
-  static getInfuraIdList() {
-    let INFURA_ID_LIST: string[];
+  static getMoralisIdList() {
+    let MORALIS_ID_LIST: string[];
 
     // split the provided API keys on whitespace
-    if (EnvHelper.env.REACT_APP_INFURA_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_INFURA_IDS)) {
-      INFURA_ID_LIST = EnvHelper.env.REACT_APP_INFURA_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
+    if (EnvHelper.env.REACT_APP_MORALIS_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_MORALIS_IDS)) {
+      MORALIS_ID_LIST = EnvHelper.env.REACT_APP_MORALIS_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
     } else {
-      INFURA_ID_LIST = [];
+      MORALIS_ID_LIST = [];
     }
 
     // now add the uri path
-    if (INFURA_ID_LIST.length > 0) {
-      INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => ``);
+    if (MORALIS_ID_LIST.length > 0) {
+      MORALIS_ID_LIST = MORALIS_ID_LIST.map(moralisID => ``);
     } else {
-      INFURA_ID_LIST = [];
+      MORALIS_ID_LIST = [];
     }
-    return INFURA_ID_LIST;
+    return MORALIS_ID_LIST;
   }
 
   /**
@@ -91,7 +92,7 @@ export class EnvHelper {
   }
 
   static getFallbackURIs() {
-    const ALL_URIs = [...EnvHelper.getInfuraIdList()];
+    const ALL_URIs = [...EnvHelper.getMoralisIdList()];
     return ALL_URIs;
   }
 
