@@ -114,7 +114,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           options: {
             rpc: {
               80001: getMumbaiTestnetURI(),
-              137: getPolygonURI(),
+              //137: getPolygonURI(),
 			  97: getBSCTestnetURI(),
 			  
 			  
@@ -162,15 +162,15 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
    */
    
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 97 && otherChainID !== 137) {
+    if (chainID !== 97 && otherChainID !== 80001) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 97 || otherChainID === 137) {
+      if (otherChainID === 97 || otherChainID === 80001) {
         setChainID(otherChainID);
         if (otherChainID === 97) setUri(getBSCTestnetURI);
-        else if (otherChainID === 137) setUri(getPolygonURI);
+        else if (otherChainID === 80001) setUri(getPolygonURI);
         // else setUri(getBSCTestnetURI());
         return true;
       }
