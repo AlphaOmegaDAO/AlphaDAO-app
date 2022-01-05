@@ -13,6 +13,7 @@ export class EnvHelper {
   static env = process.env;
   static mumbaiTestnetURI = ``;
   static polygonURI = ``;
+  static bscTestnetURI = ``;
   static whitespaceRegex = /\s+/;
 
   /**

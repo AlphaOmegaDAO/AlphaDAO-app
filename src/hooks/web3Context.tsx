@@ -19,6 +19,12 @@ function getPolygonURI() {
   return EnvHelper.polygonURI;
 }
 
+
+function getBSCTestnetURI() {
+  return EnvHelper.bscTestnetURI;
+}
+
+
 /**
  * determine if in IFrame for Ledger Live
  */
@@ -85,10 +91,10 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [connected, setConnected] = useState(false);
   // NOTE (appleseed): if you are testing you need to set chainId === 80001 as the default for non-connected wallet testing...
   // ... you also need to set getMumbaiTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(137);
+  const [chainID, setChainID] = useState(97);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getPolygonURI());
+  const [uri, setUri] = useState(getBSCTestnetURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -109,6 +115,9 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               80001: getMumbaiTestnetURI(),
               137: getPolygonURI(),
+			  97: getBSCTestnetURI(),
+			  
+			  
             },
           },
         },
@@ -153,16 +162,16 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
    */
    
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (chainID !== 80001 && otherChainID !== 137) {
+    if (chainID !== 97 && otherChainID !== 137) {
       return false;
     }
     if (chainID !== otherChainID) {
       console.warn("You are switching networks");
-      if (otherChainID === 80001 || otherChainID === 137) {
+      if (otherChainID === 97 || otherChainID === 137) {
         setChainID(otherChainID);
-        if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
+        if (otherChainID === 97) setUri(getBSCTestnetURI);
         else if (otherChainID === 137) setUri(getPolygonURI);
-        // else setUri(getTestnetURI());
+        // else setUri(getBSCTestnetURI());
         return true;
       }
       return false;
