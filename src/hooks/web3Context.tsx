@@ -83,8 +83,8 @@ export const useAddress = () => {
 
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
-  // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
-  // ... you also need to set getTestnetURI() as the default uri state below
+  // NOTE (appleseed): if you are testing you need to set chainId === 80001 as the default for non-connected wallet testing...
+  // ... you also need to set getMumbaiTestnetURI() as the default uri state below
   const [chainID, setChainID] = useState(137);
   const [address, setAddress] = useState("");
 
@@ -94,7 +94,6 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   const [web3Modal, setWeb3Modal] = useState<Web3Modal>(
     new Web3Modal({
-      // network: "mainnet", // optional
       theme: {
         background: "#182328",
         main: "#FFFFFF",
