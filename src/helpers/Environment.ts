@@ -5,9 +5,11 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
  */
 export class EnvHelper {
+
   /**
    * @returns `process.env`
    */
+   
   static env = process.env;
   static mumbaiTestnetURI = ``;
   static polygonURI = ``;
@@ -17,6 +19,7 @@ export class EnvHelper {
    * Returns env contingent segment api key
    * @returns segment
    */
+   
   static getSegmentKey() {
     return EnvHelper.env.REACT_APP_SEGMENT_API_KEY;
   }
@@ -59,6 +62,7 @@ export class EnvHelper {
    * - functionality for Websocket addresses has been deprecated due to issues with WalletConnect
    *     - WalletConnect Issue: https://github.com/WalletConnect/walletconnect-monorepo/issues/193
    */
+   
   static getSelfHostedNode() {
     let URI_LIST: string[];
     if (EnvHelper.env.REACT_APP_SELF_HOSTED_NODE && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_SELF_HOSTED_NODE)) {
@@ -74,6 +78,7 @@ export class EnvHelper {
    * in prod if .env is blank API connections will fail
    * @returns array of API urls
    */
+   
   static getAPIUris() {
     let ALL_URIs = EnvHelper.getSelfHostedNode();
     if (EnvHelper.env.NODE_ENV === "development" && ALL_URIs.length === 0) {

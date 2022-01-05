@@ -34,24 +34,24 @@ export class EnvHelper {
    * @returns {Array} Array of Infura API Ids
    */
    
-  //static getInfuraIdList() {
-  //  let INFURA_ID_LIST: string[];
+  static getInfuraIdList() {
+    let INFURA_ID_LIST: string[];
 
     // split the provided API keys on whitespace
-   // if (EnvHelper.env.REACT_APP_INFURA_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_INFURA_IDS)) {
-   //   INFURA_ID_LIST = EnvHelper.env.REACT_APP_INFURA_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
-   // } else {
-   //   INFURA_ID_LIST = [];
-   // }
+    if (EnvHelper.env.REACT_APP_INFURA_IDS && EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_INFURA_IDS)) {
+      INFURA_ID_LIST = EnvHelper.env.REACT_APP_INFURA_IDS.split(new RegExp(EnvHelper.whitespaceRegex));
+    } else {
+      INFURA_ID_LIST = [];
+    }
 
     // now add the uri path
-   // if (INFURA_ID_LIST.length > 0) {
-   //   INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => ``);
-   // } else {
-  //    INFURA_ID_LIST = [];
-  //  }
-  //  return INFURA_ID_LIST;
- // }
+    if (INFURA_ID_LIST.length > 0) {
+      INFURA_ID_LIST = INFURA_ID_LIST.map(infuraID => ``);
+    } else {
+      INFURA_ID_LIST = [];
+    }
+    return INFURA_ID_LIST;
+  }
 
   /**
    * @returns {Array} Array of node url addresses or empty set
@@ -84,10 +84,10 @@ export class EnvHelper {
     return ALL_URIs;
   }
 
- // static getFallbackURIs() {
-  //  const ALL_URIs = [...EnvHelper.getInfuraIdList()];
-  //  return ALL_URIs;
- // }
+  static getFallbackURIs() {
+    const ALL_URIs = [...EnvHelper.getInfuraIdList()];
+    return ALL_URIs;
+  }
 
   static getGeoapifyAPIKey() {
     var apiKey = EnvHelper.env.REACT_APP_GEOAPIFY_API_KEY;

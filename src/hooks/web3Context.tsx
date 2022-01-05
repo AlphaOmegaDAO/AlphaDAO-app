@@ -10,14 +10,11 @@ import { NodeHelper } from "src/helpers/NodeHelper";
  * kept as function to mimic `getMainnetURI()`
  * @returns string
  */
+ 
 function getMumbaiTestnetURI() {
   return EnvHelper.mumbaiTestnetURI;
 }
 
-/**
- * kept as function to mimic `getMainnetURI()`
- * @returns string
- */
 function getPolygonURI() {
   return EnvHelper.polygonURI;
 }
@@ -25,6 +22,7 @@ function getPolygonURI() {
 /**
  * determine if in IFrame for Ledger Live
  */
+ 
 function isIframe() {
   return window.location !== window.parent.location;
 }
@@ -35,6 +33,7 @@ const ALL_URIs = NodeHelper.getNodesUris();
  * "intelligently" loadbalances production API Keys
  * @returns string
  */
+ 
 function getMainnetURI(): string {
   // Shuffles the URIs for "intelligent" loadbalancing
   const allURIs = ALL_URIs.sort(() => Math.random() - 0.5);
@@ -48,6 +47,7 @@ function getMainnetURI(): string {
 /*
   Types
 */
+
 type onChainProvider = {
   connect: () => void;
   disconnect: () => void;
@@ -126,6 +126,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   // NOTE (appleseed): none of these listeners are needed for Backend API Providers
   // ... so I changed these listeners so that they only apply to walletProviders, eliminating
   // ... polling to the backend providers for network changes
+  
   const _initListeners = useCallback(
     rawProvider => {
       if (!rawProvider.on) {
@@ -151,6 +152,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   /**
    * throws an error if networkID is not 137 (mainnet) or 80001 (testnet)
    */
+   
   const _checkNetwork = (otherChainID: number): Boolean => {
     if (chainID !== 80001 && otherChainID !== 137) {
       return false;

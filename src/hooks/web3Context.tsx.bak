@@ -149,7 +149,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   );
 
   /**
-   * throws an error if networkID is not 1 (mainnet) or 4 (rinkeby)
+   * throws an error if networkID is not 137 (mainnet) or 80001 (testnet)
    */
   const _checkNetwork = (otherChainID: number): Boolean => {
     if (chainID !== 80001 && otherChainID !== 137) {
