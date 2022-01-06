@@ -43,7 +43,7 @@ function ConnectMenu({ theme }) {
     buttonText = "In progress";
     clickFunc = handleClick;
   }
-  const id = open ? "ohm-popper-pending" : undefined;
+  const id = open ? "ox-popper-pending" : undefined;
 
   const primaryColor = theme === "light" ? "#49A1F2" : "#F8CC82";
   const buttonStyles =
@@ -109,7 +109,7 @@ function ConnectMenu({ theme }) {
         {({ TransitionProps }) => {
           return (
             <Fade {...TransitionProps} timeout={100}>
-              {/*<Paper className="ohm-menu" elevation={1}>*/}
+              {/*<Paper className="ox-menu" elevation={1}>*/}
               {/*{pendingTransactions.map((x, i) => (*/}
               {/*  <Box key={i} fullWidth>*/}
               {/*    <Link key={x.txnHash} href={getEtherscanUrl(x.txnHash)} target="_blank" rel="noreferrer">*/}

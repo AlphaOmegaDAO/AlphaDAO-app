@@ -9,12 +9,12 @@
       background: rgba(255, 255, 255, 0.05) !important;
       backdrop-filter: blur(60px) !important;
       -webkit-backdrop-filter: blur(60px) !important;
-      .ohm-card {
+      .ox-card {
         //opacity: 1 !important;
         height: auto;
       }
     }
-    .ohm-modal {
+    .ox-modal {
       max-width: 577px;
       min-height: 578px;
     }
@@ -24,11 +24,11 @@
   @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
     .MuiBackdrop-root {
       background: rgba(100, 100, 100, 0.95);
-      .ohm-card {
+      .ox-card {
         height: auto;
       }
     }
-    .ohm-modal {
+    .ox-modal {
       max-width: 577px;
       min-height: 578px;
       //opacity: 0.9;
@@ -42,7 +42,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .ohm-pair-img,
+    .ox-pair-img,
     .reserve-pair-img {
       height: 38px;
       width: 38px;
@@ -106,7 +106,7 @@
     line-height: 24px;
   }
 
-  .ohm-input {
+  .ox-input {
     min-width: 50%;
     max-width: 408px;
     margin: 5px;
@@ -161,7 +161,7 @@
 
 
 .mobile #bond-view {
-  .ohm-card {
+  .ox-card {
     .card-content {
       justify-content: space-evenly !important;
       .bond-toggle-row {
@@ -173,7 +173,7 @@
         justify-content: center;
         align-items: center;
         align-content: center;
-        .input-group.ohm-input-group {
+        .input-group.ox-input-group {
           margin: 10px !important;
           width: 75%;
           height: 50px;

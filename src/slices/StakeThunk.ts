@@ -24,19 +24,19 @@ function alreadyApprovedToken(
   token: string,
   stakeAllowance: BigNumber,
   unstakeAllowance: BigNumber,
-  aguruAllowance: BigNumber,
+  aalphaAllowance: BigNumber,
 ) {
   // set defaults
   let bigZero = BigNumber.from("0");
   let applicableAllowance = bigZero;
 
   // determine which allowance to check
-  if (token === "ohm") {
+  if (token === "ox") {
     applicableAllowance = stakeAllowance;
-  } else if (token === "sohm") {
+  } else if (token === "sox") {
     applicableAllowance = unstakeAllowance;
-  } else if (token === "aguru") {
-    applicableAllowance = aguruAllowance;
+  } else if (token === "aalpha") {
+    applicableAllowance = aalphaAllowance;
   }
 
   // check if allowance exists
@@ -54,16 +54,16 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const ohmContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20ABI, signer) as IERC20;
-    const sohmContract = new ethers.Contract(addresses[networkID].SOX_ADDRESS as string, ierc20ABI, signer) as IERC20;
-    const aguruContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, ierc20ABI, signer) as IERC20;
+    const oxContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20ABI, signer) as IERC20;
+    const soxContract = new ethers.Contract(addresses[networkID].SOX_ADDRESS as string, ierc20ABI, signer) as IERC20;
+    const aalphaContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, ierc20ABI, signer) as IERC20;
     let approveTx;
-    let stakeAllowance = await ohmContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
-    let unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
-    let aguruAllowance = await aguruContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
+    let stakeAllowance = await oxContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
+    let unstakeAllowance = await soxContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
+    let aalphaAllowance = await aalphaContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
 
     // return early if approval has already happened
-    if (alreadyApprovedToken(token, stakeAllowance, unstakeAllowance, aguruAllowance)) {
+    if (alreadyApprovedToken(token, stakeAllowance, unstakeAllowance, aalphaAllowance)) {
       dispatch(info("Approval completed."));
       return dispatch(
         fetchAccountSuccess({
@@ -72,26 +72,26 @@ export const changeApproval = createAsyncThunk(
             ohmUnstake: +unstakeAllowance,
           },
           claim: {
-            aguruAllowance,
+            aalphaAllowance,
           },
         }),
       );
     }
 
     try {
-      if (token === "ohm") {
+      if (token === "ox") {
         // won't run if stakeAllowance > 0
-        approveTx = await ohmContract.approve(
+        approveTx = await oxContract.approve(
           addresses[networkID].STAKING_HELPER_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
-      } else if (token === "sohm") {
-        approveTx = await sohmContract.approve(
+      } else if (token === "sox") {
+        approveTx = await soxContract.approve(
           addresses[networkID].STAKING_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
-      } else if (token === "aguru") {
-        approveTx = await aguruContract.approve(
+      } else if (token === "aalpha") {
+        approveTx = await aalphaContract.approve(
           addresses[networkID].CLAIM_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
@@ -99,19 +99,19 @@ export const changeApproval = createAsyncThunk(
 
       let text = "Approve ";
 
-      if (token === "ohm") {
+      if (token === "ox") {
         text += "Staking";
-      } else if (token === "sohm") {
+      } else if (token === "sox") {
         text += "Unstaking";
-      } else if (token === "aguru") {
+      } else if (token === "aalpha") {
         text += "Claiming";
       }
 
       let pendingTxnType;
 
-      if (token === "ohm") {
+      if (token === "ox") {
         pendingTxnType = "approve_staking";
-      } else if (token === "sohm") {
+      } else if (token === "sox") {
         pendingTxnType = "approve_unstaking";
       } else {
         pendingTxnType = "approve_claiming";
@@ -132,9 +132,9 @@ export const changeApproval = createAsyncThunk(
     }
 
     // go get fresh allowances
-    stakeAllowance = await ohmContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
-    unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
-    aguruAllowance = await aguruContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
+    stakeAllowance = await oxContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
+    unstakeAllowance = await soxContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
+    aalphaAllowance = await aalphaContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
 
     return dispatch(
       fetchAccountSuccess({
@@ -143,7 +143,7 @@ export const changeApproval = createAsyncThunk(
           ohmUnstake: +unstakeAllowance,
         },
         claim: {
-          aguruAllowance,
+          aalphaAllowance,
         },
       }),
     );
@@ -214,7 +214,7 @@ export const changeStake = createAsyncThunk(
 
 export const exchangeAOX = createAsyncThunk(
   "stake/exchangeAOX",
-  async ({ aguruBalance, provider, address, networkID }: any, { dispatch }) => {
+  async ({ aalphaBalance, provider, address, networkID }: any, { dispatch }) => {
     if (!provider) {
       dispatch(error("Please connect your wallet!"));
       return;
@@ -233,7 +233,7 @@ export const exchangeAOX = createAsyncThunk(
     };
     try {
       uaData.type = "claiming";
-      claimTx = await claimContract.migrate(ethers.utils.parseUnits(aguruBalance, "gwei"));
+      claimTx = await claimContract.migrate(ethers.utils.parseUnits(aalphaBalance, "gwei"));
       uaData.txHash = claimTx.hash;
       dispatch(fetchPendingTxns({ txnHash: claimTx.hash, text: "Exchanging aOX for OX", type: "claiming" }));
       await claimTx.wait();

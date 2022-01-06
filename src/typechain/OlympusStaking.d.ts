@@ -23,52 +23,52 @@ interface OlympusStakingInterface extends ethers.utils.Interface {
   functions: {
     "epochLengthInBlocks()": FunctionFragment;
     "initialize(address,address,uint8)": FunctionFragment;
-    "ohm()": FunctionFragment;
+    "ox()": FunctionFragment;
     "ohmToDistributeNextEpoch()": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "sOHM()": FunctionFragment;
+    "sOX()": FunctionFragment;
     "setEpochLengthintBlock(uint256)": FunctionFragment;
-    "stakeOHM(uint256)": FunctionFragment;
-    "stakeOHMWithPermit(uint256,uint256,uint8,bytes32,bytes32)": FunctionFragment;
+    "stakeOX(uint256)": FunctionFragment;
+    "stakeOXWithPermit(uint256,uint256,uint8,bytes32,bytes32)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "unstakeOHM(uint256)": FunctionFragment;
-    "unstakeOHMWithPermit(uint256,uint256,uint8,bytes32,bytes32)": FunctionFragment;
+    "unstakeOX(uint256)": FunctionFragment;
+    "unstakeOXWithPermit(uint256,uint256,uint8,bytes32,bytes32)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "epochLengthInBlocks", values?: undefined): string;
   encodeFunctionData(functionFragment: "initialize", values: [string, string, BigNumberish]): string;
-  encodeFunctionData(functionFragment: "ohm", values?: undefined): string;
+  encodeFunctionData(functionFragment: "ox", values?: undefined): string;
   encodeFunctionData(functionFragment: "ohmToDistributeNextEpoch", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(functionFragment: "renounceOwnership", values?: undefined): string;
-  encodeFunctionData(functionFragment: "sOHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "sOX", values?: undefined): string;
   encodeFunctionData(functionFragment: "setEpochLengthintBlock", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "stakeOHM", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "stakeOX", values: [BigNumberish]): string;
   encodeFunctionData(
-    functionFragment: "stakeOHMWithPermit",
+    functionFragment: "stakeOXWithPermit",
     values: [BigNumberish, BigNumberish, BigNumberish, BytesLike, BytesLike],
   ): string;
   encodeFunctionData(functionFragment: "transferOwnership", values: [string]): string;
-  encodeFunctionData(functionFragment: "unstakeOHM", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "unstakeOX", values: [BigNumberish]): string;
   encodeFunctionData(
-    functionFragment: "unstakeOHMWithPermit",
+    functionFragment: "unstakeOXWithPermit",
     values: [BigNumberish, BigNumberish, BigNumberish, BytesLike, BytesLike],
   ): string;
 
   decodeFunctionResult(functionFragment: "epochLengthInBlocks", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "ohm", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ox", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ohmToDistributeNextEpoch", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "renounceOwnership", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "sOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setEpochLengthintBlock", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "stakeOHM", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "stakeOHMWithPermit", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "stakeOX", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "stakeOXWithPermit", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transferOwnership", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "unstakeOHM", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "unstakeOHMWithPermit", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "unstakeOX", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "unstakeOXWithPermit", data: BytesLike): Result;
 
   events: {
     "OwnershipTransferred(address,address)": EventFragment;
@@ -127,12 +127,12 @@ export class OlympusStaking extends BaseContract {
 
     initialize(
       ohmTokenAddress_: string,
-      sOHM_: string,
+      sOX_: string,
       epochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    ohm(overrides?: CallOverrides): Promise<[string]>;
+    ox(overrides?: CallOverrides): Promise<[string]>;
 
     ohmToDistributeNextEpoch(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -140,19 +140,19 @@ export class OlympusStaking extends BaseContract {
 
     renounceOwnership(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-    sOHM(overrides?: CallOverrides): Promise<[string]>;
+    sOX(overrides?: CallOverrides): Promise<[string]>;
 
     setEpochLengthintBlock(
       newEpochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    stakeOHM(
+    stakeOX(
       amountToStake_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    stakeOHMWithPermit(
+    stakeOXWithPermit(
       amountToStake_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -166,12 +166,12 @@ export class OlympusStaking extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    unstakeOHM(
+    unstakeOX(
       amountToWithdraw_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    unstakeOHMWithPermit(
+    unstakeOXWithPermit(
       amountToWithdraw_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -185,12 +185,12 @@ export class OlympusStaking extends BaseContract {
 
   initialize(
     ohmTokenAddress_: string,
-    sOHM_: string,
+    sOX_: string,
     epochLengthInBlocks_: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  ohm(overrides?: CallOverrides): Promise<string>;
+  ox(overrides?: CallOverrides): Promise<string>;
 
   ohmToDistributeNextEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -198,19 +198,19 @@ export class OlympusStaking extends BaseContract {
 
   renounceOwnership(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-  sOHM(overrides?: CallOverrides): Promise<string>;
+  sOX(overrides?: CallOverrides): Promise<string>;
 
   setEpochLengthintBlock(
     newEpochLengthInBlocks_: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  stakeOHM(
+  stakeOX(
     amountToStake_: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  stakeOHMWithPermit(
+  stakeOXWithPermit(
     amountToStake_: BigNumberish,
     deadline_: BigNumberish,
     v_: BigNumberish,
@@ -224,12 +224,12 @@ export class OlympusStaking extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  unstakeOHM(
+  unstakeOX(
     amountToWithdraw_: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  unstakeOHMWithPermit(
+  unstakeOXWithPermit(
     amountToWithdraw_: BigNumberish,
     deadline_: BigNumberish,
     v_: BigNumberish,
@@ -243,12 +243,12 @@ export class OlympusStaking extends BaseContract {
 
     initialize(
       ohmTokenAddress_: string,
-      sOHM_: string,
+      sOX_: string,
       epochLengthInBlocks_: BigNumberish,
       overrides?: CallOverrides,
     ): Promise<void>;
 
-    ohm(overrides?: CallOverrides): Promise<string>;
+    ox(overrides?: CallOverrides): Promise<string>;
 
     ohmToDistributeNextEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -256,13 +256,13 @@ export class OlympusStaking extends BaseContract {
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
-    sOHM(overrides?: CallOverrides): Promise<string>;
+    sOX(overrides?: CallOverrides): Promise<string>;
 
     setEpochLengthintBlock(newEpochLengthInBlocks_: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    stakeOHM(amountToStake_: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+    stakeOX(amountToStake_: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
-    stakeOHMWithPermit(
+    stakeOXWithPermit(
       amountToStake_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -273,9 +273,9 @@ export class OlympusStaking extends BaseContract {
 
     transferOwnership(newOwner_: string, overrides?: CallOverrides): Promise<void>;
 
-    unstakeOHM(amountToWithdraw_: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+    unstakeOX(amountToWithdraw_: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
-    unstakeOHMWithPermit(
+    unstakeOXWithPermit(
       amountToWithdraw_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -302,12 +302,12 @@ export class OlympusStaking extends BaseContract {
 
     initialize(
       ohmTokenAddress_: string,
-      sOHM_: string,
+      sOX_: string,
       epochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    ohm(overrides?: CallOverrides): Promise<BigNumber>;
+    ox(overrides?: CallOverrides): Promise<BigNumber>;
 
     ohmToDistributeNextEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -315,19 +315,19 @@ export class OlympusStaking extends BaseContract {
 
     renounceOwnership(overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    sOHM(overrides?: CallOverrides): Promise<BigNumber>;
+    sOX(overrides?: CallOverrides): Promise<BigNumber>;
 
     setEpochLengthintBlock(
       newEpochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    stakeOHM(
+    stakeOX(
       amountToStake_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    stakeOHMWithPermit(
+    stakeOXWithPermit(
       amountToStake_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -341,12 +341,12 @@ export class OlympusStaking extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    unstakeOHM(
+    unstakeOX(
       amountToWithdraw_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
-    unstakeOHMWithPermit(
+    unstakeOXWithPermit(
       amountToWithdraw_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -361,12 +361,12 @@ export class OlympusStaking extends BaseContract {
 
     initialize(
       ohmTokenAddress_: string,
-      sOHM_: string,
+      sOX_: string,
       epochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    ohm(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    ox(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     ohmToDistributeNextEpoch(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -374,19 +374,19 @@ export class OlympusStaking extends BaseContract {
 
     renounceOwnership(overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
-    sOHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    sOX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setEpochLengthintBlock(
       newEpochLengthInBlocks_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    stakeOHM(
+    stakeOX(
       amountToStake_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    stakeOHMWithPermit(
+    stakeOXWithPermit(
       amountToStake_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,
@@ -400,12 +400,12 @@ export class OlympusStaking extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    unstakeOHM(
+    unstakeOX(
       amountToWithdraw_: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    unstakeOHMWithPermit(
+    unstakeOXWithPermit(
       amountToWithdraw_: BigNumberish,
       deadline_: BigNumberish,
       v_: BigNumberish,

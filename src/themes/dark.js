@@ -116,7 +116,7 @@ export const dark = responsiveFontSizes(
             backgroundColor: darkTheme.paperBg,
             backdropFilter: "blur(200px)",
             background: `radial-gradient(circle at 28% 13%, rgba(255, 109, 0, .06), rgba(255, 109, 0, 0) 24%)`,
-            "&.ohm-card": {
+            "&.ox-card": {
               background: "rgba(255, 255, 255, 0.05)",
               border: "0.5px solid rgba(255, 255, 255, 0.2)",
               boxShadow: "0px 20px 20px rgba(0, 0, 0, 0.05)",
@@ -130,15 +130,15 @@ export const dark = responsiveFontSizes(
               // backgroundColor: darkTheme.paperBg,
               // backdropFilter: "blur(40px)",
             },
-            "&.ohm-modal": {
+            "&.ox-modal": {
               background: colors.dark[900],
               // backgroundColor: darkTheme.modalBg,
             },
-            "&.ohm-menu": {
+            "&.ox-menu": {
               backgroundColor: darkTheme.menuBg,
               backdropFilter: "blur(33px)",
             },
-            "&.ohm-popover": {
+            "&.ox-popover": {
               backgroundColor: darkTheme.popoverBg,
               color: darkTheme.color,
               backdropFilter: "blur(15px)",

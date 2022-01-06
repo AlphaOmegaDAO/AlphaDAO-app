@@ -1,45 +1,45 @@
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as ierc20Abi } from "../abi/IERC20.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import { abi as sOXv2 } from "../abi/sOxv2.json";
 import { abi as fuseProxy } from "../abi/FuseProxy.json";
-import { abi as wsOHM } from "../abi/wsOHM.json";
+import { abi as wsOX } from "../abi/wsOX.json";
 
 import { setAll } from "../helpers";
 
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "src/store";
 import { IBaseAddressAsyncThunk, ICalcUserBondDetailsAsyncThunk } from "./interfaces";
-import { FuseProxy, IERC20, SOhmv2, WsOHM } from "src/typechain";
+import { FuseProxy, IERC20, SOxv2, WsOX } from "src/typechain";
 
 export const getBalances = createAsyncThunk(
   "account/getBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
     let ohmBalance = BigNumber.from(0);
-    let sohmBalance = BigNumber.from(0);
-    let wsohmBalance = BigNumber.from(0);
-    let wsohmAsSohm = BigNumber.from(0);
+    let soxBalance = BigNumber.from(0);
+    let wsoxBalance = BigNumber.from(0);
+    let wsoxAsSohm = BigNumber.from(0);
     let poolBalance = BigNumber.from(0);
-    let aguruBalance = BigNumber.from(0);
+    let aalphaBalance = BigNumber.from(0);
     if (addresses[networkID].OX_ADDRESS) {
-      const ohmContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20Abi, provider) as IERC20;
-      ohmBalance = await ohmContract.balanceOf(address);
+      const oxContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20Abi, provider) as IERC20;
+      ohmBalance = await oxContract.balanceOf(address);
     }
 
     if (addresses[networkID].SOX_ADDRESS) {
-      const sohmContract = new ethers.Contract(
+      const soxContract = new ethers.Contract(
         addresses[networkID].SOX_ADDRESS as string,
         ierc20Abi,
         provider,
       ) as IERC20;
-      sohmBalance = await sohmContract.balanceOf(address);
+      soxBalance = await soxContract.balanceOf(address);
     }
 
     if (addresses[networkID].WSOX_ADDRESS) {
-      const wsohmContract = new ethers.Contract(addresses[networkID].WSOX_ADDRESS as string, wsOHM, provider) as WsOHM;
-      wsohmBalance = await wsohmContract.balanceOf(address);
-      // NOTE (appleseed): wsohmAsSohm is wsOHM given as a quantity of sOHM
-      wsohmAsSohm = await wsohmContract.wOHMTosOHM(wsohmBalance);
+      const wsoxContract = new ethers.Contract(addresses[networkID].WSOX_ADDRESS as string, wsOX, provider) as WsOX;
+      wsoxBalance = await wsoxContract.balanceOf(address);
+      // NOTE (appleseed): wsoxAsSohm is wsOX given as a quantity of sOX
+      wsoxAsSohm = await wsoxContract.wOXTosOX(wsoxBalance);
     }
 
     if (addresses[networkID].PT_TOKEN_ADDRESS) {
@@ -52,18 +52,18 @@ export const getBalances = createAsyncThunk(
     }
 
     if (addresses[networkID].AOX_ADDRESS) {
-      const aguruContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, sOHMv2, provider) as SOhmv2;
-      aguruBalance = await aguruContract.balanceOf(address);
+      const aalphaContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, sOXv2, provider) as SOxv2;
+      aalphaBalance = await aalphaContract.balanceOf(address);
     }
 
     return {
       balances: {
-        ohm: ethers.utils.formatUnits(ohmBalance, "gwei"),
-        sohm: ethers.utils.formatUnits(sohmBalance, "gwei"),
-        wsohm: ethers.utils.formatEther(wsohmBalance),
-        wsohmAsSohm: ethers.utils.formatUnits(wsohmAsSohm, "gwei"),
+        ox: ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sox: ethers.utils.formatUnits(soxBalance, "gwei"),
+        wsox: ethers.utils.formatEther(wsoxBalance),
+        wsoxAsSohm: ethers.utils.formatUnits(wsoxAsSohm, "gwei"),
         pool: ethers.utils.formatUnits(poolBalance, "gwei"),
-        aguru: ethers.utils.formatUnits(aguruBalance, "gwei"),
+        aalpha: ethers.utils.formatUnits(aalphaBalance, "gwei"),
       },
     };
   },
@@ -71,19 +71,19 @@ export const getBalances = createAsyncThunk(
 
 interface IUserAccountDetails {
   balances: {
-    dai: string;
-    ohm: string;
-    sohm: string;
-    wsohm: string;
-    wsohmAsSohm: string;
+    busd: string;
+    ox: string;
+    sox: string;
+    wsox: string;
+    wsoxAsSohm: string;
   };
   staking: {
     ohmStake: number;
     ohmUnstake: number;
   };
   wrapping: {
-    sohmWrap: number;
-    wsohmUnwrap: number;
+    soxWrap: number;
+    wsoxUnwrap: number;
   };
   bonding: {
     daiAllowance: number;
@@ -94,22 +94,22 @@ export const loadAccountDetails = createAsyncThunk(
   "account/loadAccountDetails",
   async ({ networkID, provider, address }: IBaseAddressAsyncThunk) => {
     let ohmBalance = BigNumber.from(0);
-    let sohmBalance = BigNumber.from(0);
-    let fsohmBalance = BigNumber.from(0);
-    let fsohmString = "0.0";
-    let wsohmBalance = BigNumber.from(0);
-    let wsohmAsSohm = BigNumber.from(0);
+    let soxBalance = BigNumber.from(0);
+    let fsoxBalance = BigNumber.from(0);
+    let fsoxString = "0.0";
+    let wsoxBalance = BigNumber.from(0);
+    let wsoxAsSohm = BigNumber.from(0);
     let wrapAllowance = BigNumber.from(0);
     let unwrapAllowance = BigNumber.from(0);
     let stakeAllowance = BigNumber.from(0);
     let unstakeAllowance = BigNumber.from(0);
-    let aguruAllowance = BigNumber.from(0);
-    let aguruBalance = BigNumber.from(0);
+    let aalphaAllowance = BigNumber.from(0);
+    let aalphaBalance = BigNumber.from(0);
     let lpStaked = 0;
     let pendingRewards = 0;
     let lpBondAllowance = 0;
     let daiBondAllowance = 0;
-    let aOHMAbleToClaim = 0;
+    let aOXAbleToClaim = 0;
     let poolBalance = BigNumber.from(0);
     let poolAllowance = BigNumber.from(0);
 
@@ -117,23 +117,23 @@ export const loadAccountDetails = createAsyncThunk(
     const daiBalance = await daiContract.balanceOf(address);
 
     if (addresses[networkID].OX_ADDRESS) {
-      const ohmContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20Abi, provider) as IERC20;
-      ohmBalance = await ohmContract.balanceOf(address);
-      stakeAllowance = await ohmContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
+      const oxContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, ierc20Abi, provider) as IERC20;
+      ohmBalance = await oxContract.balanceOf(address);
+      stakeAllowance = await oxContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
     }
 
     if (addresses[networkID].SOX_ADDRESS) {
-      const sohmContract = new ethers.Contract(addresses[networkID].SOX_ADDRESS as string, sOHMv2, provider) as SOhmv2;
-      sohmBalance = await sohmContract.balanceOf(address);
-      unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
-      // poolAllowance = await sohmContract.allowance(address, addresses[networkID].PT_PRIZE_POOL_ADDRESS);
-      // wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
+      const soxContract = new ethers.Contract(addresses[networkID].SOX_ADDRESS as string, sOXv2, provider) as SOxv2;
+      soxBalance = await soxContract.balanceOf(address);
+      unstakeAllowance = await soxContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
+      // poolAllowance = await soxContract.allowance(address, addresses[networkID].PT_PRIZE_POOL_ADDRESS);
+      // wrapAllowance = await soxContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
     }
 
     if (addresses[networkID].AOX_ADDRESS) {
-      const aguruContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, sOHMv2, provider) as SOhmv2;
-      aguruBalance = await aguruContract.balanceOf(address);
-      aguruAllowance = await aguruContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
+      const aalphaContract = new ethers.Contract(addresses[networkID].AOX_ADDRESS as string, sOXv2, provider) as SOxv2;
+      aalphaBalance = await aalphaContract.balanceOf(address);
+      aalphaAllowance = await aalphaContract.allowance(address, addresses[networkID].CLAIM_ADDRESS);
     }
 
     // if (addresses[networkID].PT_TOKEN_ADDRESS) {
@@ -145,48 +145,48 @@ export const loadAccountDetails = createAsyncThunk(
     //   poolBalance = await poolTokenContract.balanceOf(address);
     // }
 
-    // for (const fuseAddressKey of ["FUSE_6_SOHM", "FUSE_18_SOHM"]) {
+    // for (const fuseAddressKey of ["FUSE_6_SOX", "FUSE_18_SOX"]) {
     //   if (addresses[networkID][fuseAddressKey]) {
-    //     const fsohmContract = new ethers.Contract(
+    //     const fsoxContract = new ethers.Contract(
     //       addresses[networkID][fuseAddressKey] as string,
     //       fuseProxy,
     //       provider.getSigner(),
     //     ) as FuseProxy;
-    //     // fsohmContract.signer;
-    //     const balanceOfUnderlying = await fsohmContract.callStatic.balanceOfUnderlying(address);
-    //     fsohmBalance = balanceOfUnderlying.add(fsohmBalance);
+    //     // fsoxContract.signer;
+    //     const balanceOfUnderlying = await fsoxContract.callStatic.balanceOfUnderlying(address);
+    //     fsoxBalance = balanceOfUnderlying.add(fsoxBalance);
     //   }
     // }
 
     // if (addresses[networkID].WSOX_ADDRESS) {
-    //   const wsohmContract = new ethers.Contract(
+    //   const wsoxContract = new ethers.Contract(
     //     addresses[networkID].WSOX_ADDRESS as string,
-    //     wsOHM,
+    //     wsOX,
     //     provider,
-    //   ) as WsOHM;
-    //   wsohmBalance = await wsohmContract.balanceOf(address);
-    //   // NOTE (appleseed): wsohmAsSohm is used to calc your next reward amount
-    //   wsohmAsSohm = await wsohmContract.wOHMTosOHM(wsohmBalance);
-    //   unwrapAllowance = await wsohmContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
+    //   ) as WsOX;
+    //   wsoxBalance = await wsoxContract.balanceOf(address);
+    //   // NOTE (appleseed): wsoxAsSohm is used to calc your next reward amount
+    //   wsoxAsSohm = await wsoxContract.wOXTosOX(wsoxBalance);
+    //   unwrapAllowance = await wsoxContract.allowance(address, addresses[networkID].WSOX_ADDRESS);
     // }
 
     return {
       balances: {
-        dai: ethers.utils.formatEther(daiBalance),
-        ohm: ethers.utils.formatUnits(ohmBalance, "gwei"),
-        sohm: ethers.utils.formatUnits(sohmBalance, "gwei"),
-        fsohm: ethers.utils.formatUnits(fsohmBalance, "gwei"),
-        wsohm: ethers.utils.formatEther(wsohmBalance),
-        wsohmAsSohm: ethers.utils.formatUnits(wsohmAsSohm, "gwei"),
+        busd: ethers.utils.formatEther(daiBalance),
+        ox: ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sox: ethers.utils.formatUnits(soxBalance, "gwei"),
+        fsox: ethers.utils.formatUnits(fsoxBalance, "gwei"),
+        wsox: ethers.utils.formatEther(wsoxBalance),
+        wsoxAsSohm: ethers.utils.formatUnits(wsoxAsSohm, "gwei"),
         pool: ethers.utils.formatUnits(poolBalance, "gwei"),
-        aguru: ethers.utils.formatUnits(aguruBalance, "gwei"),
+        aalpha: ethers.utils.formatUnits(aalphaBalance, "gwei"),
       },
       staking: {
         ohmStake: +stakeAllowance,
         ohmUnstake: +unstakeAllowance,
       },
       claim: {
-        aguruAllowance: aguruAllowance,
+        aalphaAllowance: aalphaAllowance,
       },
       wrapping: {
         ohmWrap: +wrapAllowance,
@@ -196,7 +196,7 @@ export const loadAccountDetails = createAsyncThunk(
         daiAllowance: daiBondAllowance,
       },
       pooling: {
-        sohmPool: +poolAllowance,
+        soxPool: +poolAllowance,
       },
     };
   },
@@ -261,17 +261,17 @@ export const calculateUserBondDetails = createAsyncThunk(
 interface IAccountSlice {
   bonds: { [key: string]: IUserBondDetails };
   balances: {
-    ohm: string;
-    sohm: string;
-    dai: string;
-    oldsohm: string;
+    ox: string;
+    sox: string;
+    busd: string;
+    oldsox: string;
   };
   loading: boolean;
 }
 const initialState: IAccountSlice = {
   loading: false,
   bonds: {},
-  balances: { ohm: "", sohm: "", dai: "", oldsohm: "" },
+  balances: { ox: "", sox: "", busd: "", oldsox: "" },
 };
 
 const accountSlice = createSlice({

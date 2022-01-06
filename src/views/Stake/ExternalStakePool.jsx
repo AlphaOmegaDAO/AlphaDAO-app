@@ -19,7 +19,7 @@ import { Skeleton } from "@material-ui/lab";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BondLogo from "../../components/BondLogo";
-import { ReactComponent as GuruLusdImg } from "src/assets/tokens/OX-LUSD.svg";
+import { ReactComponent as AlphaLusdImg } from "src/assets/tokens/OX-LUSD.svg";
 import { ReactComponent as ArrowUp } from "../../assets/icons/arrow-up.svg";
 import { getLusdData } from "../../slices/LusdSlice";
 import { useWeb3Context } from "src/hooks/web3Context";
@@ -67,7 +67,7 @@ export default function ExternalStakePool() {
 
   return (
     <Zoom in={true}>
-      <Paper className={`ohm-card secondary ${isSmallScreen && "mobile"}`}>
+      <Paper className={`ox-card secondary ${isSmallScreen && "mobile"}`}>
         <div className="card-header">
           <Typography variant="h5">Farm Pool</Typography>
         </div>
@@ -88,9 +88,9 @@ export default function ExternalStakePool() {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <Box className="ohm-pairs">
-                        <BondLogo bond={{ bondIconSvg: GuruLusdImg, isLP: true }}></BondLogo>
-                        <Typography>OHM-LUSD</Typography>
+                      <Box className="ox-pairs">
+                        <BondLogo bond={{ bondIconSvg: AlphaLusdImg, isLP: true }}></BondLogo>
+                        <Typography>OX-LUSD</Typography>
                       </Box>
                     </TableCell>
                     <TableCell align="left">
@@ -136,8 +136,8 @@ export default function ExternalStakePool() {
           ) : (
             <div className="stake-pool">
               <div className={`pool-card-top-row ${isMobileScreen && "small"}`}>
-                <Box className="ohm-pairs">
-                  <BondLogo bond={{ bondIconSvg: GuruLusdImg, isLP: true }}></BondLogo>
+                <Box className="ox-pairs">
+                  <BondLogo bond={{ bondIconSvg: AlphaLusdImg, isLP: true }}></BondLogo>
                   <Typography gutterBottom={false}>OX-LUSD</Typography>
                 </Box>
               </div>

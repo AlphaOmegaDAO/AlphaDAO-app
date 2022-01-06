@@ -19,7 +19,7 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface OhmLusdCrucibleInterface extends ethers.utils.Interface {
+interface OxLusdCrucibleInterface extends ethers.utils.Interface {
   functions: {
     "BASE_SHARES_PER_WEI()": FunctionFragment;
     "MAX_REWARD_TOKENS()": FunctionFragment;
@@ -231,7 +231,7 @@ export type VaultFactoryRegisteredEvent = TypedEvent<[string] & { factory: strin
 
 export type VaultFactoryRemovedEvent = TypedEvent<[string] & { factory: string }>;
 
-export class OhmLusdCrucible extends BaseContract {
+export class OxLusdCrucible extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -272,7 +272,7 @@ export class OhmLusdCrucible extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: OhmLusdCrucibleInterface;
+  interface: OxLusdCrucibleInterface;
 
   functions: {
     BASE_SHARES_PER_WEI(overrides?: CallOverrides): Promise<[BigNumber]>;

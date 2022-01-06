@@ -25,7 +25,7 @@ interface POlyTokenSaleInterface extends ethers.utils.Interface {
     "approveBuyers(address[])": FunctionFragment;
     "approvedBuyers(address)": FunctionFragment;
     "buyPOly(uint256)": FunctionFragment;
-    "dai()": FunctionFragment;
+    "busd()": FunctionFragment;
     "initialize(address,address,uint256,address)": FunctionFragment;
     "initialized()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -41,7 +41,7 @@ interface POlyTokenSaleInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "approveBuyers", values: [string[]]): string;
   encodeFunctionData(functionFragment: "approvedBuyers", values: [string]): string;
   encodeFunctionData(functionFragment: "buyPOly", values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: "dai", values?: undefined): string;
+  encodeFunctionData(functionFragment: "busd", values?: undefined): string;
   encodeFunctionData(functionFragment: "initialize", values: [string, string, BigNumberish, string]): string;
   encodeFunctionData(functionFragment: "initialized", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
@@ -56,7 +56,7 @@ interface POlyTokenSaleInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "approveBuyers", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approvedBuyers", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "buyPOly", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "dai", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "busd", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialized", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
@@ -155,7 +155,7 @@ export class POlyTokenSale extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
-    dai(overrides?: CallOverrides): Promise<[string]>;
+    busd(overrides?: CallOverrides): Promise<[string]>;
 
     initialize(
       pOly_: string,
@@ -208,7 +208,7 @@ export class POlyTokenSale extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
-  dai(overrides?: CallOverrides): Promise<string>;
+  busd(overrides?: CallOverrides): Promise<string>;
 
   initialize(
     pOly_: string,
@@ -252,7 +252,7 @@ export class POlyTokenSale extends BaseContract {
 
     buyPOly(amountPaid_: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
-    dai(overrides?: CallOverrides): Promise<string>;
+    busd(overrides?: CallOverrides): Promise<string>;
 
     initialize(
       pOly_: string,
@@ -335,7 +335,7 @@ export class POlyTokenSale extends BaseContract {
 
     buyPOly(amountPaid_: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    dai(overrides?: CallOverrides): Promise<BigNumber>;
+    busd(overrides?: CallOverrides): Promise<BigNumber>;
 
     initialize(
       pOly_: string,
@@ -389,7 +389,7 @@ export class POlyTokenSale extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 
-    dai(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    busd(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     initialize(
       pOly_: string,

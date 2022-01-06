@@ -22,8 +22,8 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 interface LPStakingInterface extends ethers.utils.Interface {
   functions: {
     "LPToken()": FunctionFragment;
-    "OHMToken()": FunctionFragment;
-    "accOHMPerShare()": FunctionFragment;
+    "OXToken()": FunctionFragment;
+    "accOXPerShare()": FunctionFragment;
     "claimRewards()": FunctionFragment;
     "getUserBalance(address)": FunctionFragment;
     "lastRewardBlock()": FunctionFragment;
@@ -41,8 +41,8 @@ interface LPStakingInterface extends ethers.utils.Interface {
   };
 
   encodeFunctionData(functionFragment: "LPToken", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHMToken", values?: undefined): string;
-  encodeFunctionData(functionFragment: "accOHMPerShare", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OXToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: "accOXPerShare", values?: undefined): string;
   encodeFunctionData(functionFragment: "claimRewards", values?: undefined): string;
   encodeFunctionData(functionFragment: "getUserBalance", values: [string]): string;
   encodeFunctionData(functionFragment: "lastRewardBlock", values?: undefined): string;
@@ -59,8 +59,8 @@ interface LPStakingInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "userDetails", values: [string]): string;
 
   decodeFunctionResult(functionFragment: "LPToken", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHMToken", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "accOHMPerShare", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OXToken", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "accOXPerShare", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "claimRewards", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getUserBalance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "lastRewardBlock", data: BytesLike): Result;
@@ -178,9 +178,9 @@ export class LPStaking extends BaseContract {
   functions: {
     LPToken(overrides?: CallOverrides): Promise<[string]>;
 
-    OHMToken(overrides?: CallOverrides): Promise<[string]>;
+    OXToken(overrides?: CallOverrides): Promise<[string]>;
 
-    accOHMPerShare(overrides?: CallOverrides): Promise<[BigNumber]>;
+    accOXPerShare(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     claimRewards(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
@@ -230,9 +230,9 @@ export class LPStaking extends BaseContract {
 
   LPToken(overrides?: CallOverrides): Promise<string>;
 
-  OHMToken(overrides?: CallOverrides): Promise<string>;
+  OXToken(overrides?: CallOverrides): Promise<string>;
 
-  accOHMPerShare(overrides?: CallOverrides): Promise<BigNumber>;
+  accOXPerShare(overrides?: CallOverrides): Promise<BigNumber>;
 
   claimRewards(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
@@ -277,9 +277,9 @@ export class LPStaking extends BaseContract {
   callStatic: {
     LPToken(overrides?: CallOverrides): Promise<string>;
 
-    OHMToken(overrides?: CallOverrides): Promise<string>;
+    OXToken(overrides?: CallOverrides): Promise<string>;
 
-    accOHMPerShare(overrides?: CallOverrides): Promise<BigNumber>;
+    accOXPerShare(overrides?: CallOverrides): Promise<BigNumber>;
 
     claimRewards(overrides?: CallOverrides): Promise<boolean>;
 
@@ -421,9 +421,9 @@ export class LPStaking extends BaseContract {
   estimateGas: {
     LPToken(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHMToken(overrides?: CallOverrides): Promise<BigNumber>;
+    OXToken(overrides?: CallOverrides): Promise<BigNumber>;
 
-    accOHMPerShare(overrides?: CallOverrides): Promise<BigNumber>;
+    accOXPerShare(overrides?: CallOverrides): Promise<BigNumber>;
 
     claimRewards(overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
@@ -460,9 +460,9 @@ export class LPStaking extends BaseContract {
   populateTransaction: {
     LPToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHMToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OXToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    accOHMPerShare(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    accOXPerShare(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     claimRewards(overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 

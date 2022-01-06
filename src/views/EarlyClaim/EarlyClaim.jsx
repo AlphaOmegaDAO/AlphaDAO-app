@@ -44,13 +44,13 @@ function EarlyClaim() {
 
   const isAppLoading = useSelector(state => state.app.loading);
   const ohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.ohm;
+    return state.account.balances && state.account.balances.ox;
   });
-  const aguruAllowance = useSelector(state => {
-    return state.account.claim && state.account.claim.aguruAllowance;
+  const aalphaAllowance = useSelector(state => {
+    return state.account.claim && state.account.claim.aalphaAllowance;
   });
-  const aguruBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.aguru;
+  const aalphaBalance = useSelector(state => {
+    return state.account.balances && state.account.balances.aalpha;
   });
 
   const pendingTransactions = useSelector(state => {
@@ -63,23 +63,23 @@ function EarlyClaim() {
 
   const onExchange = async () => {
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(aguruBalance) || aguruBalance <= 0 || aguruBalance === "") {
+    if (isNaN(aalphaBalance) || aalphaBalance <= 0 || aalphaBalance === "") {
       // eslint-disable-next-line no-alert
       return dispatch(error("You do not have any aOX to convert to OX"));
     }
 
-    await dispatch(exchangeAOX({ address, aguruBalance, provider, networkID: chainID }));
+    await dispatch(exchangeAOX({ address, aalphaBalance, provider, networkID: chainID }));
   };
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "aguru") return aguruAllowance > 0;
+      if (token === "aalpha") return aalphaAllowance > 0;
       return 0;
     },
-    [aguruAllowance],
+    [aalphaAllowance],
   );
 
-  const isAllowanceDataLoading = aguruAllowance == null;
+  const isAllowanceDataLoading = aalphaAllowance == null;
 
   let modalButton = [];
 
@@ -88,7 +88,7 @@ function EarlyClaim() {
   return (
     <div id="stake-view" className="stake-metrics">
       <Zoom in={true} onEntered={() => setZoomed(true)}>
-        <Paper className={`ohm-card`}>
+        <Paper className={`ox-card`}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
@@ -111,7 +111,7 @@ function EarlyClaim() {
                   <Box className="stake-action-area">
                     <Box className="stake-action-row " display="flex" alignItems="center">
                       {address && !isAllowanceDataLoading ? (
-                        !hasAllowance("aguru") && (
+                        !hasAllowance("aalpha") && (
                           <Box className="help-text">
                             <Typography variant="body1" className="stake-note" color="textSecondary">
                               <>
@@ -129,7 +129,7 @@ function EarlyClaim() {
                       <TabPanel value={view} index={0} className="stake-tab-panel">
                         {isAllowanceDataLoading ? (
                           <Skeleton />
-                        ) : address && hasAllowance("aguru") ? (
+                        ) : address && hasAllowance("aalpha") ? (
                           <Button
                             className="stake-button"
                             variant="contained"
@@ -149,7 +149,7 @@ function EarlyClaim() {
                             disabled={isPendingTxn(pendingTransactions, "approve_claiming")}
                             onClick={() => {
                               console.log("clicked");
-                              onSeekApproval("aguru");
+                              onSeekApproval("aalpha");
                             }}
                           >
                             {txnButtonText(pendingTransactions, "approve_claiming", "Approve")}
@@ -170,7 +170,7 @@ function EarlyClaim() {
                     <div className="data-row">
                       <Typography variant="body1">Amount to Exchange</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(aguruBalance, 0)} aOX</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(aalphaBalance, 0)} aOX</>}
                       </Typography>
                     </div>
                   </div>

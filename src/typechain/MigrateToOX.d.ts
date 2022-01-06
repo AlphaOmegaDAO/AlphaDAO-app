@@ -19,10 +19,10 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface MigrateToOHMInterface extends ethers.utils.Interface {
+interface MigrateToOXInterface extends ethers.utils.Interface {
   functions: {
-    "OHM()": FunctionFragment;
-    "aOHM()": FunctionFragment;
+    "OX()": FunctionFragment;
+    "aOX()": FunctionFragment;
     "initialize(address,address,uint256)": FunctionFragment;
     "isInitialized()": FunctionFragment;
     "migrate(uint256)": FunctionFragment;
@@ -34,8 +34,8 @@ interface MigrateToOHMInterface extends ethers.utils.Interface {
     "withdraw()": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
-  encodeFunctionData(functionFragment: "aOHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
+  encodeFunctionData(functionFragment: "aOX", values?: undefined): string;
   encodeFunctionData(functionFragment: "initialize", values: [string, string, BigNumberish]): string;
   encodeFunctionData(functionFragment: "isInitialized", values?: undefined): string;
   encodeFunctionData(functionFragment: "migrate", values: [BigNumberish]): string;
@@ -46,8 +46,8 @@ interface MigrateToOHMInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "transferOwnership", values: [string]): string;
   encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "aOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "aOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "isInitialized", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "migrate", data: BytesLike): Result;
@@ -67,7 +67,7 @@ interface MigrateToOHMInterface extends ethers.utils.Interface {
 
 export type OwnershipTransferredEvent = TypedEvent<[string, string] & { previousOwner: string; newOwner: string }>;
 
-export class MigrateToOHM extends BaseContract {
+export class MigrateToOX extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -108,16 +108,16 @@ export class MigrateToOHM extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: MigrateToOHMInterface;
+  interface: MigrateToOXInterface;
 
   functions: {
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
-    aOHM(overrides?: CallOverrides): Promise<[string]>;
+    aOX(overrides?: CallOverrides): Promise<[string]>;
 
     initialize(
-      _OHM: string,
-      _aOHM: string,
+      _OX: string,
+      _aOX: string,
       swapDuration: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
@@ -145,13 +145,13 @@ export class MigrateToOHM extends BaseContract {
     withdraw(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
   };
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
-  aOHM(overrides?: CallOverrides): Promise<string>;
+  aOX(overrides?: CallOverrides): Promise<string>;
 
   initialize(
-    _OHM: string,
-    _aOHM: string,
+    _OX: string,
+    _aOX: string,
     swapDuration: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
@@ -179,11 +179,11 @@ export class MigrateToOHM extends BaseContract {
   withdraw(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
   callStatic: {
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
-    aOHM(overrides?: CallOverrides): Promise<string>;
+    aOX(overrides?: CallOverrides): Promise<string>;
 
-    initialize(_OHM: string, _aOHM: string, swapDuration: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    initialize(_OX: string, _aOX: string, swapDuration: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     isInitialized(overrides?: CallOverrides): Promise<boolean>;
 
@@ -215,13 +215,13 @@ export class MigrateToOHM extends BaseContract {
   };
 
   estimateGas: {
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
-    aOHM(overrides?: CallOverrides): Promise<BigNumber>;
+    aOX(overrides?: CallOverrides): Promise<BigNumber>;
 
     initialize(
-      _OHM: string,
-      _aOHM: string,
+      _OX: string,
+      _aOX: string,
       swapDuration: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
@@ -247,13 +247,13 @@ export class MigrateToOHM extends BaseContract {
   };
 
   populateTransaction: {
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    aOHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    aOX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     initialize(
-      _OHM: string,
-      _aOHM: string,
+      _OX: string,
+      _aOX: string,
       swapDuration: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;

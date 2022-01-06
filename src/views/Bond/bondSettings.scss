@@ -6,7 +6,7 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   background-color: #55555555;
-  .ohm-popover {
+  .ox-popover {
     padding: 10px;
     max-width: 577px;
     height: 577px;
@@ -31,7 +31,7 @@
       margin: 20px 0;
     }
   }
-  .mobile .ohm-popover {
+  .mobile .ox-popover {
     max-width: 400px;
   }
 }

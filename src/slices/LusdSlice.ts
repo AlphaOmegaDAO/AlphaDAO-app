@@ -2,7 +2,7 @@ import { setAll } from "../helpers";
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { IBaseAddressAsyncThunk } from "./interfaces";
 
-import { calcAludelDetes } from "../helpers/OhmLusdCrucible";
+import { calcAludelDetes } from "../helpers/OxLusdCrucible";
 
 export const getLusdData = createAsyncThunk(
   "stake/getLusdData",
@@ -20,7 +20,7 @@ export const getLusdData = createAsyncThunk(
     //     apy: avgApy,
     //     tvl: crucibleDetes.tvlUsd,
     //     // NOTE (appleseed): balance is in accountSlice for the bond
-    //     // balance: ethers.utils.formatUnits(sushiOhmLusdBalance, "gwei"),
+    //     // balance: ethers.utils.formatUnits(sushiOxLusdBalance, "gwei"),
     //   };
     // }
   },

@@ -26,7 +26,7 @@ export function BondDataCard({ bond }) {
 
   return (
     <Slide direction="up" in={true}>
-      <Paper id={`${bond.name}--bond`} className="bond-data-card ohm-card">
+      <Paper id={`${bond.name}--bond`} className="bond-data-card ox-card">
         <div className="bond-pair">
           <BondLogo bond={bond} />
           <div className="bond-name">

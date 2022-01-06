@@ -197,7 +197,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to Polygon");
+      console.error("Wrong network, please switch to BSC");
       return;
     }
     // Save everything after we've validated the right network.

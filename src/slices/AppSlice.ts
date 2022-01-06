@@ -1,14 +1,14 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as OlympusStakingv2ABI } from "../abi/OlympusStakingv2.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
-import { abi as GuruABI } from "../abi/Guru.json";
+import { abi as sOXv2 } from "../abi/sOxv2.json";
+import { abi as AlphaABI } from "../abi/Alpha.json";
 import { setAll, getTokenPrice, getMarketPrice } from "../helpers";
 import allBonds from "../helpers/AllBonds";
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "src/store";
 import { IBaseAsyncThunk } from "./interfaces";
-import { OlympusStakingv2, SOhmv2 } from "../typechain";
+import { OlympusStakingv2, SOxv2 } from "../typechain";
 
 const initialState = {
   loading: false,
@@ -40,23 +40,23 @@ export const loadAppDetails = createAsyncThunk(
       provider,
     ) as OlympusStakingv2;
 
-    const sohmMainContract = new ethers.Contract(
+    const soxMainContract = new ethers.Contract(
       addresses[networkID].SOX_ADDRESS as string,
-      sOHMv2,
+      sOXv2,
       provider,
-    ) as SOhmv2;
+    ) as SOxv2;
 
-    const guruMainContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, GuruABI, provider);
+    const alphaMainContract = new ethers.Contract(addresses[networkID].OX_ADDRESS as string, AlphaABI, provider);
 
     // Calculating staking
     const epoch = await stakingContract.epoch();
     console.log(`epoch`, epoch);
     const stakingReward = epoch.distribute;
-    const ts = await sohmMainContract.totalSupply();
+    const ts = await soxMainContract.totalSupply();
     console.log(`ts`, ts);
-    const totalSupply = (await guruMainContract.totalSupply()) / Math.pow(10, 9);
+    const totalSupply = (await alphaMainContract.totalSupply()) / Math.pow(10, 9);
     const marketCap = totalSupply * marketPrice;
-    const circ = await sohmMainContract.circulatingSupply();
+    const circ = await soxMainContract.circulatingSupply();
     const circAny = circ as any;
     const circSupply = circAny / Math.pow(10, 9);
     const stakingTVL = circSupply * marketPrice;
@@ -76,7 +76,7 @@ export const loadAppDetails = createAsyncThunk(
 
     // Current index
     const currentIndex = await stakingContract.index();
-
+console.log(currentIndex, stakingAPY, "**** Line79test *****" )
     return {
       currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
       currentBlock,
@@ -133,19 +133,25 @@ export const findOrLoadMarketPrice = createAsyncThunk(
 );
 
 /**
- * - fetches the OHM price from CoinGecko (via getTokenPrice)
- * - falls back to fetch marketPrice from ohm-dai contract
+ * - fetches the OX price from CoinGecko (via getTokenPrice)
+ * - falls back to fetch marketPrice from ox-busd contract
  * - updates the App.slice when it runs
  */
 const loadMarketPrice = createAsyncThunk("app/loadMarketPrice", async ({ networkID, provider }: IBaseAsyncThunk) => {
   let marketPrice: number;
   try {
+  
+    console.log("******144*****");
     marketPrice = await getMarketPrice({ networkID, provider });
+    console.log("******146*****");
     marketPrice = marketPrice / Math.pow(10, 9);
+    console.log(marketPrice , "******148*****");
   } catch (e) {
     console.log(`e`);
+    console.log("******151*****");
     console.log(e);
-    marketPrice = await getTokenPrice("guru");
+    marketPrice = await getTokenPrice("alpha");
+    console.log(marketPrice,"******154*****");
   }
   return { marketPrice };
 });

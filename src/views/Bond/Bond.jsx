@@ -73,7 +73,7 @@ function Bond({ bond, nft }) {
         <Grid container id="bond-view">
           <Backdrop open={true}>
             <Fade in={true}>
-              <Paper className="ohm-card ohm-modal">
+              <Paper className="ox-card ox-modal">
                 <BondHeader bond={bond} nft />
                 <Box direction="column" className="bond-price-data-column">
                   <Typography variant="h6" color="textSecondary">
@@ -138,7 +138,7 @@ function Bond({ bond, nft }) {
       <Grid container id="bond-view">
         <Backdrop open={true}>
           <Fade in={true}>
-            <Paper className="ohm-card ohm-modal">
+            <Paper className="ox-card ox-modal">
               <BondHeader
                 bond={bond}
                 slippage={slippage}

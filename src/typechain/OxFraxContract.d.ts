@@ -19,10 +19,10 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface OhmLusdContractInterface extends ethers.utils.Interface {
+interface OxFraxContractInterface extends ethers.utils.Interface {
   functions: {
     "DAO()": FunctionFragment;
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "adjustment()": FunctionFragment;
     "bondCalculator()": FunctionFragment;
     "bondInfo(address)": FunctionFragment;
@@ -59,7 +59,7 @@ interface OhmLusdContractInterface extends ethers.utils.Interface {
   };
 
   encodeFunctionData(functionFragment: "DAO", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "adjustment", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondCalculator", values?: undefined): string;
   encodeFunctionData(functionFragment: "bondInfo", values: [string]): string;
@@ -101,7 +101,7 @@ interface OhmLusdContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "useHelper", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "DAO", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "adjustment", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondCalculator", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "bondInfo", data: BytesLike): Result;
@@ -191,7 +191,7 @@ export type OwnershipPulledEvent = TypedEvent<[string, string] & { previousOwner
 
 export type OwnershipPushedEvent = TypedEvent<[string, string] & { previousOwner: string; newOwner: string }>;
 
-export class OhmLusdContract extends BaseContract {
+export class OxFraxContract extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -232,12 +232,12 @@ export class OhmLusdContract extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: OhmLusdContractInterface;
+  interface: OxFraxContractInterface;
 
   functions: {
     DAO(overrides?: CallOverrides): Promise<[string]>;
 
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     adjustment(overrides?: CallOverrides): Promise<
       [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -379,7 +379,7 @@ export class OhmLusdContract extends BaseContract {
 
   DAO(overrides?: CallOverrides): Promise<string>;
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   adjustment(overrides?: CallOverrides): Promise<
     [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -515,7 +515,7 @@ export class OhmLusdContract extends BaseContract {
   callStatic: {
     DAO(overrides?: CallOverrides): Promise<string>;
 
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     adjustment(overrides?: CallOverrides): Promise<
       [boolean, BigNumber, BigNumber, BigNumber, BigNumber] & {
@@ -746,7 +746,7 @@ export class OhmLusdContract extends BaseContract {
   estimateGas: {
     DAO(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     adjustment(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -850,7 +850,7 @@ export class OhmLusdContract extends BaseContract {
   populateTransaction: {
     DAO(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     adjustment(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

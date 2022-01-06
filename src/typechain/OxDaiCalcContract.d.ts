@@ -18,22 +18,22 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface OhmDaiCalcContractInterface extends ethers.utils.Interface {
+interface OxDaiCalcContractInterface extends ethers.utils.Interface {
   functions: {
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "getKValue(address)": FunctionFragment;
     "getTotalValue(address)": FunctionFragment;
     "markdown(address)": FunctionFragment;
     "valuation(address,uint256)": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "getKValue", values: [string]): string;
   encodeFunctionData(functionFragment: "getTotalValue", values: [string]): string;
   encodeFunctionData(functionFragment: "markdown", values: [string]): string;
   encodeFunctionData(functionFragment: "valuation", values: [string, BigNumberish]): string;
 
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getKValue", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getTotalValue", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "markdown", data: BytesLike): Result;
@@ -42,7 +42,7 @@ interface OhmDaiCalcContractInterface extends ethers.utils.Interface {
   events: {};
 }
 
-export class OhmDaiCalcContract extends BaseContract {
+export class OxDaiCalcContract extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -83,10 +83,10 @@ export class OhmDaiCalcContract extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: OhmDaiCalcContractInterface;
+  interface: OxDaiCalcContractInterface;
 
   functions: {
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     getKValue(_pair: string, overrides?: CallOverrides): Promise<[BigNumber] & { k_: BigNumber }>;
 
@@ -101,7 +101,7 @@ export class OhmDaiCalcContract extends BaseContract {
     ): Promise<[BigNumber] & { _value: BigNumber }>;
   };
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   getKValue(_pair: string, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -112,7 +112,7 @@ export class OhmDaiCalcContract extends BaseContract {
   valuation(_pair: string, amount_: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     getKValue(_pair: string, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -126,7 +126,7 @@ export class OhmDaiCalcContract extends BaseContract {
   filters: {};
 
   estimateGas: {
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     getKValue(_pair: string, overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -138,7 +138,7 @@ export class OhmDaiCalcContract extends BaseContract {
   };
 
   populateTransaction: {
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getKValue(_pair: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

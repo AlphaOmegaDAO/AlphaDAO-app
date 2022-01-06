@@ -21,16 +21,16 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
 interface StakingHelperInterface extends ethers.utils.Interface {
   functions: {
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "stake(uint256)": FunctionFragment;
     "staking()": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "stake", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "staking", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "stake", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "staking", data: BytesLike): Result;
 
@@ -81,7 +81,7 @@ export class StakingHelper extends BaseContract {
   interface: StakingHelperInterface;
 
   functions: {
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     stake(
       _amount: BigNumberish,
@@ -91,7 +91,7 @@ export class StakingHelper extends BaseContract {
     staking(overrides?: CallOverrides): Promise<[string]>;
   };
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   stake(
     _amount: BigNumberish,
@@ -101,7 +101,7 @@ export class StakingHelper extends BaseContract {
   staking(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     stake(_amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
@@ -111,7 +111,7 @@ export class StakingHelper extends BaseContract {
   filters: {};
 
   estimateGas: {
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     stake(_amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
@@ -119,7 +119,7 @@ export class StakingHelper extends BaseContract {
   };
 
   populateTransaction: {
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     stake(
       _amount: BigNumberish,

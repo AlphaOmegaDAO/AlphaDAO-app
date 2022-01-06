@@ -44,7 +44,7 @@ function TreasuryDashboard() {
     return state.app.currentIndex;
   });
 
-  const backingPerOhm = useSelector(state => {
+  const backingPerOx = useSelector(state => {
     return state.app.treasuryMarketValue / state.app.circSupply;
   });
 
@@ -61,7 +61,7 @@ function TreasuryDashboard() {
   //     setData(metrics);
   //
   //     let staked = r.data.protocolMetrics.map(entry => ({
-  //       staked: (parseFloat(entry.sOhmCirculatingSupply) / parseFloat(entry.ohmCirculatingSupply)) * 100,
+  //       staked: (parseFloat(entry.sOxCirculatingSupply) / parseFloat(entry.ohmCirculatingSupply)) * 100,
   //       timestamp: entry.timestamp,
   //     }));
   //     staked = staked.filter(pm => pm.staked < 100);
@@ -93,7 +93,7 @@ function TreasuryDashboard() {
         }}
       >
         <Box className={`hero-metrics`}>
-          <Paper className="ohm-card">
+          <Paper className="ox-card">
             <Box display="flex" flexWrap="wrap" justifyContent="space-between" alignItems="center">
               <Box className="metric market">
                 <Typography variant="h6" color="textSecondary">
@@ -133,7 +133,7 @@ function TreasuryDashboard() {
                   Backing per OX
                 </Typography>
                 <Typography variant="h5">
-                  {backingPerOhm ? formatCurrency(backingPerOhm, 2) : <Skeleton type="text" />}
+                  {backingPerOx ? formatCurrency(backingPerOx, 2) : <Skeleton type="text" />}
                 </Typography>
               </Box>
 
@@ -142,7 +142,7 @@ function TreasuryDashboard() {
                   Treasury Balance
                   {/*<InfoTooltip*/}
                   {/*  message={*/}
-                  {/*    "wsOHM = sOHM * index\n\nThe price of wsOHM is equal to the price of OHM multiplied by the current index"*/}
+                  {/*    "wsOX = sOX * index\n\nThe price of wsOX is equal to the price of OX multiplied by the current index"*/}
                   {/*  }*/}
                   {/*/>*/}
                 </Typography>
@@ -157,7 +157,7 @@ function TreasuryDashboard() {
                   Current Index
                   {/*<InfoTooltip*/}
                   {/*  message={*/}
-                  {/*    "The current index tracks the amount of sOHM accumulated since the beginning of staking. Basically, how much sOX one would have if they staked and held a single OX from day 1."*/}
+                  {/*    "The current index tracks the amount of sOX accumulated since the beginning of staking. Basically, how much sOX one would have if they staked and held a single OX from day 1."*/}
                   {/*  }*/}
                   {/*/>*/}
                 </Typography>
@@ -172,7 +172,7 @@ function TreasuryDashboard() {
         {/*<Zoom in={true}>*/}
         {/*  <Grid container spacing={2} className="data-grid">*/}
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card ohm-chart-card">*/}
+        {/*  <Paper className="ox-card ox-chart-card">*/}
         {/*    <Chart*/}
         {/*      type="area"*/}
         {/*      data={data}*/}
@@ -190,7 +190,7 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card ohm-chart-card">*/}
+        {/*  <Paper className="ox-card ox-chart-card">*/}
         {/*    <Chart*/}
         {/*      type="stack"*/}
         {/*      data={data}*/}
@@ -218,7 +218,7 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card ohm-chart-card">*/}
+        {/*  <Paper className="ox-card ox-chart-card">*/}
         {/*    <Chart*/}
         {/*      type="stack"*/}
         {/*      data={data}*/}
@@ -242,14 +242,14 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card">*/}
+        {/*  <Paper className="ox-card">*/}
         {/*    <Chart*/}
         {/*      type="area"*/}
         {/*      data={data}*/}
-        {/*      dataKey={["treasuryOhmDaiPOL"]}*/}
+        {/*      dataKey={["treasuryOxDaiPOL"]}*/}
         {/*      stopColor={[["rgba(128, 204, 131, 1)", "rgba(128, 204, 131, 0)"]]}*/}
-        {/*      headerText="Protocol Owned Liquidity OHM-DAI"*/}
-        {/*      headerSubText={`${data && trim(data[0].treasuryOhmDaiPOL, 2)}% `}*/}
+        {/*      headerText="Protocol Owned Liquidity OX-DAI"*/}
+        {/*      headerSubText={`${data && trim(data[0].treasuryOxDaiPOL, 2)}% `}*/}
         {/*      dataFormat="percent"*/}
         {/*      bulletpointColors={bulletpoints.pol}*/}
         {/*      itemNames={tooltipItems.pol}*/}
@@ -262,7 +262,7 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
         {/*  Temporarily removed until correct data is in the graph */}
         {/* <Grid item lg={6} md={12} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="ox-card">
                 <Chart
                   type="bar"
                   data={data}
@@ -280,13 +280,13 @@ function TreasuryDashboard() {
             </Grid> */}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card">*/}
+        {/*  <Paper className="ox-card">*/}
         {/*    <Chart*/}
         {/*      type="area"*/}
         {/*      data={staked}*/}
         {/*      dataKey={["staked"]}*/}
         {/*      stopColor={[["#55EBC7", "#47ACEB"]]}*/}
-        {/*      headerText="OHM Staked"*/}
+        {/*      headerText="OX Staked"*/}
         {/*      dataFormat="percent"*/}
         {/*      headerSubText={`${staked && trim(staked[0].staked, 2)}% `}*/}
         {/*      isStaked={true}*/}
@@ -298,7 +298,7 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card">*/}
+        {/*  <Paper className="ox-card">*/}
         {/*    <Chart*/}
         {/*      type="line"*/}
         {/*      scale="log"*/}
@@ -319,7 +319,7 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
-        {/*  <Paper className="ohm-card">*/}
+        {/*  <Paper className="ox-card">*/}
         {/*    <Chart*/}
         {/*      type="line"*/}
         {/*      data={runway}*/}

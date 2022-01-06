@@ -170,7 +170,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
       if (otherChainID === 97 || otherChainID === 80001) {
         setChainID(otherChainID);
         if (otherChainID === 97) setUri(getBSCTestnetURI);
-        else if (otherChainID === 80001) setUri(getPolygonURI);
+        else if (otherChainID === 80001) setUri(getMumbaiTestnetURI);
         // else setUri(getBSCTestnetURI());
         return true;
       }

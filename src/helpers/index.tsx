@@ -5,26 +5,34 @@ import { abi as PairContractABI } from "../abi/PairContract.json";
 import { abi as RedeemHelperABI } from "../abi/RedeemHelper.json";
 
 import { SvgIcon } from "@material-ui/core";
-import { ReactComponent as OhmImg } from "../assets/tokens/token_OHM.svg";
-import { ReactComponent as SOhmImg } from "../assets/tokens/token_sOHM.svg";
+import { ReactComponent as OxImg } from "../assets/tokens/token_OX.svg";
+import { ReactComponent as SOxImg } from "../assets/tokens/token_sOX.svg";
 
-import { guru_dai } from "./AllBonds";
+import { alpha_dai } from "./AllBonds";
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
 import { IBaseAsyncThunk } from "src/slices/interfaces";
 import { PairContract, RedeemHelper } from "../typechain";
 
 export async function getMarketPrice({ networkID, provider }: IBaseAsyncThunk) {
-  if (networkID !== 80001 && networkID !== 137) return 0;
-  const guru_dai_address = guru_dai.getAddressForReserve(networkID);
-  const pairContract = new ethers.Contract(guru_dai_address, PairContractABI, provider) as PairContract;
+  console.log("line17 Git **********8")
+  if  (networkID !== 80001 && networkID !== 97) {
+    console.log("insideif")
+    return 0
+  } 
+
+  const alpha_dai_address = alpha_dai.getAddressForReserve(networkID);
+  console.log("line24**********")
+  const pairContract = new ethers.Contract(alpha_dai_address, PairContractABI, provider) as PairContract;
+  console.log("line26**********")
   const reserves = await pairContract.getReserves();
+  console.log("line28**********")
   console.log(`reserves ${reserves}`);
   const marketPrice = Number(reserves[1].toString()) / Number(reserves[0].toString());
-
+console.log(marketPrice,"line31**********")
   return marketPrice;
 }
 
-export async function getTokenPrice(tokenId = "guru") {
+export async function getTokenPrice(tokenId = "alpha") {
   const resp = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${tokenId}&vs_currencies=usd`);
   let tokenPrice: number = resp.data[tokenId].usd;
   return tokenPrice;
@@ -105,18 +113,18 @@ export function prettifySeconds(seconds: number, resolution?: string) {
 }
 
 function getSohmTokenImage() {
-  return <SvgIcon component={SOhmImg} viewBox="0 0 100 100" style={{ height: "1rem", width: "1rem" }} />;
+  return <SvgIcon component={SOxImg} viewBox="0 0 100 100" style={{ height: "1rem", width: "1rem" }} />;
 }
 
-export function getOhmTokenImage(w?: number, h?: number) {
+export function getOxTokenImage(w?: number, h?: number) {
   const height = h == null ? "32px" : `${h}px`;
   const width = w == null ? "32px" : `${w}px`;
-  return <SvgIcon component={OhmImg} viewBox="0 0 32 32" style={{ height, width }} />;
+  return <SvgIcon component={OxImg} viewBox="0 0 32 32" style={{ height, width }} />;
 }
 
 export function getTokenImage(name: string) {
-  if (name === "ohm") return getOhmTokenImage();
-  if (name === "sohm") return getSohmTokenImage();
+  if (name === "ox") return getOxTokenImage();
+  if (name === "sox") return getSohmTokenImage();
 }
 
 // TS-REFACTOR-NOTE - Used for:

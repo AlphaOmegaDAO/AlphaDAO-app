@@ -19,56 +19,56 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
-interface OHMPreSaleInterface extends ethers.utils.Interface {
+interface OXPreSaleInterface extends ethers.utils.Interface {
   functions: {
     "DAI()": FunctionFragment;
-    "aOHM()": FunctionFragment;
+    "aOX()": FunctionFragment;
     "addressToSendDai()": FunctionFragment;
     "calculateSaleQuote(uint256)": FunctionFragment;
     "endOfSale()": FunctionFragment;
     "getAllotmentPerBuyer()": FunctionFragment;
     "initialize(address,address,uint256,uint256)": FunctionFragment;
     "owner()": FunctionFragment;
-    "purchaseaOHM(uint256)": FunctionFragment;
+    "purchaseaOX(uint256)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "salePrice()": FunctionFragment;
     "saleStarted()": FunctionFragment;
-    "sendRemainingaOHM(address)": FunctionFragment;
+    "sendRemainingaOX(address)": FunctionFragment;
     "totalWhiteListed()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "whiteListBuyers(address[])": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "DAI", values?: undefined): string;
-  encodeFunctionData(functionFragment: "aOHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "aOX", values?: undefined): string;
   encodeFunctionData(functionFragment: "addressToSendDai", values?: undefined): string;
   encodeFunctionData(functionFragment: "calculateSaleQuote", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "endOfSale", values?: undefined): string;
   encodeFunctionData(functionFragment: "getAllotmentPerBuyer", values?: undefined): string;
   encodeFunctionData(functionFragment: "initialize", values: [string, string, BigNumberish, BigNumberish]): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
-  encodeFunctionData(functionFragment: "purchaseaOHM", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "purchaseaOX", values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: "renounceOwnership", values?: undefined): string;
   encodeFunctionData(functionFragment: "salePrice", values?: undefined): string;
   encodeFunctionData(functionFragment: "saleStarted", values?: undefined): string;
-  encodeFunctionData(functionFragment: "sendRemainingaOHM", values: [string]): string;
+  encodeFunctionData(functionFragment: "sendRemainingaOX", values: [string]): string;
   encodeFunctionData(functionFragment: "totalWhiteListed", values?: undefined): string;
   encodeFunctionData(functionFragment: "transferOwnership", values: [string]): string;
   encodeFunctionData(functionFragment: "whiteListBuyers", values: [string[]]): string;
 
   decodeFunctionResult(functionFragment: "DAI", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "aOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "aOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "addressToSendDai", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "calculateSaleQuote", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "endOfSale", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getAllotmentPerBuyer", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "purchaseaOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "purchaseaOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "renounceOwnership", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "salePrice", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "saleStarted", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sendRemainingaOHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "sendRemainingaOX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "totalWhiteListed", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transferOwnership", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "whiteListBuyers", data: BytesLike): Result;
@@ -82,7 +82,7 @@ interface OHMPreSaleInterface extends ethers.utils.Interface {
 
 export type OwnershipTransferredEvent = TypedEvent<[string, string] & { previousOwner: string; newOwner: string }>;
 
-export class OHMPreSale extends BaseContract {
+export class OXPreSale extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -123,12 +123,12 @@ export class OHMPreSale extends BaseContract {
     toBlock?: string | number | undefined,
   ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
-  interface: OHMPreSaleInterface;
+  interface: OXPreSaleInterface;
 
   functions: {
     DAI(overrides?: CallOverrides): Promise<[string]>;
 
-    aOHM(overrides?: CallOverrides): Promise<[string]>;
+    aOX(overrides?: CallOverrides): Promise<[string]>;
 
     addressToSendDai(overrides?: CallOverrides): Promise<[string]>;
 
@@ -140,7 +140,7 @@ export class OHMPreSale extends BaseContract {
 
     initialize(
       _dai: string,
-      _aOHM: string,
+      _aOX: string,
       _salePrice: BigNumberish,
       _saleLength: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
@@ -148,7 +148,7 @@ export class OHMPreSale extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
-    purchaseaOHM(
+    purchaseaOX(
       _amountDAI: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
@@ -159,8 +159,8 @@ export class OHMPreSale extends BaseContract {
 
     saleStarted(overrides?: CallOverrides): Promise<[boolean]>;
 
-    sendRemainingaOHM(
-      _sendaOHMTo: string,
+    sendRemainingaOX(
+      _sendaOXTo: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
 
@@ -179,7 +179,7 @@ export class OHMPreSale extends BaseContract {
 
   DAI(overrides?: CallOverrides): Promise<string>;
 
-  aOHM(overrides?: CallOverrides): Promise<string>;
+  aOX(overrides?: CallOverrides): Promise<string>;
 
   addressToSendDai(overrides?: CallOverrides): Promise<string>;
 
@@ -191,7 +191,7 @@ export class OHMPreSale extends BaseContract {
 
   initialize(
     _dai: string,
-    _aOHM: string,
+    _aOX: string,
     _salePrice: BigNumberish,
     _saleLength: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
@@ -199,7 +199,7 @@ export class OHMPreSale extends BaseContract {
 
   owner(overrides?: CallOverrides): Promise<string>;
 
-  purchaseaOHM(
+  purchaseaOX(
     _amountDAI: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
@@ -210,8 +210,8 @@ export class OHMPreSale extends BaseContract {
 
   saleStarted(overrides?: CallOverrides): Promise<boolean>;
 
-  sendRemainingaOHM(
-    _sendaOHMTo: string,
+  sendRemainingaOX(
+    _sendaOXTo: string,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
 
@@ -230,7 +230,7 @@ export class OHMPreSale extends BaseContract {
   callStatic: {
     DAI(overrides?: CallOverrides): Promise<string>;
 
-    aOHM(overrides?: CallOverrides): Promise<string>;
+    aOX(overrides?: CallOverrides): Promise<string>;
 
     addressToSendDai(overrides?: CallOverrides): Promise<string>;
 
@@ -242,7 +242,7 @@ export class OHMPreSale extends BaseContract {
 
     initialize(
       _dai: string,
-      _aOHM: string,
+      _aOX: string,
       _salePrice: BigNumberish,
       _saleLength: BigNumberish,
       overrides?: CallOverrides,
@@ -250,7 +250,7 @@ export class OHMPreSale extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<string>;
 
-    purchaseaOHM(_amountDAI: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+    purchaseaOX(_amountDAI: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
@@ -258,7 +258,7 @@ export class OHMPreSale extends BaseContract {
 
     saleStarted(overrides?: CallOverrides): Promise<boolean>;
 
-    sendRemainingaOHM(_sendaOHMTo: string, overrides?: CallOverrides): Promise<boolean>;
+    sendRemainingaOX(_sendaOXTo: string, overrides?: CallOverrides): Promise<boolean>;
 
     totalWhiteListed(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -282,7 +282,7 @@ export class OHMPreSale extends BaseContract {
   estimateGas: {
     DAI(overrides?: CallOverrides): Promise<BigNumber>;
 
-    aOHM(overrides?: CallOverrides): Promise<BigNumber>;
+    aOX(overrides?: CallOverrides): Promise<BigNumber>;
 
     addressToSendDai(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -294,7 +294,7 @@ export class OHMPreSale extends BaseContract {
 
     initialize(
       _dai: string,
-      _aOHM: string,
+      _aOX: string,
       _salePrice: BigNumberish,
       _saleLength: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
@@ -302,7 +302,7 @@ export class OHMPreSale extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
-    purchaseaOHM(
+    purchaseaOX(
       _amountDAI: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
@@ -313,8 +313,8 @@ export class OHMPreSale extends BaseContract {
 
     saleStarted(overrides?: CallOverrides): Promise<BigNumber>;
 
-    sendRemainingaOHM(
-      _sendaOHMTo: string,
+    sendRemainingaOX(
+      _sendaOXTo: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
 
@@ -331,7 +331,7 @@ export class OHMPreSale extends BaseContract {
   populateTransaction: {
     DAI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    aOHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    aOX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     addressToSendDai(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -343,7 +343,7 @@ export class OHMPreSale extends BaseContract {
 
     initialize(
       _dai: string,
-      _aOHM: string,
+      _aOX: string,
       _salePrice: BigNumberish,
       _saleLength: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
@@ -351,7 +351,7 @@ export class OHMPreSale extends BaseContract {
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    purchaseaOHM(
+    purchaseaOX(
       _amountDAI: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
@@ -362,8 +362,8 @@ export class OHMPreSale extends BaseContract {
 
     saleStarted(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    sendRemainingaOHM(
-      _sendaOHMTo: string,
+    sendRemainingaOX(
+      _sendaOXTo: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;
 

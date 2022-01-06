@@ -18,7 +18,7 @@ interface IAddresses {
 export const addresses: IAddresses = {
   // Mumbai
   80001: {
-    DAI_ADDRESS: "0x52439209dc5f526375b8ab036ef9ea15bf0ce63b",
+    DAI_ADDRESS: "0x8301f2213c0eed49a7e28ae4c3e91722919b8b47",
     OX_ADDRESS: "0x26112d6e446d150675fa8edb0fd9e3681102ec39",
     STAKING_ADDRESS: "0x3a8ccc3f6b45a6a62c7ed717140a7f4daf7d2151",
     STAKING_HELPER_ADDRESS: "0x5906756f30f8be02bb000715171bb5123682d76e",
@@ -53,6 +53,7 @@ export const addresses: IAddresses = {
   //   PT_PRIZE_STRATEGY_ADDRESS: "0x2Df17EA8D6B68Ec444c9a698315AfB36425dac8b",
   //},
   
+  // BSC Testnet
   97: {
     PRESALE_ADDRESS:"0x2193FAaC1910e002b87589C5d34F1737C1f02Cc0",
     DAI_ADDRESS: "0x8301f2213c0eed49a7e28ae4c3e91722919b8b47",

@@ -22,7 +22,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 interface DistributorContractInterface extends ethers.utils.Interface {
   functions: {
     "DAI()": FunctionFragment;
-    "OHM()": FunctionFragment;
+    "OX()": FunctionFragment;
     "blocksInEpoch()": FunctionFragment;
     "distribute()": FunctionFragment;
     "getCurrentRewardForNextEpoch()": FunctionFragment;
@@ -41,7 +41,7 @@ interface DistributorContractInterface extends ethers.utils.Interface {
   };
 
   encodeFunctionData(functionFragment: "DAI", values?: undefined): string;
-  encodeFunctionData(functionFragment: "OHM", values?: undefined): string;
+  encodeFunctionData(functionFragment: "OX", values?: undefined): string;
   encodeFunctionData(functionFragment: "blocksInEpoch", values?: undefined): string;
   encodeFunctionData(functionFragment: "distribute", values?: undefined): string;
   encodeFunctionData(functionFragment: "getCurrentRewardForNextEpoch", values?: undefined): string;
@@ -62,7 +62,7 @@ interface DistributorContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "vault", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "DAI", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "OHM", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "OX", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "blocksInEpoch", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "distribute", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getCurrentRewardForNextEpoch", data: BytesLike): Result;
@@ -128,7 +128,7 @@ export class DistributorContract extends BaseContract {
   functions: {
     DAI(overrides?: CallOverrides): Promise<[string]>;
 
-    OHM(overrides?: CallOverrides): Promise<[string]>;
+    OX(overrides?: CallOverrides): Promise<[string]>;
 
     blocksInEpoch(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -142,7 +142,7 @@ export class DistributorContract extends BaseContract {
       _rewardRate: BigNumberish,
       _vault: string,
       _stakingContract: string,
-      _OHM: string,
+      _OX: string,
       _DAI: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<ContractTransaction>;
@@ -183,7 +183,7 @@ export class DistributorContract extends BaseContract {
 
   DAI(overrides?: CallOverrides): Promise<string>;
 
-  OHM(overrides?: CallOverrides): Promise<string>;
+  OX(overrides?: CallOverrides): Promise<string>;
 
   blocksInEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -197,7 +197,7 @@ export class DistributorContract extends BaseContract {
     _rewardRate: BigNumberish,
     _vault: string,
     _stakingContract: string,
-    _OHM: string,
+    _OX: string,
     _DAI: string,
     overrides?: Overrides & { from?: string | Promise<string> },
   ): Promise<ContractTransaction>;
@@ -238,7 +238,7 @@ export class DistributorContract extends BaseContract {
   callStatic: {
     DAI(overrides?: CallOverrides): Promise<string>;
 
-    OHM(overrides?: CallOverrides): Promise<string>;
+    OX(overrides?: CallOverrides): Promise<string>;
 
     blocksInEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -252,7 +252,7 @@ export class DistributorContract extends BaseContract {
       _rewardRate: BigNumberish,
       _vault: string,
       _stakingContract: string,
-      _OHM: string,
+      _OX: string,
       _DAI: string,
       overrides?: CallOverrides,
     ): Promise<boolean>;
@@ -285,7 +285,7 @@ export class DistributorContract extends BaseContract {
   estimateGas: {
     DAI(overrides?: CallOverrides): Promise<BigNumber>;
 
-    OHM(overrides?: CallOverrides): Promise<BigNumber>;
+    OX(overrides?: CallOverrides): Promise<BigNumber>;
 
     blocksInEpoch(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -299,7 +299,7 @@ export class DistributorContract extends BaseContract {
       _rewardRate: BigNumberish,
       _vault: string,
       _stakingContract: string,
-      _OHM: string,
+      _OX: string,
       _DAI: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<BigNumber>;
@@ -336,7 +336,7 @@ export class DistributorContract extends BaseContract {
   populateTransaction: {
     DAI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    OHM(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    OX(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     blocksInEpoch(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -350,7 +350,7 @@ export class DistributorContract extends BaseContract {
       _rewardRate: BigNumberish,
       _vault: string,
       _stakingContract: string,
-      _OHM: string,
+      _OX: string,
       _DAI: string,
       overrides?: Overrides & { from?: string | Promise<string> },
     ): Promise<PopulatedTransaction>;

@@ -19,7 +19,7 @@ import {
 import NewReleases from "@material-ui/icons/NewReleases";
 import RebaseTimer from "../../components/RebaseTimer/RebaseTimer";
 import TabPanel from "../../components/TabPanel";
-import { getOhmTokenImage, getTokenImage, trim } from "../../helpers";
+import { getOxTokenImage, getTokenImage, trim } from "../../helpers";
 import { changeApproval, changeStake } from "../../slices/StakeThunk";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import "./stake.scss";
@@ -39,8 +39,8 @@ function a11yProps(index) {
   };
 }
 
-const sOhmImg = getTokenImage("sohm");
-const ohmImg = getOhmTokenImage(16, 16);
+const sOxImg = getTokenImage("sox");
+const ohmImg = getOxTokenImage(16, 16);
 
 function Stake() {
   const dispatch = useDispatch();
@@ -58,19 +58,19 @@ function Stake() {
     return state.app.fiveDayRate;
   });
   const ohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.ohm;
+    return state.account.balances && state.account.balances.ox;
   });
   // const oldSohmBalance = useSelector(state => {
-  //   return state.account.balances && state.account.balances.oldsohm;
+  //   return state.account.balances && state.account.balances.oldsox;
   // });
-  const sohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.sohm;
+  const soxBalance = useSelector(state => {
+    return state.account.balances && state.account.balances.sox;
   });
-  const fsohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.fsohm;
+  const fsoxBalance = useSelector(state => {
+    return state.account.balances && state.account.balances.fsox;
   });
-  const wsohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.wsohm;
+  const wsoxBalance = useSelector(state => {
+    return state.account.balances && state.account.balances.wsox;
   });
   const stakeAllowance = useSelector(state => {
     return state.account.staking && state.account.staking.ohmStake;
@@ -96,7 +96,7 @@ function Stake() {
     if (view === 0) {
       setQuantity(ohmBalance);
     } else {
-      setQuantity(sohmBalance);
+      setQuantity(soxBalance);
     }
   };
 
@@ -117,7 +117,7 @@ function Stake() {
       return dispatch(error("You cannot stake more than your OX balance."));
     }
 
-    if (action === "unstake" && gweiValue.gt(ethers.utils.parseUnits(sohmBalance, "gwei"))) {
+    if (action === "unstake" && gweiValue.gt(ethers.utils.parseUnits(soxBalance, "gwei"))) {
       return dispatch(error("You cannot unstake more than your sOX balance."));
     }
 
@@ -126,8 +126,8 @@ function Stake() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "ohm") return stakeAllowance > 0;
-      if (token === "sohm") return unstakeAllowance > 0;
+      if (token === "ox") return stakeAllowance > 0;
+      if (token === "sox") return unstakeAllowance > 0;
       return 0;
     },
     [stakeAllowance, unstakeAllowance],
@@ -144,7 +144,7 @@ function Stake() {
   };
 
   const trimmedBalance = Number(
-    [sohmBalance, fsohmBalance, wsohmBalance]
+    [soxBalance, fsoxBalance, wsoxBalance]
       .filter(Boolean)
       .map(balance => Number(balance))
       .reduce((a, b) => a + b, 0)
@@ -157,7 +157,7 @@ function Stake() {
   return (
     <div id="stake-view" className="stake-metrics">
       <Zoom in={true} onEntered={() => setZoomed(true)}>
-        <Paper className={`ohm-card`}>
+        <Paper className={`ox-card`}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
@@ -166,14 +166,14 @@ function Stake() {
 
                 {/*{address && oldSohmBalance > 0.01 && (*/}
                 {/*  <Link*/}
-                {/*    className="migrate-sohm-button"*/}
+                {/*    className="migrate-sox-button"*/}
                 {/*    style={{ textDecoration: "none" }}*/}
                 {/*    href="https://docs.olympusdao.finance/using-the-website/migrate"*/}
-                {/*    aria-label="migrate-sohm"*/}
+                {/*    aria-label="migrate-sox"*/}
                 {/*    target="_blank"*/}
                 {/*  >*/}
                 {/*    <NewReleases viewBox="0 0 24 24" />*/}
-                {/*    <Typography>Migrate sOHM!</Typography>*/}
+                {/*    <Typography>Migrate sOX!</Typography>*/}
                 {/*  </Link>*/}
                 {/*)}*/}
               </div>
@@ -266,7 +266,7 @@ function Stake() {
 
                     <Box className="stake-action-row " display="flex" alignItems="center">
                       {address && !isAllowanceDataLoading ? (
-                        (!hasAllowance("ohm") && view === 0) || (!hasAllowance("sohm") && view === 1) ? (
+                        (!hasAllowance("ox") && view === 0) || (!hasAllowance("sox") && view === 1) ? (
                           <Box className="help-text">
                             <Typography variant="body1" align="left" className="stake-note" color="textSecondary">
                               {view === 0 ? (
@@ -285,7 +285,7 @@ function Stake() {
                             </Typography>
                           </Box>
                         ) : (
-                          <FormControl className="ohm-input" variant="outlined" color="primary">
+                          <FormControl className="ox-input" variant="outlined" color="primary">
                             <InputLabel htmlFor="amount-input"></InputLabel>
                             <OutlinedInput
                               id="amount-input"
@@ -312,7 +312,7 @@ function Stake() {
                       <TabPanel value={view} index={0} className="stake-tab-panel">
                         {isAllowanceDataLoading ? (
                           <Skeleton />
-                        ) : address && hasAllowance("ohm") ? (
+                        ) : address && hasAllowance("ox") ? (
                           <Button
                             className="stake-button"
                             variant="contained"
@@ -331,7 +331,7 @@ function Stake() {
                             color="primary"
                             disabled={isPendingTxn(pendingTransactions, "approve_staking")}
                             onClick={() => {
-                              onSeekApproval("ohm");
+                              onSeekApproval("ox");
                             }}
                           >
                             {txnButtonText(pendingTransactions, "approve_staking", "Approve")}
@@ -341,7 +341,7 @@ function Stake() {
                       <TabPanel value={view} index={1} className="stake-tab-panel">
                         {isAllowanceDataLoading ? (
                           <Skeleton />
-                        ) : address && hasAllowance("sohm") ? (
+                        ) : address && hasAllowance("sox") ? (
                           <Button
                             className="stake-button"
                             variant="contained"
@@ -360,7 +360,7 @@ function Stake() {
                             color="primary"
                             disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
                             onClick={() => {
-                              onSeekApproval("sohm");
+                              onSeekApproval("sox");
                             }}
                           >
                             {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}

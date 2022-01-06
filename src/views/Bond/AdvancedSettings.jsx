@@ -23,7 +23,7 @@ function AdvancedSettings({
 }) {
   return (
     <Modal id="hades" open={open} onClose={handleClose} hideBackdrop>
-      <Paper className="ohm-card ohm-popover">
+      <Paper className="ox-card ox-popover">
         <Box display="flex">
           <Typography variant="h3">Settings</Typography>
           <IconButton className="settings-close" onClick={handleClose}>
