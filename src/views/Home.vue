@@ -41,7 +41,7 @@
       </div>
       <h1 class="mb-4 main-title">An Algorithmic Currency Protocol</h1>
       <p class="centered-text hero-desc">
-        Olympus utilizes Protocol Owned Value to enable price consistency and scarcity within an
+        The Alpha & Omega DAO utilizes Protocol Owned Value to enable price consistency and scarcity within an
         infinite supply system.
       </p>
       <router-link
@@ -56,7 +56,7 @@
 
     <div class="block">
       <div class="row-responsive flex-centered mb-9" id="what">
-        <h1 class="centered-text">What is Olympus?</h1>
+        <h1 class="centered-text">What is The Alpha & Omega DAO?</h1>
       </div>
 
 
@@ -80,7 +80,7 @@
           <div class="feature-block-desc">
             <h3>Algorithmically Managed</h3>
             <p>
-              Olympus has an adjustable policy state, allowing the DAO to adjust parameters and
+              The Alpha & Omega DAO has an adjustable policy state, allowing the DAO to adjust parameters and
               algorithmically optimize for stability or growth.
             </p>
           </div>
@@ -92,7 +92,7 @@
           <div class="feature-block-desc">
             <h3>Community Governed</h3>
             <p>
-              Olympus is a DAO first project actively working toward complete distribution of the
+              The Alpha & Omega is a DAO first project actively working toward complete distribution of the
               system to the community.
             </p>
           </div>
@@ -104,9 +104,9 @@
     <div class="block row-responsive no-pad">
       <div class="row-flex-max feature-row py-9">
         <div class="row-flex-desc">
-          <h2>What makes Olympus unique?</h2>
+          <h2>What makes the Alpha & Omega DAO unique?</h2>
           <p>
-            Olympus is a floating algorithmic currency. This means that it has mechanisms to promote
+            The Alpha & Omega DAO is a floating algorithmic currency. This means that it has mechanisms to promote
             stability and predictability without directly pegging to any asset. However, we take it
             one step further with the introduction of adjustable policy; the DAO can move certain
             variables up and down to target growth and profitability or stability and
@@ -181,7 +181,7 @@
         <div class="row-flex-desc">
           <h2>A world of opportunity</h2>
           <p>
-            The Olympus reserve system enables new implementations of a multitude of DeFi
+            The Alpha & Omega DAO reserve system enables new implementations of a multitude of DeFi
             primitives. Interest and liquidation-free leverage and borrowing, counterparty-free
             options and derivatives, trustless undercollateralized lending and more are possible.
             The future is bright.

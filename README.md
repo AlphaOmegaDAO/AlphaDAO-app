@@ -1,4 +1,4 @@
-# Olympus
+# AlphaOmega
 
 ## Project setup
 ```

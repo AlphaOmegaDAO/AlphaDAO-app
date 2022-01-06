@@ -14,7 +14,7 @@
         <!-- <div class="footer-menu-column">
           <h4>Learn</h4>
           <a href="#what">
-            <p>What is Olympus?</p>
+            <p>What is AlphaOmegaDAO?</p>
           </a>
           <a href="#how">
             <p>How it works</p>

@@ -3,7 +3,7 @@
     <div class="container-fluid" style="max-width: 80%;">
       <router-link :to="{ name: 'home' }" class="navbar-brand d-flex align-items-center">
         <img src="~/@/assets/logo.svg" class="logo" />
-        <h4 class="ticker-name">Olympus</h4>
+        <h4 class="ticker-name">AlphaOmegaDAO</h4>
         <h1 class="py-4"></h1>
       </router-link>
 
@@ -20,7 +20,7 @@
           <h4>Learn</h4>
           <div class="drop-menu-hidden">
             <a href="#what">
-              <p>What is Olympus?</p>
+              <p>What is AlphaOmegaDAO?</p>
             </a>
             <a href="#how">
               <p>How it works</p>

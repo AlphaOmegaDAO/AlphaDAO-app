@@ -15,7 +15,7 @@ const store = new Vuex.Store({
     toasts: [],
     isSidebarExpanded: false,
     address: null,
-    network: { chainId: 1 },
+    network: { chainId: 97 },
     provider: null
   },
 
