@@ -1,36 +1,22 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true
+    node: true
   },
-  parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint'
+  ],
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
+    ecmaVersion: 2020
   },
-  extends: [ 'plugin:prettier/recommended', 'prettier/react', 'prettier/@typescript-eslint' ],
-  plugins: [ 'prettier' ],
   rules: {
-    'prettier/prettier': [
-      'warn',
-      {
-        endOfLine: 'auto'
-      }
-    ],
-    'import/prefer-default-export': 'off',
-    'prefer-destructuring': 'off',
-    'prefer-template': 'off',
-    'react/prop-types': 'off',
-    'react/destructuring-assignment': 'off',
-    'no-console': 'off',
-    'jsx-a11y/accessible-emoji': [ 'off' ],
-    'jsx-a11y/click-events-have-key-events': [ 'off' ],
-    'jsx-a11y/no-static-element-interactions': [ 'off' ],
-    'no-underscore-dangle': 'off',
-    'no-nested-ternary': 'off',
-    'no-restricted-syntax': 'off',
-    'no-plusplus': 'off'
+    'max-len': 0,
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off'
   }
 };

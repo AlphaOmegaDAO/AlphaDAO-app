@@ -1,61 +1,38 @@
-# [Alpha Frontend](https://app.alphadao.finance/)
-This is the front-end repo for Alpha that allows users be part of the future. 
+# Olympus
 
-##  🔧 Setting up Local Development
-
-Required: 
-- [Node v14](https://nodejs.org/download/release/latest-v14.x/)  
-- [Yarn](https://classic.yarnpkg.com/en/docs/install/) 
-- [Git](https://git-scm.com/downloads)
-
-
-```bash
-$ git clone https://github.com/AlphaDAO/AlphaDAO-frontend.git
-$ cd AlphaDAO-frontend
-
-# set up your environment variables
-# read the comments in the .env files for what is required/optional
-$ cp .env.example .env
-
-# fill in your own values in .env, then =>
-$ yarn
-$ yarn start
+## Project setup
+```
+npm install
 ```
 
-The site is now running at `http://localhost:3000`!
-Open the source code and start editing!
-
-### Architecture/Layout
-The app is written in [React](https://reactjs.org/) using [Redux](https://redux.js.org/) as the state container. 
-
-The files/folder structure are a  **WIP** and may contain some unused files. The project is rapidly evolving so please update this section if you see it is inaccurate!
-
+### Compiles and hot-reloads for development
 ```
-./src/
-├── App.jsx       // Main app page
-├── abi/          // Contract ABIs from etherscan.io
-├── actions/      // Redux actions 
-├── assets/       // Static assets (SVGs)
-├── components/   // Reusable individual components
-├── constants.js/ // Mainnet Addresses & common ABI
-├── contracts/    // TODO: The contracts be here as submodules
-├── helpers/      // Helper methods to use in the app
-├── hooks/        // Shared reactHooks
-├── themes/       // Style sheets for dark vs light theme
-└── views/        // Individual Views
+npm run serve
 ```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
-**Pull Requests**:
-Each PR into master will get its own custom URL that is visible on the PR page. QA & validate changes on that URL before merging into the deploy branch. 
+### Lints and fixes files
+```
+npm run lint
+```
 
-**Defenders of the code**: 
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
-Only the following people have merge access for the master branch. 
-* [@AlphaOmegaDAO](https://github.com/)
+TODO - Requirements
 
+Fomr to send ETH to contract - gas limit of 100k
 
-## 🗣 Community
+Sale Countdown timer - MimirBondingCurveSale.END
+Countdown to ETH sale minimum - MimirBondingCurveSale.MINIMAL_PROVIDE_AMOUNT
+Connected wallet amount paid - MimirBondingCurveSale.provided(msg.sender)
+Connected wallet amount of $MIMIR bought using bonding price curve - forumula found in MimirBondingCurveSale.claim
+Current price of $MIMIR based on bonding price curve forumula
+Price at listing based on 1250 $MIMIR and 50% of ETH rpoceeds in lquidity.
 
-* [Join our Discord](https://discord.com/invite/AlphaOmegaDAO) and ask how you can get involved with the DAO!
-
+Projects tab has linst to projects placeholder pages
+6 Project placeholder pages.
