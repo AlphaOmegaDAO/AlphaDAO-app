@@ -52,10 +52,10 @@ Each PR into master will get its own custom URL that is visible on the PR page. 
 **Defenders of the code**: 
 
 Only the following people have merge access for the master branch. 
-* [@Balarama-AlphaDAO](https://github.com/Balarama-AlphaDAO)
+* [AlphaOmegaDAO](https://github.com/AlphaOmegaDAO)
 
 
 ## 🗣 Community
 
-* [Join our Discord](https://discord.com/invite/AlphaDAO) and ask how you can get involved with the DAO!
+* [Join our Discord](https://discord.com/invite/AlphaOmegaDAO) and ask how you can get involved with the DAO!
 
