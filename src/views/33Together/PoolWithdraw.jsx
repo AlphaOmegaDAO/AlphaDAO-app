@@ -143,19 +143,20 @@ export const PoolWithdraw = props => {
               className="pool-withdraw-button"
               variant="contained"
               color="primary"
-              disabled={isPendingTxn(pendingTransactions, "pool_withdraw")}
+              disabled={true}
+              // disabled={isPendingTxn(pendingTransactions, "pool_withdraw")}
               onClick={() => onWithdraw("withdraw")}
             >
               {exitFee > 0
-                ? txnButtonText(pendingTransactions, "pool_withdraw", "Withdraw Early & pay " + exitFee + " sOHM")
-                : txnButtonText(pendingTransactions, "pool_withdraw", "Withdraw sOHM")}
-              {/* Withdraw sOHM */}
+                ? txnButtonText(pendingTransactions, "pool_withdraw", "Withdraw Early & pay " + exitFee + " sPID")
+                : txnButtonText(pendingTransactions, "pool_withdraw", "Withdraw sPID")}
+              {/* Withdraw sPID */}
             </Button>
           </Box>
           {newOdds > 0 && quantity > 0 && (
             <Box padding={1}>
               <Typography color="error" variant="body2">
-                Withdrawing {quantity} sOHM reduces your odds of winning to 1 in {newOdds}&nbsp;
+                Withdrawing {quantity} sPID reduces your odds of winning to 1 in {newOdds}&nbsp;
               </Typography>
             </Box>
           )}
@@ -177,7 +178,7 @@ export const PoolWithdraw = props => {
             </Box>
           )}
 
-          {/* NOTE (Appleseed): added this bc I kept losing track of which accounts I had sOHM in during testing */}
+          {/* NOTE (Appleseed): added this bc I kept losing track of which accounts I had sPID in during testing */}
           <div className={`stake-user-data`}>
             <div className="data-row">
               <Typography variant="body1" align="left">

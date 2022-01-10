@@ -1,23 +1,22 @@
 import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import fonts from "./fonts";
-import commonSettings, { handleBackdropFilter } from "./global.js";
+import commonSettings from "./global.js";
 
 export const girthTheme = {
   color: "#EFEFEF",
-  gold: "#F8CC82",
-  textHighlightColor: "#F4D092",
+  gold: "#ffe300",
+  textHighlightColor: "#ffe300",
   backgroundColor: "#4158D0",
   background: "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
   paperBg: "#4242426A",
-  menuBg: handleBackdropFilter("rgba(66, 66, 66, 0.41)"),
   modalBg: "#F9F9F9AA",
-  primaryButtonBG: "#F8CC82",
+  primaryButtonBG: "#ffe300",
   primaryButtonHoverBG: "#759AAE",
   largeTextColor: "#759AAE",
   activeLinkColor: "#222222",
   secondaryButtonBG: "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
   secondaryButtonHoverBG: "rgba(54, 56, 64, 1)",
-  outlinedPrimaryButtonHoverBG: "#F8CC82",
+  outlinedPrimaryButtonHoverBG: "#ffe300",
   outlinedPrimaryButtonHoverColor: "#333333",
   outlinedSecondaryButtonHoverBG: "#FCFCFC",
   outlinedSecondaryButtonHoverColor: "#333333",
@@ -50,7 +49,7 @@ export const girth = responsiveFontSizes(
         },
       },
       typography: {
-        fontFamily: "CoHeadline",
+        fontFamily: "Square",
       },
       props: {
         MuiSvgIcon: {
@@ -67,18 +66,8 @@ export const girth = responsiveFontSizes(
           },
         },
         MuiPaper: {
-          root: {
-            "&.ohm-menu": {
-              backgroundColor: girthTheme.menuBg,
-            },
-            "&.ohm-modal": {
-              backgroundColor: girthTheme.menuBg,
-            },
-          },
-        },
-        MuiBackdrop: {
-          root: {
-            backgroundColor: "rgba(100, 100, 100, 0.41)",
+          "&.ohm-modal": {
+            backgroundColor: girthTheme.modalBg,
           },
         },
         MuiLink: {
@@ -168,7 +157,7 @@ export const girth = responsiveFontSizes(
             },
             "&:active": {
               color: girthTheme.gold,
-              borderBottom: "#F8CC82",
+              borderBottom: "#ffe300",
             },
           },
           textSecondary: {

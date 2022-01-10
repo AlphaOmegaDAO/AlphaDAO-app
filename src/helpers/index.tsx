@@ -1,30 +1,38 @@
 import { EPOCH_INTERVAL, BLOCK_RATE_SECONDS, addresses } from "../constants";
 import { BigNumber, ethers } from "ethers";
 import axios from "axios";
-import { abi as PairContractABI } from "../abi/PairContract.json";
-import { abi as RedeemHelperABI } from "../abi/RedeemHelper.json";
+import { abi as PairContract } from "../abi/PairContract.json";
+import { abi as RedeemHelperAbi } from "../abi/RedeemHelper.json";
 
 import { SvgIcon } from "@material-ui/core";
 import { ReactComponent as OhmImg } from "../assets/tokens/token_OHM.svg";
 import { ReactComponent as SOhmImg } from "../assets/tokens/token_sOHM.svg";
+import LogoImg from '../assets/ohm/logo.png'
 
-import { guru_dai } from "./AllBonds";
+import { ohm_dai } from "./AllBonds";
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
 import { IBaseAsyncThunk } from "src/slices/interfaces";
-import { PairContract, RedeemHelper } from "../typechain";
 
+// NOTE (appleseed): this looks like an outdated method... we now have this data in the graph (used elsewhere in the app)
 export async function getMarketPrice({ networkID, provider }: IBaseAsyncThunk) {
-  if (networkID !== 80001 && networkID !== 137) return 0;
-  const guru_dai_address = guru_dai.getAddressForReserve(networkID);
-  const pairContract = new ethers.Contract(guru_dai_address, PairContractABI, provider) as PairContract;
+  const ohm_dai_address = ohm_dai.getAddressForReserve(networkID);
+  const pairContract = new ethers.Contract(ohm_dai_address, PairContract, provider);
   const reserves = await pairContract.getReserves();
-  console.log(`reserves ${reserves}`);
-  const marketPrice = Number(reserves[1].toString()) / Number(reserves[0].toString());
 
+  
+  console.error(reserves[0].toString())
+  const reserves0 = getDisplayBalance(reserves[1],18)
+  const reserves1 = getDisplayBalance(reserves[0],9,2)
+
+  const marketPrice = (Number(reserves0))/Number(reserves1);
+
+  // console.error('测试参数')
+  // console.error(marketPrice)
+  // commit('set', { marketPrice: marketPrice / Math.pow(10, 9) });
   return marketPrice;
 }
 
-export async function getTokenPrice(tokenId = "guru") {
+export async function getTokenPrice(tokenId = "olympus") {
   const resp = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${tokenId}&vs_currencies=usd`);
   let tokenPrice: number = resp.data[tokenId].usd;
   return tokenPrice;
@@ -62,6 +70,10 @@ export function getRebaseBlock(currentBlock: number) {
 
 export function secondsUntilBlock(startBlock: number, endBlock: number) {
   const blocksAway = endBlock - startBlock;
+  console.error({
+    endBlock,
+    startBlock
+  })
   const secondsAway = blocksAway * BLOCK_RATE_SECONDS;
 
   return secondsAway;
@@ -105,13 +117,16 @@ export function prettifySeconds(seconds: number, resolution?: string) {
 }
 
 function getSohmTokenImage() {
-  return <SvgIcon component={SOhmImg} viewBox="0 0 100 100" style={{ height: "1rem", width: "1rem" }} />;
+  return <img src={LogoImg} style={{ height: "1rem", width: "1rem",borderRadius:"50%"}}/>
+  // <SvgIcon component={SOhmImg} viewBox="0 0 100 100" style={{ height: "1rem", width: "1rem" }} />;
 }
 
 export function getOhmTokenImage(w?: number, h?: number) {
   const height = h == null ? "32px" : `${h}px`;
   const width = w == null ? "32px" : `${w}px`;
-  return <SvgIcon component={OhmImg} viewBox="0 0 32 32" style={{ height, width }} />;
+  return <img src={LogoImg} style={{ height, width }} />
+  
+  // <SvgIcon component={OhmImg} viewBox="0 0 32 32" style={{ height, width }} />;
 }
 
 export function getTokenImage(name: string) {
@@ -122,7 +137,6 @@ export function getTokenImage(name: string) {
 // TS-REFACTOR-NOTE - Used for:
 // AccountSlice.ts, AppSlice.ts, LusdSlice.ts
 export function setAll(state: any, properties: any) {
-  if (!properties) return;
   const props = Object.keys(properties);
   props.forEach(key => {
     state[key] = properties[key];
@@ -136,27 +150,8 @@ export function contractForRedeemHelper({
   networkID: number;
   provider: StaticJsonRpcProvider | JsonRpcSigner;
 }) {
-  return new ethers.Contract(
-    addresses[networkID].REDEEM_HELPER_ADDRESS as string,
-    RedeemHelperABI,
-    provider,
-  ) as RedeemHelper;
+  return new ethers.Contract(addresses[networkID].REDEEM_HELPER_ADDRESS as string, RedeemHelperAbi, provider);
 }
-
-/**
- * returns false if SafetyCheck has fired in this Session. True otherwise
- * @returns boolean
- */
-export const shouldTriggerSafetyCheck = () => {
-  const _storage = window.sessionStorage;
-  const _safetyCheckKey = "-oly-safety";
-  // check if sessionStorage item exists for SafetyCheck
-  if (!_storage.getItem(_safetyCheckKey)) {
-    _storage.setItem(_safetyCheckKey, "true");
-    return true;
-  }
-  return false;
-};
 
 /**
  * returns unix timestamp for x minutes ago
@@ -211,3 +206,24 @@ export const subtractDates = (dateA: Date, dateB: Date) => {
     seconds,
   };
 };
+
+
+export const getDisplayBalance = (balance: BigNumber, decimals = 18, fractionDigits = 4) => {
+  try{
+    if(balance){
+      // fractionDigits = decimals<=10 ?  2 : fractionDigits 
+      const number = getBalance(balance, decimals - fractionDigits)
+      return String(parseFloat((number / 10 ** fractionDigits).toFixed(fractionDigits)))
+    }
+  }catch(e){
+    // console.error(e,'----------------balance-------------',balance)
+  }
+}
+
+export const getFullDisplayBalance = (balance: BigNumber, decimals = 18) => {
+  return getDisplayBalance(balance, decimals)
+};
+
+export function getBalance(balance: BigNumber, decimals = 18) : number {
+  return balance.div(BigNumber.from(10).pow(decimals)).toNumber()
+}

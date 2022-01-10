@@ -1,19 +1,24 @@
 import { Box, SvgIcon } from "@material-ui/core";
-import { ReactComponent as TNFTs } from "../assets/icons/tnft.svg";
-
-function BondLogo({ bond, nft }) {
+import TokenSymbol from './TokenSymbol'
+function BondLogo({ bond }) {
   let viewBox = "0 0 32 32";
   let style = { height: "32px", width: "32px" };
 
   // Need more space if its an LP token
-  if (bond && bond.isLP) {
-    viewBox = "0 0 64 32";
-    style = { height: "32px", width: "62px" };
+  if (bond.isLP) {
+    viewBox = "0 0 72 48";
+    style = { height: "48px", width: "72px" };
   }
+  // if(!bond.bondToken){
 
+  //   console.error({bond})
+  // }
+
+  return <TokenSymbol size={32} symbol={bond.bondToken || bond.bond}/> 
+  // console.error({bond})
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" width={bond && "64px"}>
-      <SvgIcon component={!bond && nft ? TNFTs : bond.bondIconSvg} viewBox={viewBox} style={style} />
+    <Box display="flex" alignItems="center" justifyContent="center" width={"64px"}>
+      <SvgIcon component={bond.bondIconSvg} viewBox={viewBox} style={style} />
     </Box>
   );
 }

@@ -1,23 +1,22 @@
 import { ThemeProvider } from "@material-ui/core/styles";
-import { useEffect, useState, useCallback } from "react";
-import { Route, Redirect, Switch, useLocation } from "react-router-dom";
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { BrowserRouter as Router, Route, Redirect, Switch, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useMediaQuery } from "@material-ui/core";
+import { Hidden, useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useTheme from "./hooks/useTheme";
 import useBonds from "./hooks/Bonds";
 import { useAddress, useWeb3Context } from "./hooks/web3Context";
+import useGoogleAnalytics from "./hooks/useGoogleAnalytics";
 import useSegmentAnalytics from "./hooks/useSegmentAnalytics";
-import { segmentUA } from "./helpers/userAnalyticHelpers";
-import { shouldTriggerSafetyCheck } from "./helpers";
+import { storeQueryParameters } from "./helpers/QueryParameterHelper";
 
 import { calcBondDetails } from "./slices/BondSlice";
 import { loadAppDetails } from "./slices/AppSlice";
 import { loadAccountDetails, calculateUserBondDetails } from "./slices/AccountSlice";
-import { info } from "./slices/MessagesSlice";
 
-import { Stake, ChooseBond, Bond, Wrap, TreasuryDashboard, Claim } from "./views";
+import { Home, Stake, ChooseBond, Bond, Dashboard, TreasuryDashboard, PoolTogether,NFTPage } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
@@ -28,7 +27,7 @@ import NotFound from "./views/404/NotFound";
 import { dark as darkTheme } from "./themes/dark.js";
 import { light as lightTheme } from "./themes/light.js";
 import { girth as gTheme } from "./themes/girth.js";
-import { v4 as uuidv4 } from "uuid";
+
 import "./style.scss";
 
 // 😬 Sorry for all the console logging
@@ -75,25 +74,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
+  useGoogleAnalytics();
   useSegmentAnalytics();
   const dispatch = useDispatch();
   const [theme, toggleTheme, mounted] = useTheme();
   const location = useLocation();
-  const currentPath = location.pathname + location.search + location.hash;
   const classes = useStyles();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const isSmallerScreen = useMediaQuery("(max-width: 980px)");
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
-  const { connect, hasCachedProvider, provider, chainID, connected, uri } = useWeb3Context();
+  const history = useHistory();
+  const { connect, hasCachedProvider, provider, chainID, connected } = useWeb3Context();
   const address = useAddress();
 
   const [walletChecked, setWalletChecked] = useState(false);
 
   const isAppLoading = useSelector(state => state.app.loading);
   const isAppLoaded = useSelector(state => typeof state.app.marketPrice != "undefined"); // Hacky way of determining if we were able to load app Details.
-  const { bonds, realBonds } = useBonds();
+  const { bonds } = useBonds();
   async function loadDetails(whichDetails) {
     // NOTE (unbanksy): If you encounter the following error:
     // Unhandled Rejection (Error): call revert exception (method="balanceOf(address)", errorArgs=null, errorName=null, errorSignature=null, reason=null, code=CALL_EXCEPTION, version=abi/5.4.0)
@@ -144,19 +144,14 @@ function App() {
       // then user DOES have a wallet
       connect().then(() => {
         setWalletChecked(true);
-        segmentUA({
-          type: "connect",
-          provider: provider,
-          context: currentPath,
-        });
       });
     } else {
       // then user DOES NOT have a wallet
       setWalletChecked(true);
     }
-    if (shouldTriggerSafetyCheck()) {
-      dispatch(info("Safety Check: Always verify you're on app.alphadao.finance!"));
-    }
+
+    // We want to ensure that we are storing the UTM parameters for later, even if the user follows links
+    storeQueryParameters();
   }, []);
 
   // this useEffect fires on state change from above. It will ALWAYS fire AFTER
@@ -184,6 +179,7 @@ function App() {
   };
 
   let themeMode = theme === "light" ? lightTheme : theme === "dark" ? darkTheme : gTheme;
+
   useEffect(() => {
     themeMode = theme === "light" ? lightTheme : darkTheme;
   }, [theme]);
@@ -191,68 +187,48 @@ function App() {
   useEffect(() => {
     if (isSidebarExpanded) handleSidebarClose();
   }, [location]);
-
+  const path = useMemo(() => window.location.pathname, [window.location.pathname]);
   return (
-    <ThemeProvider theme={themeMode}>
-      <CssBaseline />
-      {/* {isAppLoading && <LoadingSplash />} */}
-      <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
-        <Messages />
-        <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
-        <nav className={classes.drawer}>
-          {isSmallerScreen ? (
-            <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
-          ) : (
-            <Sidebar />
+    <Router>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+
+        {/* {isAppLoading && <LoadingSplash />} */}
+        <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
+          <Messages />
+          {path === "/" ? null : (
+            <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
           )}
-        </nav>
+          {path === "/" ? null : (
+            <nav className={classes.drawer}>
+              {isSmallerScreen ? (
+                <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+              ) : (
+                <Sidebar />
+              )}
+            </nav>
+          )}
 
-        <div className={`${classes.content} ${isSmallerScreen && classes.contentShift}`}>
-          <Switch>
-            <Route exact path="/dashboard">
-              <TreasuryDashboard />
-            </Route>
-
-            {/*<Route exact path="/claim">*/}
-            {/*  <Claim />*/}
-            {/*</Route>*/}
-
-            <Route exact path="/">
-              <Redirect to="/dashboard" />
-            </Route>
-
-            <Route path="/stake">
-              <Stake />
-            </Route>
-
-            {/*<Route path="/wrap">*/}
-            {/*  <Wrap />*/}
-            {/*</Route>*/}
-
-            <Route path="/bonds">
-              {bonds.map(bond => {
-                return (
-                  <Route exact key={bond.name} path={`/bonds/${bond.name}`}>
-                    <Bond bond={bond} />
-                  </Route>
-                );
-              })}
-              {realBonds &&
-                realBonds.map(bond => {
+          <div className={`${path === "/" ? null : classes.content} ${isSmallerScreen && classes.contentShift}`}>
+            <Switch>
+              <Route exact path="/dashboard" component={TreasuryDashboard} />
+              <Route path="/stake" component={Stake} />
+              <Route exact path="/" component={Home} />
+              <Route path="/bonds">
+                {bonds.map(bond => {
                   return (
                     <Route exact key={bond.name} path={`/bonds/${bond.name}`}>
-                      <Bond bond={bond} nft />
+                      <Bond bond={bond} />
                     </Route>
                   );
                 })}
-              <ChooseBond />
-            </Route>
-
-            <Route component={NotFound} />
-          </Switch>
+                <ChooseBond />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 

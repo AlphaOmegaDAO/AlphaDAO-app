@@ -19,7 +19,7 @@ import { Skeleton } from "@material-ui/lab";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BondLogo from "../../components/BondLogo";
-import { ReactComponent as GuruLusdImg } from "src/assets/tokens/OX-LUSD.svg";
+import { ReactComponent as OhmLusdImg } from "src/assets/tokens/OHM-LUSD.svg";
 import { ReactComponent as ArrowUp } from "../../assets/icons/arrow-up.svg";
 import { getLusdData } from "../../slices/LusdSlice";
 import { useWeb3Context } from "src/hooks/web3Context";
@@ -38,7 +38,7 @@ export default function ExternalStakePool() {
   });
 
   const ohmLusdReserveBalance = useSelector(state => {
-    return state.account && state.account.bonds?.ohm_lusd_lp?.balance;
+    return state.account && state.account.bonds?.pid_lusd_lp?.balance;
   });
 
   const loadLusdData = async () => {
@@ -89,8 +89,8 @@ export default function ExternalStakePool() {
                   <TableRow>
                     <TableCell>
                       <Box className="ohm-pairs">
-                        <BondLogo bond={{ bondIconSvg: GuruLusdImg, isLP: true }}></BondLogo>
-                        <Typography>OHM-LUSD</Typography>
+                        <BondLogo bond={{ bondIconSvg: OhmLusdImg, isLP: true }}></BondLogo>
+                        <Typography>PID-LUSD</Typography>
                       </Box>
                     </TableCell>
                     <TableCell align="left">
@@ -137,8 +137,8 @@ export default function ExternalStakePool() {
             <div className="stake-pool">
               <div className={`pool-card-top-row ${isMobileScreen && "small"}`}>
                 <Box className="ohm-pairs">
-                  <BondLogo bond={{ bondIconSvg: GuruLusdImg, isLP: true }}></BondLogo>
-                  <Typography gutterBottom={false}>OX-LUSD</Typography>
+                  <BondLogo bond={{ bondIconSvg: OhmLusdImg, isLP: true }}></BondLogo>
+                  <Typography gutterBottom={false}>PID-LUSD</Typography>
                 </Box>
               </div>
               <div className="pool-data">

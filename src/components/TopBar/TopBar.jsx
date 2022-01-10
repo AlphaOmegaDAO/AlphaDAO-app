@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     [theme.breakpoints.up("sm")]: {
       width: "100%",
-      padding: "20px",
+      padding: "10px",
     },
     justifyContent: "flex-end",
     alignItems: "flex-end",
@@ -52,7 +52,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
 
           <ConnectMenu theme={theme} />
 
-          {/*<ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />*/}
+          {/* <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} /> */}
         </Box>
       </Toolbar>
     </AppBar>

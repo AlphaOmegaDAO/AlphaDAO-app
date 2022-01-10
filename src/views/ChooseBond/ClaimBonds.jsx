@@ -25,7 +25,7 @@ import { useSelector, useDispatch } from "react-redux";
 function ClaimBonds({ activeBonds }) {
   const dispatch = useDispatch();
   const { provider, address, chainID } = useWeb3Context();
-  const { bonds } = useBonds(chainID);
+  const { bonds } = useBonds();
 
   const [numberOfBonds, setNumberOfBonds] = useState(0);
   const isSmallScreen = useMediaQuery("(max-width: 733px)"); // change to breakpoint query
@@ -48,6 +48,7 @@ function ClaimBonds({ activeBonds }) {
   const onRedeemAll = async ({ autostake }) => {
     console.log("redeeming all bonds");
 
+    console.error({ address, bonds, networkID: chainID, provider, autostake })
     await dispatch(redeemAllBonds({ address, bonds, networkID: chainID, provider, autostake }));
 
     console.log("redeem all complete");

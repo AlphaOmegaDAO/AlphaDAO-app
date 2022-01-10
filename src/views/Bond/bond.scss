@@ -6,17 +6,17 @@
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .MuiBackdrop-root {
-      background: rgba(255, 255, 255, 0.05) !important;
-      backdrop-filter: blur(60px) !important;
-      -webkit-backdrop-filter: blur(60px) !important;
+      background: rgba(100, 100, 100, 0.1) !important;
+      backdrop-filter: blur(33px) !important;
+      -webkit-backdrop-filter: blur(33px) !important;
       .ohm-card {
-        //opacity: 1 !important;
+        opacity: 1 !important;
         height: auto;
       }
     }
     .ohm-modal {
-      max-width: 577px;
-      min-height: 578px;
+      max-width: 688px;
+      min-height: 605px;
     }
   }
 
@@ -29,12 +29,12 @@
       }
     }
     .ohm-modal {
-      max-width: 577px;
-      min-height: 578px;
-      //opacity: 0.9;
+      max-width: 688px;
+      min-height: 605px;
+      opacity: 0.9;
     }
   }
-  .bond-card {
+  .ohm-card {
     max-width: 803px;
   }
 
@@ -77,35 +77,6 @@
     }
   }
 
-  .bond-price-data-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    margin: 23px;
-    h4 {
-      margin-bottom: 0;
-    }
-    h3.price {
-      font-weight: 600 !important;
-    }
-  }
-
-  .bond-nft-box {
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  // TNFTs description text in the Bond tab:
-  .bond-nft-description {
-    font-weight: 300;
-    text-align: center;
-    line-height: 24px;
-  }
-
   .ohm-input {
     min-width: 50%;
     max-width: 408px;
@@ -119,46 +90,6 @@
   width: 100%;
   margin: 5px !important;
 }
-
-.nft-coming-soon-button {
-  width: 340px;
-  height: 48px;
-  margin: 5px !important;
-}
-
-.nft-learn-more-button {
-  position: absolute;
-  right: 0;
-  margin-right: 15px;
-  top: 10px;
-}
-
-.nft-coming-soon-button-text {
-  > span {
-    font-weight: 300;
-    font-size: 24px;
-    line-height: 24px;
-    color: #FFFFFF;
-    opacity: 0.1;
-    letter-spacing: 0.2em;
-  }
-}
-
-.stake-wallet-icon {
-  margin-left: 10px;
-  position: absolute;
-  right: 20px;
-  top: 14px;
-  color: #000;
-}
-
-.connect-button {
-  //max-width: 300px !important;
-  min-height: 3rem !important;
-  min-width: 17.75rem !important;
-  margin-bottom: 15px;
-}
-
 
 .mobile #bond-view {
   .ohm-card {
@@ -189,5 +120,3 @@
     }
   }
 }
-
-.web3modal-modal-lightbox { z-index: 70 !important; }

@@ -19,13 +19,18 @@ function RebaseTimer() {
   const currentBlock = useSelector(state => {
     return state.app.currentBlock;
   });
+  const endBlock = useSelector(state => {
+    return state.app.endBlock;
+  });
 
   function initializeTimer() {
     const rebaseBlock = getRebaseBlock(currentBlock);
-    const seconds = secondsUntilBlock(currentBlock, rebaseBlock);
+    const seconds = secondsUntilBlock(currentBlock, endBlock);
     setSecondsToRebase(seconds);
     const prettified = prettifySeconds(seconds);
     setRebaseString(prettified !== "" ? prettified : "Less than a minute");
+    // console.error({currentBlock,rebaseBlock})
+
   }
 
   // This initializes secondsToRebase as soon as currentBlock becomes available

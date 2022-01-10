@@ -10,10 +10,11 @@ export class EnvHelper {
    */
   static env = process.env;
   static alchemyTestnetURI = `https://eth-rinkeby.alchemyapi.io/v2/${EnvHelper.env.REACT_APP_TESTNET_ALCHEMY}`;
-  static mumbaiTestnetURI = `https://polygon-mumbai.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
-  static polygonURI = `https://polygon-mainnet.infura.io/v3/${EnvHelper.env.REACT_APP_INFURA_IDS}`;
   static whitespaceRegex = /\s+/;
 
+  static getOtherChainID() {
+    return Number(EnvHelper.env.REACT_APP_CHAINID || 0);
+  }
   /**
    * Returns env contingent segment api key
    * @returns segment

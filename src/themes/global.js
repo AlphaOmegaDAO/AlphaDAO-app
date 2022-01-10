@@ -15,25 +15,11 @@ const breakpointValues = {
 //   browser: 1333,
 // };
 
-/**
- * will remove opacity from rgbaString when backdrop-filter is not supported
- * @param {String} rgbaString should be the rgba string
- * @returns modified rgbaString
- */
-export const handleBackdropFilter = rgbaString => {
-  const supported = CSS.supports("(-webkit-backdrop-filter: none)") || CSS.supports("(backdrop-filter: none)");
-  if (!supported) {
-    // make the opacity == 0.9;
-    rgbaString = rgbaString.replace(/[\d\.]+\)$/g, "0.9)");
-  }
-  return rgbaString;
-};
-
 const commonSettings = {
   direction: "ltr",
   typography: {
     fontSize: 16,
-    fontFamily: "CoHeadline",
+    fontFamily: "Square",
     h1: {
       fontSize: "3.3rem",
     },
@@ -90,11 +76,12 @@ const commonSettings = {
       root: {
         backdropFilter: "blur(33px)",
         "&.ohm-card": {
-          padding: "35px",
-          borderRadius: "6px",
+          padding: "20px 30px 30px 30px",
+          borderRadius: "10px",
           maxWidth: "833px",
           width: "97%",
           marginBottom: "1.8rem",
+          borderRadius: "10px",
           overflow: "hidden",
         },
         "&.ohm-menu": {
@@ -151,7 +138,6 @@ const commonSettings = {
         // backdropFilter: "blur(33px)",
         backgroundColor: "inherit",
         padding: 0,
-        zIndex: 7,
       },
     },
     MuiBackdrop: {
@@ -163,14 +149,14 @@ const commonSettings = {
     MuiToggleButton: {
       root: {
         border: 0,
-        borderRadius: "6px",
+        borderRadius: "5px",
         margin: "8px",
         padding: "10px",
       },
     },
     MuiButton: {
       root: {
-        borderRadius: "6px",
+        borderRadius: "5px",
         textTransform: "none",
         textDecoration: "none",
         whiteSpace: "nowrap",
@@ -240,9 +226,9 @@ const commonSettings = {
         padding: "0px",
         margin: "0px 10px",
         fontWeight: 400,
-        fontSize: "16px !important",
+        fontSize: "24px",
         fontStyle: "normal",
-        // lineHeight: "24px",
+        lineHeight: "24px",
       },
     },
   },

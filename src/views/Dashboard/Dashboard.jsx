@@ -78,7 +78,7 @@ function Dashboard() {
         </Grid>
       </Grid>
 
-      <Box className="main-data-area">
+      {/* <Box className="main-data-area">
         <Grid container spacing={2} className="data-grid">
           <Grid item lg={4} sm={12}>
             <div className="dune-card">
@@ -168,7 +168,7 @@ function Dashboard() {
             </div>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
     </div>
   );
 }

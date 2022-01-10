@@ -1,11 +1,11 @@
-#guru-menu-button {
+#ohm-menu-button {
   padding: 12px;
   svg {
     margin-right: 3px;
     color: inherit !important;
   }
 }
-.guru-menu-button-hover {
+.ohm-menu-button-hover {
   z-index: 9;
 }
 #ohm-popper,
@@ -20,6 +20,8 @@
     padding: 16px 6px;
     display: flex;
     flex-direction: column;
+    width: 250px;
+    max-width: 250px;
     button {
       display: block;
       width: 100%;
@@ -38,15 +40,11 @@
       }
     }
     hr {
-      &.less-margin {
-        margin-bottom: 5px;
-      }
       margin-bottom: 18px;
     }
   }
 
   .add-tokens {
-    margin-bottom: 15px;
     > p {
       margin: 15px 0px 5px 0px;
       text-align: left;
@@ -55,7 +53,7 @@
     height: max-content !important;
     width: 100%;
     button {
-      min-height: 56px !important;
+      min-height: 70px !important;
       text-align: center !important;
     }
   }

@@ -2,138 +2,179 @@ import { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Social from "./Social";
 import externalUrls from "./externalUrls";
-import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
-import { ReactComponent as ActiveBondIcon } from "../../assets/icons/active-bond.svg";
-import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
-import { ReactComponent as ActiveStakeIcon } from "../../assets/icons/active-stake.svg";
-import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
-import { ReactComponent as AlphaIcon } from "../../assets/icons/alphaHeader.svg";
-import { ReactComponent as WalletIcon } from "../../assets/icons/wallet.svg";
-// import { ReactComponent as PoolTogetherIcon } from "../../assets/icons/33-together.svg";
+import styled from 'styled-components';
+// import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
+// import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
+// import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
+// import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
+import { ReactComponent as PoolTogetherIcon } from "../../assets/icons/33-together.svg";
 import { trim, shorten } from "../../helpers";
 import { useAddress, useWeb3Context } from "src/hooks/web3Context";
 import useBonds from "../../hooks/Bonds";
-import { Paper, Link, Box, Typography, SvgIcon } from "@material-ui/core";
+import { Paper, Link, Box, Typography as Typograp, SvgIcon } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import "./sidebar.scss";
+import LogoImg from '../../assets/ohm/logo@2x.png'
+import Bondimg from '../../assets/ohm/bond@2x.png'
+import Bondimg2 from '../../assets/ohm/bond2@2x.png'
+import Dashboardimg from '../../assets/ohm/dashboard@2x.png'
+import Dashboardimg2 from '../../assets/ohm/dashboard2@2x.png'
+import Docsimg from '../../assets/ohm/docs@2x.png'
+import Docsimg2 from '../../assets/ohm/docs2@2x.png'
+import Stakeimg from '../../assets/ohm/stake@2x.png'
+import Stakeimg2 from '../../assets/ohm/stake2@2x.png'
+
+import Togetherimg from '../../assets/ohm/33-1@2x.png'
+import Togetherimg2 from '../../assets/ohm/33@2x.png'
+
+import NFTimg from '../../assets/ohm/nft-1@2x.png'
+import NFTimg2 from '../../assets/ohm/nft@2x.png'
+
+
+
+
 
 function NavContent() {
   const [isActive] = useState();
-  const [activeIcon, setActiveIcon] = useState();
   const address = useAddress();
-  const { bonds, realBonds } = useBonds();
+  const { bonds } = useBonds();
   const { chainID } = useWeb3Context();
 
   const checkPage = useCallback((match, location, page) => {
     const currentPath = location.pathname.replace("/", "");
     if (currentPath.indexOf("dashboard") >= 0 && page === "dashboard") {
-      setActiveIcon("dashboard");
       return true;
     }
     if (currentPath.indexOf("stake") >= 0 && page === "stake") {
-      setActiveIcon("stake");
       return true;
     }
-    if (currentPath.indexOf("claim") >= 0 && page === "claim") {
-      setActiveIcon("claim");
+    if (currentPath.indexOf("33-together") >= 0 && page === "33-together") {
+      return true;
+    }
+    if (currentPath.indexOf("nft") >= 0 && page === "nft") {
       return true;
     }
     if ((currentPath.indexOf("bonds") >= 0 || currentPath.indexOf("choose_bond") >= 0) && page === "bonds") {
-      setActiveIcon("bonds");
       return true;
     }
     return false;
   }, []);
 
+  const isActiveFc = useCallback((name) => {
+    return checkPage(null, window.location, name)
+  }, [window.location])
   return (
     <Paper className="dapp-sidebar">
       <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
         <div className="dapp-menu-top">
           <Box className="branding-header">
-            <Link href="https://alphadao.finance" target="_blank">
-              <SvgIcon
-                component={AlphaIcon}
-                viewBox="0 0 80 118"
-                style={{ minWdth: "129px", minHeight: "129px", width: "163px" }}
-              />
+            <Link href="https://bourbondao.com" target="_blank">
+              {/* <SvgIcon
+                color="primary"
+                component={OlympusIcon}
+                viewBox="0 0 151 100"
+                style={{ minWdth: "151px", minHeight: "98px", width: "151px" }}
+              /> */}
+              <img src={LogoImg} alt="" style={{ width: "151px" }} />
             </Link>
 
-            {/*{address && (*/}
-            {/*  <div className="wallet-link">*/}
-            {/*    <Link href={`https://etherscan.io/address/${address}`} target="_blank">*/}
-            {/*      {shorten(address)}*/}
-            {/*    </Link>*/}
-            {/*  </div>*/}
-            {/*)}*/}
+            {/* {address && (
+              <div className="wallet-link">
+                <Link href={`https://etherscan.io/address/${address}`} target="_blank">
+                  {shorten(address)}
+                </Link>
+              </div>
+            )} */}
           </Box>
 
           <div className="dapp-menu-links">
             <div className="dapp-nav" id="navbarNav">
-              <Link
+              <ANavLink
                 component={NavLink}
                 id="dash-nav"
                 to="/dashboard"
                 isActive={(match, location) => {
                   return checkPage(match, location, "dashboard");
                 }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                bg2={Dashboardimg2}
+              // className={`button-dapp-menu ${isActive ? "active" : ""}`}
               >
-                <Typography variant="h6">
-                  <SvgIcon color="primary" component={DashboardIcon} />
+                <Typography variant="h6" className="fxCenter">
+                  <ANavIcon bg1={Dashboardimg} />
                   Dashboard
                 </Typography>
-              </Link>
+              </ANavLink>
 
-              <Link
+              <ANavLink
                 component={NavLink}
                 id="stake-nav"
                 to="/stake"
                 isActive={(match, location) => {
                   return checkPage(match, location, "stake");
                 }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                bg2={Stakeimg2}
+              // className={`button-dapp-menu ${isActive ? "active" : ""}`}
               >
-                <Typography variant="h6">
-                  <SvgIcon color="primary" component={activeIcon === "stake" ? ActiveStakeIcon : StakeIcon} />
+                <Typography variant="h6" className="fxCenter">
+                  <ANavIcon bg1={Stakeimg} />
                   Stake
                 </Typography>
-              </Link>
+              </ANavLink>
+              
 
-              {/*<Link*/}
-              {/*  component={NavLink}*/}
-              {/*  id="33-together-nav"*/}
-              {/*  to="/33-together"*/}
-              {/*  isActive={(match, location) => {*/}
-              {/*    return checkPage(match, location, "33-together");*/}
-              {/*  }}*/}
-              {/*  className={`button-dapp-menu ${isActive ? "active" : ""}`}*/}
-              {/*>*/}
-              {/*  <Typography variant="h6">*/}
-              {/*    <SvgIcon color="primary" component={PoolTogetherIcon} />*/}
-              {/*    3,3 Together*/}
-              {/*  </Typography>*/}
-              {/*</Link>*/}
-
-              <Link
+             {/* <ANavLink
+                component={NavLink}
+                id="33-together-nav"
+                to="/33-together"
+                isActive={(match, location) => {
+                  return checkPage(match, location, "33-together");
+                }}
+                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                bg2={Togetherimg2}
+              >
+                <Typography variant="h6">
+                  <ANavIcon bg1={Togetherimg} />
+                  3,3 π
+                </Typography>
+              </ANavLink>
+              <ANavLink
+                component={NavLink}
+                id="nft"
+                to="/nft"
+                isActive={(match, location) => {
+                  return checkPage(match, location, "nft");
+                }}
+                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                bg2={NFTimg2}
+              >
+                <Typography variant="h6">
+                  <ANavIcon bg1={NFTimg} />
+                  PINFT
+                </Typography>
+              </ANavLink> */}
+              <ANavLink
                 component={NavLink}
                 id="bond-nav"
                 to="/bonds"
                 isActive={(match, location) => {
                   return checkPage(match, location, "bonds");
                 }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                bg2={Bondimg2}
+              // className={`button-dapp-menu ${isActive ? "active" : ""}`}
               >
-                <Typography variant="h6">
-                  <SvgIcon color="primary" component={activeIcon === "bonds" ? ActiveBondIcon : BondIcon} />
+                <Typography variant="h6" className="fxCenter">
+                  <ANavIcon bg1={Bondimg} />
                   Bond
                 </Typography>
-              </Link>
+              </ANavLink>
+
+
 
               <div className="dapp-menu-data discounts">
                 <div className="bond-discounts">
                   <Typography variant="body2">Bond discounts</Typography>
                   {bonds.map((bond, i) => (
-                    <Link component={NavLink} to={`/bonds/${bond.name}`} key={i} className={"bond"}>
+                    <ANavLink component={NavLink} to={`/bonds/${bond.name}`} key={i} className={"bond"}>
                       {!bond.bondDiscount ? (
                         <Skeleton variant="text" width={"150px"} />
                       ) : (
@@ -144,58 +185,21 @@ function NavContent() {
                           </span>
                         </Typography>
                       )}
-                    </Link>
+                    </ANavLink>
                   ))}
                 </div>
               </div>
-              <div className="dapp-menu-data discounts">
-                <div className="bond-discounts">
-                  <Typography variant="body2">Bond with real world assets</Typography>
-                  {realBonds &&
-                    realBonds.map((realBond, i) => (
-                      <Link disabled component={NavLink} to={`/bonds/${realBond.name}`} key={i} className={"bond"}>
-                        {/*<Link className={"bond"}>*/}
-                        {!realBond.bondDiscount ? (
-                          <Skeleton variant="text" width={"150px"} />
-                        ) : (
-                          <Typography variant="body2">
-                            {realBond.displayName}
-                            <span className="bond-pair-roi">
-                              {realBond.bondDiscount}
-                              {/*  {realBond.bondDiscount && trim(realBond.bondDiscount * 100, 2)}%*/}
-                            </span>
-                          </Typography>
-                        )}
-                      </Link>
-                    ))}
-                </div>
-              </div>
-              {/*
-              <Link
-                component={NavLink}
-                id="claim-nav"
-                to="/claim"
-                isActive={(match, location) => {
-                  return checkPage(match, location, "claim");
-                }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
-              >
-                <Typography variant="h6">
-                  <SvgIcon color="primary" component={WalletIcon} />
-                  Early? Claim
-                </Typography>
-              </Link> */}
             </div>
           </div>
         </div>
-        <Box className="dapp-menu-bottom" display="flex" justifyContent="flex-end" flexDirection="column">
+        <Box className="dapp-menu-bottom" display="flex" justifyContent="space-between" flexDirection="column">
           <div className="dapp-menu-external-links">
             {Object.keys(externalUrls).map((link, i) => {
               return (
-                <Link key={i} href={`${externalUrls[link].url}`} target="_blank">
+                <ANavLink key={i} href={`${externalUrls[link].url}`} target="_blank">
                   <Typography variant="h6">{externalUrls[link].icon}</Typography>
                   <Typography variant="h6">{externalUrls[link].title}</Typography>
-                </Link>
+                </ANavLink>
               );
             })}
           </div>
@@ -209,3 +213,30 @@ function NavContent() {
 }
 
 export default NavContent;
+
+
+
+const ANavIcon = styled.div`
+  width:20px;
+  height: 20px;
+  background-image: url(${props => props.bg1});
+  background-size: 100%;
+  margin-right:12px;
+`
+
+const ANavLink = styled(Link)`
+  &:hover,&.active{
+    text-decoration:none;
+    h6{
+    color:#ffe300;
+    }
+    ${ANavIcon}{
+      background-image: url(${props => props.bg2});
+    }
+  }
+`
+
+const Typography = styled(Typograp)`
+  display: flex;
+  align-items: center;
+`

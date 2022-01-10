@@ -51,7 +51,7 @@ const PoolTogether = () => {
   // TODO (appleseed-33T): create a table for AwardHistory
   const [yourAwardHistory, setYourAwardHistory] = useState([]);
   const [infoTooltipMessage, setInfoTooltipMessage] = useState([
-    "Deposit sOHM to win! Once deposited, you will receive a corresponding amount of 33T and be entered to win until your sOHM is withdrawn.",
+    "Deposit sPID to win! Once deposited, you will receive a corresponding amount of 3,3 π and be entered to win until your sPID is withdrawn.",
   ]);
   const isAccountLoading = useSelector(state => state.account.loading ?? true);
 
@@ -70,47 +70,47 @@ const PoolTogether = () => {
 
   useEffect(() => {
     // get poolData
-    apolloExt(poolDataQuery(addresses[chainID].PT_PRIZE_POOL_ADDRESS), graphUrl)
-      .then(poolData => {
-        const poolWinners = poolData.data.prizePool?.prizeStrategy.multipleWinners.numberOfWinners;
-        if (poolWinners) setWinners(parseFloat(poolWinners));
+    // apolloExt(poolDataQuery(addresses[chainID].PT_PRIZE_POOL_ADDRESS), graphUrl)
+    //   .then(poolData => {
+    //     const poolWinners = poolData.data.prizePool?.prizeStrategy.multipleWinners.numberOfWinners;
+    //     if (poolWinners) setWinners(parseFloat(poolWinners));
 
-        const poolTotalDeposits = poolData.data.prizePool?.controlledTokens[0].totalSupply / 1_000_000_000;
-        if (poolTotalDeposits) setTotalDeposits(poolTotalDeposits);
+    //     const poolTotalDeposits = poolData.data.prizePool?.controlledTokens[0].totalSupply / 1_000_000_000;
+    //     if (poolTotalDeposits) setTotalDeposits(poolTotalDeposits);
 
-        // sponsorship is deposited funds contributing to the prize without being eligible to win
-        const poolTotalSponsorship = poolData.data.prizePool?.controlledTokens[1].totalSupply / 1_000_000_000;
-        if (poolTotalSponsorship) setTotalSponsorship(poolTotalSponsorship);
+    //     // sponsorship is deposited funds contributing to the prize without being eligible to win
+    //     const poolTotalSponsorship = poolData.data.prizePool?.controlledTokens[1].totalSupply / 1_000_000_000;
+    //     if (poolTotalSponsorship) setTotalSponsorship(poolTotalSponsorship);
 
-        setPoolData(poolData.data);
-        setGraphLoading(false);
-      })
-      .catch(err => setPoolDataError(err));
+    //     setPoolData(poolData.data);
+    //     setGraphLoading(false);
+    //   })
+    //   .catch(err => setPoolDataError(err));
 
-    // get your Award History
-    if (address) {
-      let yourPrizes = [];
-      let totalAwards = 0;
-      apolloExt(
-        yourAwardsQuery(addresses[chainID].PT_PRIZE_POOL_ADDRESS, address, addresses[chainID].PT_TOKEN_ADDRESS),
-        graphUrl,
-      )
-        .then(poolData => {
-          poolData.data.prizePool?.prizes.map(prize => {
-            let awardedAmount = parseFloat(prize.awardedControlledTokens[0]?.amount) / 10 ** 9 || 0;
-            // pushing in an AwardItem {awardedTimestamp, awardedBlock, awardedAmount}
-            yourPrizes.push({
-              awardedTimestamp: prize.awardedTimestamp,
-              awardedBlock: prize.awardedBlock,
-              awardedAmount: awardedAmount,
-            });
-            totalAwards += awardedAmount;
-          });
-          setYourTotalAwards(totalAwards);
-          setYourAwardHistory(yourPrizes);
-        })
-        .catch(err => setPoolDataError(err));
-    }
+    // // get your Award History
+    // if (address) {
+    //   let yourPrizes = [];
+    //   let totalAwards = 0;
+    //   apolloExt(
+    //     yourAwardsQuery(addresses[chainID].PT_PRIZE_POOL_ADDRESS, address, addresses[chainID].PT_TOKEN_ADDRESS),
+    //     graphUrl,
+    //   )
+    //     .then(poolData => {
+    //       poolData.data.prizePool?.prizes.map(prize => {
+    //         let awardedAmount = parseFloat(prize.awardedControlledTokens[0]?.amount) / 10 ** 9 || 0;
+    //         // pushing in an AwardItem {awardedTimestamp, awardedBlock, awardedAmount}
+    //         yourPrizes.push({
+    //           awardedTimestamp: prize.awardedTimestamp,
+    //           awardedBlock: prize.awardedBlock,
+    //           awardedAmount: awardedAmount,
+    //         });
+    //         totalAwards += awardedAmount;
+    //       });
+    //       setYourTotalAwards(totalAwards);
+    //       setYourAwardHistory(yourPrizes);
+    //     })
+    //     .catch(err => setPoolDataError(err));
+    // }
   }, [graphUrl]);
 
   useEffect(() => {
@@ -145,7 +145,7 @@ const PoolTogether = () => {
 
       <Paper className="ohm-card">
         <Box display="flex">
-          <CardHeader title="3, 3 Together" />
+          <CardHeader title="3,3 π" />
           <InfoTooltipMulti messagesArray={infoTooltipMessage} />
         </Box>
         <Tabs
@@ -177,7 +177,7 @@ const PoolTogether = () => {
         </TabPanel>
       </Paper>
 
-      <PoolInfo
+      {/* <PoolInfo
         graphLoading={graphLoading}
         isAccountLoading={isAccountLoading}
         poolBalance={trim(poolBalance, 4)}
@@ -187,7 +187,7 @@ const PoolTogether = () => {
         winners={winners}
         totalDeposits={totalDeposits}
         totalSponsorship={totalSponsorship}
-      />
+      /> */}
     </div>
   );
 };

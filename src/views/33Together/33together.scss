@@ -10,7 +10,7 @@
   }
 
   .pool-prize-card {
-    .vegas-container {
+    .vegas-container-pc {
       max-height: 240px;
       height: 100%;
       max-width: 833px;
@@ -19,7 +19,27 @@
       margin-top: -10px;
       z-index: 2;
       position: sticky;
+
+      @media (max-width: 1000px) {
+        display: none;
+      }
     }
+
+    .vegas-container-mob {
+      // max-height: 240px;
+      height: 100%;
+      max-width: 833px;
+      width: 97%;
+      margin-bottom: -15px;
+      margin-top: -10px;
+      z-index: 2;
+      position: sticky;
+      display: none;
+
+      @media (max-width: 1000px) {
+        display: inline;
+      }
+    } 
 
     .vegas {
       width: 100%;

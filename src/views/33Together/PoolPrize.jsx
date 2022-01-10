@@ -7,6 +7,8 @@ import { Paper, Box, Typography, Button } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import { trim, subtractDates } from "src/helpers";
+import TuImg from '../../assets/tu2.png'
+import Tu2Img from '../../assets/tu2.png'
 
 export const PoolPrize = () => {
   const { provider, chainID } = useWeb3Context();
@@ -99,28 +101,39 @@ export const PoolPrize = () => {
 
   return (
     <Box width="100%" display="flex" flexDirection="column" alignItems="center" className="pool-prize-card">
-      <Box className="vegas-container">
-        <Box className="vegas"></Box>
+      <Box className="vegas-container-pc">
+        <img src={TuImg} style={{width:'100%'}}/>
+        {/* <Box className="vegas"></Box> */}
+      </Box>
+      <Box className="vegas-container-mob">
+        <img src={Tu2Img} style={{width:'100%'}}/>
+        {/* <Box className="vegas"></Box> */}
       </Box>
       <Paper className="ohm-card">
         <Box display="flex" flexDirection="column" alignItems="center">
-          {parseFloat(poolAwardBalance) === 0 ? (
+          {/* {parseFloat(poolAwardBalance) === 0 ? (
             <Box margin={2} textAlign="center">
               <Typography variant="h3">Pool Award Balance is currently 0.</Typography>
               <Typography variant="h4">Award Balance will grow at 1st rebase.</Typography>
             </Box>
           ) : (
             <Box margin={2} textAlign="center">
-              <Typography variant="h1">{trim(poolAwardBalance, 2)} sOHM</Typography>
+              <Typography variant="h1">{trim(poolAwardBalance, 2)} sPID</Typography>
               <Typography variant="h4">Current Prize</Typography>
             </Box>
-          )}
-          {poolIsLocked ? (
+          )} */}
+          <div style={{height:40}}>
+
+          </div>
+          <Typography variant="h6">
+            3,3 π is the staking reward pool in the PIDAO ecosystem, similar to the Syrup Pool of PancakeSwap. By staking your sPID with PIDAO, you will receive token rewards from the partners.
+          </Typography>
+          {/* {poolIsLocked ? (
             <Typography variant="h6">Prize is being awarded</Typography>
           ) : (
             <Typography variant="h6">Next award</Typography>
-          )}
-          <Box className="pool-timer">
+          )} */}
+          {/* <Box className="pool-timer">
             {timer && poolIsLocked !== true && (
               <>
                 <Box className="pool-timer-unit">
@@ -143,7 +156,7 @@ export const PoolPrize = () => {
                 </Box>
               </>
             )}
-          </Box>
+          </Box> */}
 
           {/* Timer won't show when poolIsLocked */}
           {poolIsLocked && (

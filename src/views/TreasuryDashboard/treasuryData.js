@@ -22,14 +22,10 @@ query {
     treasuryFraxRiskFreeValue
     treasuryXsushiMarketValue
     treasuryWETHMarketValue
-    treasuryLusdRiskFreeValue
     currentAPY
     runway10k
     runway20k
     runway50k
-    runway7dot5k
-    runway5k
-    runway2dot5k
     runwayCurrent
     holders
     treasuryOhmDaiPOL
@@ -40,7 +36,7 @@ query {
 
 export const rebasesDataQuery = `
 query {
-  rebases(where: {contract: "0xfd31c7d00ca47653c6ce64af53c1571f9c36566a"}, orderBy: timestamp, first: 1000, orderDirection: desc) {
+  rebases(where: {contract: "0xC66AA3ea66E30627149225d5B03E64e69b7990E0"}, orderBy: timestamp, first: 1000, orderDirection: desc) {
     percentage
     timestamp
   }
@@ -79,28 +75,6 @@ export const bulletpoints = {
       top: -12,
       background: "linear-gradient(180deg, #4C8C2A -10%, #8BFF4D 100%)",
     },
-    {
-      right: 29,
-      top: -12,
-      background: "linear-gradient(180deg, #c9184a -10%, #ff758f 100%)",
-    },
-  ],
-  rfv: [
-    {
-      right: 15,
-      top: -12,
-      background: "linear-gradient(180deg, #F5AC37 -10%, #EA9276 100%)",
-    },
-    {
-      right: 25,
-      top: -12,
-      background: "linear-gradient(180deg, #768299 -10%, #98B3E9 100%)",
-    },
-    {
-      right: 29,
-      top: -12,
-      background: "linear-gradient(180deg, #c9184a -10%, #ff758f 100%)",
-    },
   ],
   holder: [
     {
@@ -120,7 +94,7 @@ export const bulletpoints = {
     {
       right: 45,
       top: -12,
-      background: "#000000",
+      background: "#FFFFFF",
     },
     {
       right: 48,
@@ -131,11 +105,6 @@ export const bulletpoints = {
       right: 48,
       top: -12,
       background: "#49A1F2",
-    },
-    {
-      right: 48,
-      top: -12,
-      background: "#c9184a",
     },
   ],
   staked: [
@@ -168,23 +137,22 @@ export const bulletpoints = {
 
 export const tooltipItems = {
   tvl: ["Total Value Deposited"],
-  coin: ["DAI", "FRAX", "ETH", "SUSHI", "LUSD"],
-  rfv: ["DAI", "FRAX", "LUSD"],
+  coin: ["DAI", "FRAX", "ETH", "SUSHI"],
   holder: ["OHMies"],
   apy: ["APY"],
-  runway: ["Current", "7.5K APY", "5K APY", "2.5K APY"],
+  runway: ["Days"],
   pol: ["SLP Treasury", "Market SLP"],
 };
 
 export const tooltipInfoMessages = {
-  tvl: "Total Value Deposited, is the dollar amount of all OHM staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.",
+  tvl: "Total Value Deposited, is the dollar amount of all WHISKEY staked in the protocol. This metric is often used as growth or health indicator in DeFi projects.",
   mvt: "Market Value of Treasury Assets, is the sum of the value (in dollars) of all assets held by the treasury.",
-  rfv: "Risk Free Value, is the amount of funds the treasury guarantees to use for backing OHM.",
+  rfv: "Risk Free Value, is the amount of funds the treasury guarantees to use for backing WHISKEY.",
   pol: "Protocol Owned Liquidity, is the amount of LP the treasury owns and controls. The more POL the better for the protocol and its users.",
-  holder: "Holders, represents the total number of Ohmies (sOHM holders)",
-  staked: "OHM Staked, is the ratio of sOHM to OHM (staked vs unstaked)",
+  holder: "Holders, represents the total number of Ohmies (SCREWBALL holders)",
+  staked: "WHISKEY Staked, is the ratio of SCREWBALL to WHISKEY (staked vs unstaked)",
   apy: "Annual Percentage Yield, is the normalized representation of an interest rate, based on a compounding period over one year. Note that APYs provided are rather ballpark level indicators and not so much precise future results.",
-  runway: "Runway, is the number of days sOHM emissions can be sustained at a given rate. Lower APY = longer runway",
+  runway: "Runway, is the number of days SCREWBALL emissions can be sustained at a given rate. Lower APY = longer runway",
 };
 
 export const itemType = {

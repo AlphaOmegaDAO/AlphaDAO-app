@@ -6,8 +6,6 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { trim, secondsUntilBlock, prettifySeconds, prettyVestingPeriod } from "../../helpers";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { Skeleton } from "@material-ui/lab";
-import { DisplayBondDiscount } from "./Bond";
-import ConnectButton from "../../components/ConnectButton";
 
 function BondRedeem({ bond }) {
   // const { bond: bondName } = bond;
@@ -52,54 +50,46 @@ function BondRedeem({ bond }) {
   return (
     <Box display="flex" flexDirection="column">
       <Box display="flex" justifyContent="space-around" flexWrap="wrap">
-        {!address ? (
-          <ConnectButton />
-        ) : (
-          <>
-            <Button
-              variant="contained"
-              color="primary"
-              id="bond-claim-btn"
-              className="transaction-button"
-              fullWidth
-              disabled={isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name) || bond.pendingPayout == 0.0}
-              onClick={() => {
-                onRedeem({ autostake: false });
-              }}
-            >
-              {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, "Claim")}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              id="bond-claim-autostake-btn"
-              className="transaction-button"
-              fullWidth
-              disabled={
-                isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake") ||
-                bond.pendingPayout == 0.0
-              }
-              onClick={() => {
-                onRedeem({ autostake: true });
-              }}
-            >
-              {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", "Claim and Autostake")}
-            </Button>
-          </>
-        )}
+        <Button
+          variant="contained"
+          color="primary"
+          id="bond-claim-btn"
+          className="transaction-button"
+          fullWidth
+          disabled={isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name)}
+          onClick={() => {
+            onRedeem({ autostake: false });
+          }}
+        >
+          {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, "Claim")}
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          id="bond-claim-autostake-btn"
+          className="transaction-button"
+          fullWidth
+          disabled={isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake")}
+          onClick={() => {
+            onRedeem({ autostake: true });
+          }}
+        >
+          {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", "Claim and Autostake")}
+        </Button>
       </Box>
+
       <Slide direction="right" in={true} mountOnEnter unmountOnExit {...{ timeout: 533 }}>
         <Box className="bond-data">
           <div className="data-row">
             <Typography>Pending Rewards</Typography>
             <Typography className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} OX`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} WHISKEY`}
             </Typography>
           </div>
           <div className="data-row">
             <Typography>Claimable Rewards</Typography>
             <Typography className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} OX`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} WHISKEY`}
             </Typography>
           </div>
           <div className="data-row">
@@ -110,14 +100,14 @@ function BondRedeem({ bond }) {
           <div className="data-row">
             <Typography>ROI</Typography>
             <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : <DisplayBondDiscount key={bond.name} bond={bond} />}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondDiscount * 100, 2)}%`}
             </Typography>
           </div>
 
           <div className="data-row">
             <Typography>Debt Ratio</Typography>
             <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 2)}%`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 4)}%`}
             </Typography>
           </div>
 

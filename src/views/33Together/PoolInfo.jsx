@@ -62,7 +62,7 @@ export const PoolInfo = props => {
               </div>
               <div className="data-row">
                 <Typography>Your wallet balance</Typography>
-                <Typography>{props.isAccountLoading ? <Skeleton width={100} /> : props.sohmBalance} sOHM</Typography>
+                <Typography>{props.isAccountLoading ? <Skeleton width={100} /> : props.sohmBalance} sPID</Typography>
               </div>
             </Box>
             <Divider color="secondary" />
@@ -77,23 +77,23 @@ export const PoolInfo = props => {
           <div className="data-row">
             <Typography>Total Deposits</Typography>
             <Typography>
-              {props.graphLoading ? <Skeleton width={100} /> : props.totalDeposits.toLocaleString()} sOX
+              {props.graphLoading ? <Skeleton width={100} /> : props.totalDeposits.toLocaleString()} sPID
             </Typography>
           </div>
           <div className="data-row">
             <Typography>Total Sponsorship</Typography>
             <Typography>
-              {props.graphLoading ? <Skeleton width={100} /> : props.totalSponsorship.toLocaleString()} sOX
+              {props.graphLoading ? <Skeleton width={100} /> : props.totalSponsorship.toLocaleString()} sPID
             </Typography>
           </div>
           <div className="data-row">
             <Typography>Yield Source</Typography>
-            <Typography>sOX</Typography>
+            <Typography>sPID</Typography>
           </div>
           <div className="data-row">
             <Typography>Pool owner</Typography>
             <Box display="flex" alignItems="center">
-              <Typography>AlphaDAO</Typography>
+              <Typography>OlympusDAO</Typography>
             </Box>
           </div>
           <Divider color="secondary" />
@@ -120,13 +120,13 @@ export const PoolInfo = props => {
         <div className="data-row-centered">
           <div className="marginedBtn">
             <Button variant="outlined" color="secondary" href={poolTogetherUILinks(chainID)[0]} target="_blank">
-              <Typography variant="body1">sOX Prize Pool&nbsp;</Typography>
+              <Typography variant="body1">sPID Prize Pool&nbsp;</Typography>
               <SvgIcon component={ArrowUp} color="primary" />
             </Button>
           </div>
           <div className="marginedBtn">
             <Button variant="outlined" color="secondary" href={poolTogetherUILinks(chainID)[1]} target="_blank">
-              <Typography variant="body1">sOX Pool Details&nbsp;</Typography>
+              <Typography variant="body1">sPID Pool Details&nbsp;</Typography>
               <SvgIcon component={ArrowUp} color="primary" />
             </Button>
           </div>

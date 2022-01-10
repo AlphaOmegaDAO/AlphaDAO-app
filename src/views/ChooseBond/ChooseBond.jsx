@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import {
   Box,
   Grid,
@@ -16,7 +17,6 @@ import { BondDataCard, BondTableData } from "./BondRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { formatCurrency } from "../../helpers";
 import useBonds from "../../hooks/Bonds";
-
 import "./choosebond.scss";
 import { Skeleton } from "@material-ui/lab";
 import ClaimBonds from "./ClaimBonds";
@@ -24,7 +24,7 @@ import _ from "lodash";
 import { allBondsMap } from "src/helpers/AllBonds";
 
 function ChooseBond() {
-  const { bonds, realBonds } = useBonds();
+  const { bonds } = useBonds();
   const isSmallScreen = useMediaQuery("(max-width: 733px)"); // change to breakpoint query
   const isVerySmallScreen = useMediaQuery("(max-width: 420px)");
 
@@ -64,13 +64,13 @@ function ChooseBond() {
       <Zoom in={true}>
         <Paper className="ohm-card">
           <Box className="card-header">
-            <Typography variant="h5">Bond</Typography>
+            <Typography variant="h5">Bond (1,1)</Typography>
           </Box>
 
           <Grid container item xs={12} style={{ margin: "10px 0px 20px" }} className="bond-hero">
             <Grid item xs={6}>
               <Box textAlign={`${isVerySmallScreen ? "left" : "center"}`}>
-                <Typography variant="h6" color="textSecondary">
+                <Typography variant="h5" color="textSecondary">
                   Treasury Balance
                 </Typography>
                 <Typography variant="h4">
@@ -88,10 +88,10 @@ function ChooseBond() {
               </Box>
             </Grid>
 
-            <Grid item xs={6} className={`guru-price`}>
+            <Grid item xs={6} className={`ohm-price`}>
               <Box textAlign={`${isVerySmallScreen ? "right" : "center"}`}>
-                <Typography variant="h6" color="textSecondary">
-                  OX Price
+                <Typography variant="h5" color="textSecondary">
+                  WHISKEY Price
                 </Typography>
                 <Typography variant="h4">
                   {isAppLoading ? <Skeleton width="100px" /> : formatCurrency(marketPrice, 2)}
@@ -120,19 +120,13 @@ function ChooseBond() {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <Typography variant="h5">Bond with real world assets</Typography>
-              <TableContainer>
-                <Table aria-label="Bond with real world assets">
-                  <TableBody>{realBonds && realBonds.map(rb => <BondTableData key={rb.name} bond={rb} />)}</TableBody>
-                </Table>
-              </TableContainer>
             </Grid>
           )}
         </Paper>
       </Zoom>
 
       {isSmallScreen && (
-        <Box className="guru-card-container">
+        <Box className="ohm-card-container">
           <Grid container item spacing={2}>
             {bonds.map(bond => (
               <Grid item xs={12} key={bond.name}>

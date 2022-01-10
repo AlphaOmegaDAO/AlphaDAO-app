@@ -23,12 +23,11 @@ const useTheme = (): [string, (e: KeyboardEvent) => void, boolean] => {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem("theme");
-    // window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && !localTheme
-    //   ? setMode("dark")
-    //   : localTheme
-    //   ? setTheme(localTheme)
-    //   : setMode("light");
-    setMode("dark");
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && !localTheme
+      ? setMode("dark")
+      : localTheme
+      ? setTheme(localTheme)
+      : setMode("light");
     setMounted(true);
   }, []);
 
