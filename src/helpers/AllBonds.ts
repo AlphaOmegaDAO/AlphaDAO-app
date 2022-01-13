@@ -29,6 +29,9 @@ import { abi as ierc20Abi } from "src/abi/IERC20.json";
 import { getBondCalculator } from "src/helpers/BondCalculator";
 import { BigNumberish } from "ethers";
 
+// import ERC20 from "src/lib/ERC20";
+//import { StaticJsonRpcProvider } from "@ethersproject/providers";
+
 // TODO(zx): Further modularize by splitting up reserveAssets into vendor token definitions
 //   and include that in the definition of a bond
 export const dai = new StableBond({
@@ -69,62 +72,31 @@ export const dai = new StableBond({
 //   },
 // });
 
-// export const lusd = new StableBond({
-//   name: "lusd",
-//   displayName: "LUSD",
-//   bondToken: "LUSD",
-//   isAvailable: { [NetworkID.Mainnet]: false, [NetworkID.Testnet]: true },
-//   bondIconSvg: LusdImg,
-//   bondContractABI: LusdBondContract,
-//   networkAddrs: {
-//     [NetworkID.Mainnet]: {
-//       bondAddress: "0x10C0f93f64e3C8D0a1b0f4B87d6155fd9e89D08D",
-//       reserveAddress: "0x5f98805A4E8be255a32880FDeC7F6728C6568bA0",
-//     },
-//     [NetworkID.Testnet]: {
-//       bondAddress: "0x3aD02C4E4D1234590E87A1f9a73B8E0fd8CF8CCa",
-//       reserveAddress: "0x45754dF05AA6305114004358eCf8D04FF3B84e26",
-//     },
-//   },
-// });
-
-// export const eth = new CustomBond({
-//   name: "eth",
-//   displayName: "wETH",
-//   lpUrl: "",
-//   bondType: BondType.StableAsset,
-//   bondToken: "wETH",
-//   isAvailable: { [NetworkID.Mainnet]: true, [NetworkID.Testnet]: true },
-//   bondIconSvg: wETHImg,
-//   bondContractABI: EthBondContract,
-//   reserveContract: ierc20Abi, // The Standard ierc20Abi since they're normal tokens
-//   networkAddrs: {
-//     [NetworkID.Mainnet]: {
-//       bondAddress: "0xE6295201CD1ff13CeD5f063a5421c39A1D236F1c",
-//       reserveAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-//     },
-//     [NetworkID.Testnet]: {
-//       bondAddress: "0xca7b90f8158A4FAA606952c023596EE6d322bcf0",
-//       reserveAddress: "0xc778417e063141139fce010982780140aa0cd5ab",
-//     },
-//   },
-//   customTreasuryBalanceFunc: async function (this: CustomBond, networkID, provider) {
-//     const ethBondContract = this.getContractForBond(networkID, provider);
-//     let ethPrice: BigNumberish = await ethBondContract.assetPrice();
-//     ethPrice = Number(ethPrice.toString()) / Math.pow(10, 8);
-//     const token = this.getContractForReserve(networkID, provider);
-//     let ethAmount: BigNumberish = await token.balanceOf(addresses[networkID].TREASURY_ADDRESS);
-//     ethAmount = Number(ethAmount.toString()) / Math.pow(10, 18);
-//     return ethAmount * ethPrice;
-//   },
-// });
-
-export const guru_dai = new LPBond({
-  name: "guru_dai_lp",
-  displayName: "OX-DAI LP",
-  bondToken: "DAI",
-  isAvailable: { [NetworkID.Mumbai]: true, [NetworkID.Polygon]: true },
-  bondIconSvg: GuruDaiImg,
+export const ohm_dai = new LPBond({
+  name: "OX-BUSD",
+  displayName: "OX-BUSD LP",
+  bondToken: "OX-BUSD",
+  bondIconSvg: OhmDaiImg,
+  bondContractABI: BondOhmDaiContract,
+  reserveContract: ReserveOhmDaiContract,
+  networkAddrs: {
+    [NetworkID.Mainnet]: {
+      bondAddress: "0x7F1b0Dab5C7c8d7a63758946f853049bC53f4306",
+      reserveAddress: "0x96b6d5482313eECC031aFEb2Fb32da2BA7439BA2",
+    },
+    [NetworkID.Testnet]: {
+      bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
+      reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
+    },
+  },
+  lpUrl:
+   `https://pancakeswap.finance/add/${addresses[NetworkID.Mainnet].DAI_ADDRESS}/${addresses[NetworkID.Mainnet].PID_ADDRESS}`,
+});
+export const ohm_eth = new LPBond({
+  name: "OX-BNB",
+  displayName: "OX-BNB LP",
+  bondToken: "OX-BNB",
+  bondIconSvg: OhmDaiImg,
   bondContractABI: BondOhmDaiContract,
   reserveContract: ReserveOhmDaiContract,
   networkAddrs: {

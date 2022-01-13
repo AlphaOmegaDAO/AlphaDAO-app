@@ -21,20 +21,7 @@ const addTokenToWallet = (tokenSymbol, tokenAddress) => async () => {
   if (window.ethereum) {
     const host = window.location.origin;
     // NOTE (appleseed): 33T token defaults to sOHM logo since we don't have a 33T logo yet
-    let tokenPath;
-    // if (tokenSymbol === "OHM") {
-
-    // } ? OhmImg : SOhmImg;
-    switch (tokenSymbol) {
-      case "OHM":
-        tokenPath = OhmImg;
-        break;
-      case "33T":
-        tokenPath = token33tImg;
-        break;
-      default:
-        tokenPath = SOhmImg;
-    }
+    const tokenPath = tokenSymbol === "OX" ? OhmImg : SOhmImg;
     const imageURL = `${host}/${tokenPath}`;
 
     try {

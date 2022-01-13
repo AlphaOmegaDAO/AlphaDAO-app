@@ -8,8 +8,13 @@ import { addresses } from "src/constants";
 import React from "react";
 
 export enum NetworkID {
+<<<<<<< Updated upstream
   Mumbai = 80001,
   Polygon = 137,
+=======
+  Mainnet = 56,
+  Testnet = 97,
+>>>>>>> Stashed changes
 }
 
 export enum BondType {
@@ -93,6 +98,7 @@ export abstract class Bond {
   getAddressForReserve(networkID: NetworkID) {
     return this.networkAddrs[networkID]?.reserveAddress;
   }
+ 
   getContractForReserve(networkID: NetworkID, provider: StaticJsonRpcProvider | JsonRpcSigner) {
     const bondAddress = this.getAddressForReserve(networkID);
     return new ethers.Contract(bondAddress, this.reserveContract, provider) as PairContract;

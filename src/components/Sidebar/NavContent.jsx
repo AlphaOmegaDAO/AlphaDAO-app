@@ -48,23 +48,24 @@ function NavContent() {
   return (
     <Paper className="dapp-sidebar">
       <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
-        <div className="dapp-menu-top">
+        <div className="dapp-menu-top" align="center">
           <Box className="branding-header">
-            <Link href="https://alphadao.finance" target="_blank">
-              <SvgIcon
-                component={AlphaIcon}
-                viewBox="0 0 80 118"
-                style={{ minWdth: "129px", minHeight: "129px", width: "163px" }}
-              />
+            <Link href="https://alphadao.financial" target="_blank">
+               <SvgIcon
+                color="primary"
+                component={OlympusIcon}
+                viewBox="0 0 151 100"
+                style={{ minWdth: "151px", minHeight: "100px", width: "151px" }}
+              /> 
             </Link>
 
-            {/*{address && (*/}
-            {/*  <div className="wallet-link">*/}
-            {/*    <Link href={`https://etherscan.io/address/${address}`} target="_blank">*/}
-            {/*      {shorten(address)}*/}
-            {/*    </Link>*/}
-            {/*  </div>*/}
-            {/*)}*/}
+             {address && (
+              <div className="wallet-link">
+                <Link href={`https://testnet.bscscan.com/address/${address}`} target="_blank">
+                  {shorten(address)}
+                </Link>
+              </div>
+            )} 
           </Box>
 
           <div className="dapp-menu-links">
@@ -209,3 +210,6 @@ function NavContent() {
 }
 
 export default NavContent;
+
+
+

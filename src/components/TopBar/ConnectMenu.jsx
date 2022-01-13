@@ -45,13 +45,13 @@ function ConnectMenu({ theme }) {
   }
   const id = open ? "ohm-popper-pending" : undefined;
 
-  const primaryColor = theme === "light" ? "#49A1F2" : "#F8CC82";
+  const primaryColor = theme === "light" ? "#49A1F2" : "#d1d1d1";
   const buttonStyles =
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
-  // const getEtherscanUrl = txnHash => {
-  //   return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://etherscan.io/tx/" + txnHash;
-  // };
+  const getEtherscanUrl = txnHash => {
+    return chainID === 97 ? "https://testnet.bscscan.com//tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
+  };
 
   // useEffect(() => {
   //   if (pendingTransactions.length === 0) {

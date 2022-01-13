@@ -89,12 +89,21 @@ export const useAddress = () => {
 
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
+<<<<<<< Updated upstream
   // NOTE (appleseed): if you are testing you need to set chainId === 80001 as the default for non-connected wallet testing...
   // ... you also need to set getMumbaiTestnetURI() as the default uri state below
   const [chainID, setChainID] = useState(97);
   const [address, setAddress] = useState("");
 
   const [uri, setUri] = useState(getBSCTestnetURI());
+=======
+  // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
+  // ... you also need to set getTestnetURI() as the default uri state below
+  const [chainID, setChainID] = useState(97);
+  const [address, setAddress] = useState("");
+
+  const [uri, setUri] = useState(getTestnetURI());
+>>>>>>> Stashed changes
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -113,11 +122,16 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           package: WalletConnectProvider,
           options: {
             rpc: {
+<<<<<<< Updated upstream
               80001: getMumbaiTestnetURI(),
               //137: getPolygonURI(),
 			  97: getBSCTestnetURI(),
 			  
 			  
+=======
+              56: getMainnetURI(),
+              97: getTestnetURI(),
+>>>>>>> Stashed changes
             },
           },
         },

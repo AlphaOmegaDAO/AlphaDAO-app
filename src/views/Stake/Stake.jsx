@@ -229,7 +229,11 @@ function Stake() {
                         Current Index
                       </Typography>
                       <Typography variant="h4">
+<<<<<<< Updated upstream
                         {currentIndex ? <>{trim(currentIndex, 1)} sOX</> : <Skeleton width="150px" />}
+=======
+                        {currentIndex ? <>{trim(currentIndex, 0) / 10000} OX</> : <Skeleton width="150px" />}
+>>>>>>> Stashed changes
                       </Typography>
                     </div>
                   </Grid>
@@ -243,9 +247,13 @@ function Stake() {
                   <div className="wallet-menu" id="wallet-menu">
                     {modalButton}
                   </div>
+<<<<<<< Updated upstream
                   <Typography color="textSecondary" variant="h6">
                     Connect your wallet to stake OX
                   </Typography>
+=======
+                  <Typography variant="h6">Connect your wallet to stake OX</Typography>
+>>>>>>> Stashed changes
                 </div>
               ) : (
                 <>

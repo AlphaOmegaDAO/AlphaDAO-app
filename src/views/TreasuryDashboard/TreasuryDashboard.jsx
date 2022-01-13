@@ -279,6 +279,7 @@ function TreasuryDashboard() {
               </Paper>
             </Grid> */}
 
+<<<<<<< Updated upstream
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
         {/*  <Paper className="ohm-card">*/}
         {/*    <Chart*/}
@@ -296,6 +297,31 @@ function TreasuryDashboard() {
         {/*    />*/}
         {/*  </Paper>*/}
         {/*</Grid>*/}
+=======
+            <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Paper className="ohm-card">
+                <Typography variant="h6" color="textSecondary">
+                  Backing per OX
+                </Typography>
+                <Typography variant="h5">
+                  {backingPerOhm ? formatCurrency(backingPerOhm, 2) : <Skeleton type="text" />}
+                </Typography>
+                {/* <Chart
+                  type="area"
+                  data={staked}
+                  dataKey={["staked"]}
+                  stopColor={[["#55EBC7", "#47ACEB"]]}
+                  headerText="OHM Staked"
+                  dataFormat="percent"
+                  headerSubText={`${staked && trim(staked[0]?.staked, 2)}% `}
+                  isStaked={true}
+                  bulletpointColors={bulletpoints.staked}
+                  infoTooltipMessage={tooltipInfoMessages.staked}
+                  expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+                /> */}
+              </Paper>
+            </Grid>
+>>>>>>> Stashed changes
 
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
         {/*  <Paper className="ohm-card">*/}
@@ -318,6 +344,7 @@ function TreasuryDashboard() {
         {/*  </Paper>*/}
         {/*</Grid>*/}
 
+<<<<<<< Updated upstream
         {/*<Grid item lg={6} md={6} sm={12} xs={12}>*/}
         {/*  <Paper className="ohm-card">*/}
         {/*    <Chart*/}
@@ -339,6 +366,86 @@ function TreasuryDashboard() {
         {/*</Grid>*/}
         {/*  </Grid>*/}
         {/*</Zoom>*/}
+=======
+            <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Paper className="ohm-card">
+                <Typography variant="h6" color="textSecondary">
+                OX Staked
+                  </Typography>
+                  <Typography variant="h5">
+                    {staked ? `${trim(staked, 2)}%` : <Skeleton type="text" />}
+                  </Typography>
+                {/* <Chart
+                  type="line"
+                  data={runway}
+                  dataKey={["runwayCurrent"]}
+                  color={theme.palette.text.primary}
+                  stroke={[theme.palette.text.primary]}
+                  headerText="Runway Available"
+                  headerSubText={`${data && trim(data[0]?.runwayCurrent, 1)} Days`}
+                  dataFormat="days"
+                  bulletpointColors={bulletpoints.runway}
+                  itemNames={tooltipItems.runway}
+                  itemType={""}
+                  infoTooltipMessage={tooltipInfoMessages.runway}
+                  expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+                /> */}
+              </Paper>
+            </Grid>
+            <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Paper className="ohm-card">
+                <Typography variant="h6" color="textSecondary">
+                APY
+                </Typography>
+                <Typography variant="h5">
+                  {stakingAPY ? `${trim(stakingAPY*100, 2)}%` : <Skeleton type="text" />}
+                </Typography> 
+                {/* <Chart
+                  type="line"
+                  data={runway}
+                  dataKey={["runwayCurrent"]}
+                  color={theme.palette.text.primary}
+                  stroke={[theme.palette.text.primary]}
+                  headerText="Runway Available"
+                  headerSubText={`${data && trim(data[0]?.runwayCurrent, 1)} Days`}
+                  dataFormat="days"
+                  bulletpointColors={bulletpoints.runway}
+                  itemNames={tooltipItems.runway}
+                  itemType={""}
+                  infoTooltipMessage={tooltipInfoMessages.runway}
+                  expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+                /> */}
+              </Paper>
+            </Grid>
+            <Grid item lg={6} md={6} sm={12} xs={12}>
+              <Paper className="ohm-card">
+                <Typography variant="h6" color="textSecondary">
+                  Market Cap
+                </Typography>
+                <Typography variant="h5">
+                  {marketCap && formatCurrency(marketCap, 2)}
+                  {!marketCap && <Skeleton type="text" />}
+                </Typography> 
+                {/* <Chart
+                  type="line"
+                  data={runway}
+                  dataKey={["runwayCurrent"]}
+                  color={theme.palette.text.primary}
+                  stroke={[theme.palette.text.primary]}
+                  headerText="Runway Available"
+                  headerSubText={`${data && trim(data[0]?.runwayCurrent, 1)} Days`}
+                  dataFormat="days"
+                  bulletpointColors={bulletpoints.runway}
+                  itemNames={tooltipItems.runway}
+                  itemType={""}
+                  infoTooltipMessage={tooltipInfoMessages.runway}
+                  expandedGraphStrokeColor={theme.palette.graphStrokeColor}
+                /> */}
+              </Paper>
+            </Grid>
+          </Grid>
+        </Zoom>
+>>>>>>> Stashed changes
       </Container>
     </div>
   );
