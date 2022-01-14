@@ -258,8 +258,8 @@ function Home() {
         <div className="CaiDanlieBiao">
           <img src={Logoimg} alt="" className="logo2" />
          {/* <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/whitepapers/pidao-pro">PIDAO Pro</a></div> */}
-          <div className="lis2"><a className="a" href="/stake">Stake</a></div>
-          <div className="lis2"><a className="a" href="/bonds">Bond</a></div>
+          <div className="lis2"><Link className="a" to="/stake">Stake</Link></div>
+          <div className="lis2"><Link className="a" to="/bonds">Bond</Link></div>
          {/* <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/pidao-finance/faqs">FAQs</a></div>
           <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/community/governance">Get Involved</a></div> */}
           {/* <a href="https://github.com/peckshield/publications/blob/master/audit_reports/PeckShield-Audit-Report-OlympusDAO-v1.0.pdf" target="_blank" ><img src={ShenJiImg1} alt="" className="shenji2" /></a>
