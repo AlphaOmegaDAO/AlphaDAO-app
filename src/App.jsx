@@ -213,7 +213,7 @@ function App() {
             <Switch>
               <Route exact path="/dashboard" component={TreasuryDashboard} />
               <Route path="/stake" component={Stake} />
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={TreasuryDashboard} />
               <Route path="/bonds">
                 {bonds.map(bond => {
                   return (
