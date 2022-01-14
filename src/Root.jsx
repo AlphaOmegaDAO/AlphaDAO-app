@@ -16,7 +16,7 @@ export default class Root extends Component {
     return (
       <Web3ContextProvider>
         <Provider store={store}>
-          <HashRouter basename={'/#/'}>
+          <HashRouter basename={'#'}>
             <App />
           </HashRouter>
         </Provider>
