@@ -132,11 +132,11 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     console.error(
       "You are switching networks",
       EnvHelper.getOtherChainID(),
-      otherChainID === EnvHelper.getOtherChainID() || otherChainID === 56,
+      otherChainID === EnvHelper.getOtherChainID() || otherChainID === 97,
     );
     if (chainID !== otherChainID) {
       console.warn("You are switching networks", EnvHelper.getOtherChainID());
-      if (otherChainID === EnvHelper.getOtherChainID() || otherChainID === 56) {
+      if (otherChainID === EnvHelper.getOtherChainID() || otherChainID === 97) {
         setChainID(otherChainID);
         otherChainID === EnvHelper.getOtherChainID() ? setUri(getMainnetURI()) : setUri(getTestnetURI());
         return true;
@@ -160,7 +160,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to mainnet");
+      console.error("Wrong network, please switch to BSC mainnet");
       return;
     }
     // Save everything after we've validated the right network.

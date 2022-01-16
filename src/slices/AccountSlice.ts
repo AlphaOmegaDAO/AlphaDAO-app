@@ -115,7 +115,7 @@ export const loadAccountDetails = createAsyncThunk(
     if(addresses[networkID].IDO_ADDRESS){
       try{
         const iodContract = new ethers.Contract(addresses[networkID].IDO_ADDRESS as string, IDOAbi, provider);
-        idoBalance = (await iodContract.Whitelist(address)).toNumber() / 1e9 
+      //  idoBalance = (await iodContract.Whitelist(address)).toNumber() / 1e9 
         busdAmount = ethers.utils.formatUnits(await iodContract.getBusdAmount(address))
         const busdContract = new ethers.Contract(addresses[networkID].BUSD_ADDRESS as string, ierc20Abi, provider);
         idoAllowance = await busdContract.allowance(address, iodContract.address);

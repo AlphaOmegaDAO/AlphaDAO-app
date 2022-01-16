@@ -9,7 +9,7 @@ import { ReactComponent as sOhmTokenImg } from "../../assets/tokens/token_sOHM.s
 import { ReactComponent as ohmTokenImg } from "../../assets/tokens/token_OHM.svg";
 
 import "./ohmmenu.scss";
-import { dai, frax } from "src/helpers/AllBonds";
+import { dai } from "src/helpers/AllBonds";
 import { useWeb3Context } from "../../hooks/web3Context";
 
 import OhmImg from "src/assets/tokens/1.png";
@@ -61,7 +61,7 @@ function OhmMenu() {
   const open = Boolean(anchorEl);
   const id = "ohm-popper";
   const daiAddress = dai.getAddressForReserve(networkID);
-  const fraxAddress = frax.getAddressForReserve(networkID);
+  //const fraxAddress = frax.getAddressForReserve(networkID);
   return (
     <Box
       component="div"

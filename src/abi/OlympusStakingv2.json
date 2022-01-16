@@ -4,12 +4,12 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_WHISKEY",
+          "name": "_OX",
           "type": "address"
         },
         {
           "internalType": "address",
-          "name": "_SCREWBALL",
+          "name": "_ xOX",
           "type": "address"
         },
         {
@@ -71,7 +71,7 @@
     },
     {
       "inputs": [],
-      "name": "SCREWBALL",
+      "name": " xOX",
       "outputs": [
         {
           "internalType": "address",
