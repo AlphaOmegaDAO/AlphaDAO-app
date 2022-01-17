@@ -34,7 +34,7 @@ export const dai = new StableBond({
   bondContractABI: DaiBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
-      bondAddress: "0x8A8dD632f9461138CAA15f57d0F107eFFa38dD47",
+      bondAddress: "0x8FcdB03855082798be12bEB435ec9aAAeFC77AF1",
       reserveAddress: addresses[NetworkID.Mainnet].DAI_ADDRESS,
     },
     [NetworkID.Testnet]: {
