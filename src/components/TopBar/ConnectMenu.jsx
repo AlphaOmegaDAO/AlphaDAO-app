@@ -43,7 +43,7 @@ function ConnectMenu({ theme }) {
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
   const getEtherscanUrl = txnHash => {
-    return chainID === 97 ? "https://testnet.bscscan.com/address/tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
+    return chainID === 56 ? "https://testnet.bscscan.com/address/tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
   };
 
   useEffect(() => {
