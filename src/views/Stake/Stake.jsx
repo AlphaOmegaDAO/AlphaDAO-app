@@ -115,7 +115,7 @@ function Stake() {
     }
 
     if (action === "unstake" && gweiValue.gt(ethers.utils.parseUnits(sohmBalance, "gwei"))) {
-      return dispatch(error("You cannot unstake more than your sOX balance."));
+      return dispatch(error("You cannot unstake more than your xOX balance."));
     }
 
     await dispatch(changeStake({ address, action, value: quantity.toString(), provider, networkID: chainID }));
@@ -172,7 +172,7 @@ function Stake() {
                     target="_blank"
                   >
                     <NewReleases viewBox="0 0 24 24" />
-                    <Typography>Migrate sOX!</Typography>
+                    <Typography>Migrate xOX!</Typography>
                   </Link>
                 )}
               </div>
@@ -353,14 +353,14 @@ function Stake() {
                     <div className="data-row">
                       <Typography variant="body1">Your Staked Balance</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sOX</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} xOX</>}
                       </Typography>
                     </div>
 
                     <div className="data-row">
                       <Typography variant="body1">Next Reward Amount</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sOX</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} xOX</>}
                       </Typography>
                     </div>
 

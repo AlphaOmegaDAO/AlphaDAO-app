@@ -32,7 +32,7 @@ import LpTokenSymbol from './LpTokenSymbol';
 
 export const logosBySymbol: {[title: string]: string} = {
   'OX':WHISKEYLogo,
-  'sOX':SCREWBALLLogo,
+  'xOX':SCREWBALLLogo,
   'DAI':DAILogo,
   'USDC':USDCLogo,
   'USDT':USDTLogo,
