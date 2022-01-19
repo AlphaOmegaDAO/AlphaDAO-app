@@ -3,13 +3,26 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "stake",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "_staking",
           "type": "address"
         },
         {
           "internalType": "address",
-          "name": "_AlphaOX",
+          "name": "_OX",
           "type": "address"
         }
       ],
@@ -18,7 +31,7 @@
     },
     {
       "inputs": [],
-      "name": "AlphaOX",
+      "name": "staking",
       "outputs": [
         {
           "internalType": "address",
@@ -30,26 +43,8 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "recipient",
-          "type": "address"
-        }
-      ],
-      "name": "stake",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "inputs": [],
-      "name": "staking",
+      "name": "OX",
       "outputs": [
         {
           "internalType": "address",

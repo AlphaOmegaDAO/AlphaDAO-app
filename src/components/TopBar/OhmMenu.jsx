@@ -126,9 +126,6 @@ function OhmMenu() {
                         <TokenIcon size={32} symbol="sOX"/> 
                         <Typography variant="body1">Staked OX</Typography>
                       </Button>
-                      {/* <Button variant="contained" color="secondary" onClick={addTokenToWallet("33T", PT_TOKEN_ADDRESS)}>
-                        <Typography variant="body1">33T</Typography>
-                      </Button> */}
                     </Box>
                   </Box>
                 ) : null}

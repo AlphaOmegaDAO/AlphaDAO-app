@@ -4,12 +4,12 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_AlphaOX",
+          "name": "_OX",
           "type": "address"
         },
         {
           "internalType": "address",
-          "name": "_xOX",
+          "name": "_ xOX",
           "type": "address"
         },
         {
@@ -71,7 +71,20 @@
     },
     {
       "inputs": [],
-      "name": "AlphaOX",
+      "name": " xOX",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "OX",
       "outputs": [
         {
           "internalType": "address",
@@ -403,19 +416,6 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "xOX",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
         }
       ],
       "stateMutability": "view",

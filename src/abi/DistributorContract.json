@@ -9,7 +9,7 @@
         },
         {
           "internalType": "address",
-          "name": "_AlphaOX",
+          "name": "_whiskey",
           "type": "address"
         },
         {
@@ -47,7 +47,7 @@
     },
     {
       "inputs": [],
-      "name": "AlphaOX",
+      "name": "OX",
       "outputs": [
         {
           "internalType": "address",
