@@ -29,7 +29,7 @@ function RebaseTimer() {
     setSecondsToRebase(seconds);
     const prettified = prettifySeconds(seconds);
     setRebaseString(prettified !== "" ? prettified : "Less than a minute");
-    // console.error({currentBlock,rebaseBlock})
+     console.error({currentBlock,rebaseBlock})
 
   }
 

@@ -48,6 +48,9 @@ function NavContent() {
     if (currentPath.indexOf("stake") >= 0 && page === "stake") {
       return true;
     }
+    if (currentPath.indexOf("swap") >= 0 && page === "swap") {
+      return true;
+    }
    // if (currentPath.indexOf("33-together") >= 0 && page === "33-together") {
    //   return true;
    // }
@@ -121,6 +124,21 @@ function NavContent() {
                 </Typography>
               </ANavLink>
               
+              <ANavLink
+                component={NavLink}
+                id="swap-nav"
+                to="/swap"
+                isActive={(match, location) => {
+                  return checkPage(match, location, "swap");
+                }}
+                bg2={Stakeimg2}
+              // className={`button-dapp-menu ${isActive ? "active" : ""}`}
+              >
+                <Typography variant="h6" className="fxCenter">
+                  <ANavIcon bg1={Stakeimg} />
+                  Swap
+                </Typography>
+              </ANavLink>
 
              {/* <ANavLink
                 component={NavLink}

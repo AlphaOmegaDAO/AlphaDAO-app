@@ -16,7 +16,7 @@ import { calcBondDetails } from "./slices/BondSlice";
 import { loadAppDetails } from "./slices/AppSlice";
 import { loadAccountDetails, calculateUserBondDetails } from "./slices/AccountSlice";
 
-import { Home, Stake, ChooseBond, Bond, Dashboard, TreasuryDashboard, PoolTogether,NFTPage } from "./views";
+import { Home, Swap, Stake, ChooseBond, Bond, Dashboard, TreasuryDashboard, PoolTogether,NFTPage } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
@@ -213,6 +213,7 @@ function App() {
             <Switch>
               <Route exact path="/dashboard" component={TreasuryDashboard} />
               <Route path="/stake" component={Stake} />
+              <Route path="/swap" component={Swap} />
               <Route exact path="/" component={Home} />
               <Route path="/bonds">
                 {bonds.map(bond => {
