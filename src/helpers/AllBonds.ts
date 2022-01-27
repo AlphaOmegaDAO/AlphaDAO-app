@@ -130,23 +130,23 @@ export const ohm_dai = new LPBond({
 //  },
 //});
 
-//export const lusd = new StableBond({
-//  name: "USDT",
-//  displayName: "USDT",
-//  bondToken: "USDT",
-//  bondIconSvg: LusdImg,
-//  bondContractABI: DaiBondContract,
-//  networkAddrs: {
-//    [NetworkID.Mainnet]: {
-//      bondAddress: "0x1972f90FeD66a94708970c9Fee89438A53ef763F",
-//      reserveAddress: "0x55d398326f99059ff775485246999027b3197955",
-//    },
-//    [NetworkID.Testnet]: {
-//      bondAddress: "0x0190f73D9ab041cDf0d48fabAD924F8a4A22B7cf",
-//      reserveAddress: "0x1B408886aBBDfdBDC0CC5FFF2D0E982E593F4672",
-//    },
-//  },
-//});
+export const lusd = new StableBond({
+  name: "USDT",
+  displayName: "USDT",
+  bondToken: "USDT",
+  bondIconSvg: LusdImg,
+  bondContractABI: DaiBondContract,
+  networkAddrs: {
+    [NetworkID.Mainnet]: {
+      bondAddress: "0x1972f90FeD66a94708970c9Fee89438A53ef763F",
+      reserveAddress: "0x55d398326f99059ff775485246999027b3197955",
+    },
+    [NetworkID.Testnet]: {
+      bondAddress: "0xD39BD969Fb0d9B9CF78eDe489A1911Fdd1c4aa90",
+      reserveAddress: "0x337610d27c682e347c9cd60bd4b3b107c9d34ddd",
+    },
+  },
+});
 
 //export const pid_lusd = new LPBond({
 //  name: "pid_lusd_lp",
@@ -176,7 +176,7 @@ export const ohm_dai = new LPBond({
 // Add new bonds to this array!!
 // export const allBonds = [dai, frax, eth, ohm_dai, ohm_frax, lusd, pid_lusd];
 
-export const allBonds = [dai,ohm_dai]
+export const allBonds = [dai,ohm_dai,lusd]
 // export const allBonds:LPBond[]=[]
 export const treasuryBalanceAll = async ( networkID: NetworkID, provider: StaticJsonRpcProvider) => {
   return (await Promise.all(allBonds.map(async (item) => {
