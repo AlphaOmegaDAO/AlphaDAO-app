@@ -15,12 +15,12 @@ export default class Root extends Component {
   render() {
     return (
       <Web3ContextProvider>
-        <Provider store={store}>
-          <HashRouter basename={''}>
-            <App />
-          </HashRouter>
-        </Provider>
-      </Web3ContextProvider>
+      <Provider store={store}>
+        <BrowserRouter basename={"/#"}>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </Web3ContextProvider>
     );
   }
 }
