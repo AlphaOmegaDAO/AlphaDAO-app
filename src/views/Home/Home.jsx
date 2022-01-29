@@ -229,10 +229,10 @@ function Home() {
       </div>
     </div>
     <div className="bottomBor a">
-      <a href="https://twitter.com/financebourbon" target="_blank" className="bottomImgs a2"><img src={img1_1} alt="" className="bottomImgs2" /></a>
-      <a href="https://github.com/bourbondefi" target="_blank" className="bottomImgs a2"><img src={img1_2} alt="" className="bottomImgs2" /></a>
-      <a href="https://discord.gg/xjg7wdnUeT" target="_blank" className="bottomImgs a2"><img src={discord} alt="" className="bottomImgs2" /></a>
-      <a href="https://t.me/bourbondao" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
+      <a href="https://twitter.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_1} alt="" className="bottomImgs2" /></a>
+      <a href="https://github.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_2} alt="" className="bottomImgs2" /></a>
+      <a href="https://discord.gg/TxkJYnFCmk" target="_blank" className="bottomImgs a2"><img src={discord} alt="" className="bottomImgs2" /></a>
+      <a href="https://t.me/alphaomegadao" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
       {/* <a href="https://discord.com/invite/hPRwxePEYV" target="_blank" className="bottomImgs a"><img src={DiscordImg} alt="" className="bottomImgs2" /></a> */}
     </div>
     {menu ?
