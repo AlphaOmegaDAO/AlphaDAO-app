@@ -16,7 +16,7 @@ export default class Root extends Component {
     return (
       <Web3ContextProvider>
         <Provider store={store}>
-          <BrowserRouter basename={"#/"}>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <App />
           </BrowserRouter>
         </Provider>
@@ -24,3 +24,4 @@ export default class Root extends Component {
     );
   }
 }
+
