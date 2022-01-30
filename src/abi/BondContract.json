@@ -4,7 +4,7 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_AlphaOX",
+          "name": "_Alpha",
           "type": "address"
         },
         {
@@ -183,7 +183,7 @@
     },
     {
       "inputs": [],
-      "name": "AlphaOX",
+      "name": "Alpha",
       "outputs": [
         {
           "internalType": "address",

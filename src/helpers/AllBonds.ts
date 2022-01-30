@@ -38,38 +38,11 @@ export const dai = new StableBond({
       reserveAddress: addresses[NetworkID.Mainnet].BUSD_ADDRESS,
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0xF168645B7c202E029cA33d853a9dea5020DCCA53",
-      reserveAddress: "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
+      bondAddress: "0xD26A485a6f1E42e9BB3CE922fA3bfc2766dd604d",
+      reserveAddress: "0xE5f34eD0833529972883f91f18fBa4c22A1990a7",
     },
   },
 });
-
-//export const eth = new CustomBond({
-//  name: "bnb",
-//  displayName: "WBNB",
-//  bondToken: "WBNB",
-//  bondIconSvg: wETHImg,
-//  bondContractABI: EthBondContract,
-//  networkAddrs: {
-//    [NetworkID.Mainnet]: {
-//      bondAddress: "0x9A2E559bBe717497dD2cE9d83A463dcF7ea11790",
-//      reserveAddress: addresses[NetworkID.Mainnet].BNB_ADDRESS,
-//    },
-//    [NetworkID.Testnet]: {
-//      bondAddress: "0xca7b90f8158A4FAA606952c023596EE6d322bcf0",
-//      reserveAddress: "0x1B408886aBBDfdBDC0CC5FFF2D0E982E593F4672",
-//    },
-//  },
-//  customTreasuryBalanceFunc: async function (this: CustomBond, networkID, provider) {
-//    const ethBondContract = this.getContractForBond(networkID, provider);
-//    let ethPrice = await ethBondContract.assetPrice();
-//    ethPrice = ethPrice / Math.pow(10, 8);
-//    const token = this.getContractForReserve(networkID, provider);
-//    let ethAmount = await token.balanceOf(addresses[networkID].TREASURY_ADDRESS);
-//    ethAmount = ethAmount / Math.pow(10, 18);
-//    return ethAmount * ethPrice;
-//  },
-//});
 
 export const ohm_dai = new LPBond({
   name: "OX-BUSD",
@@ -84,51 +57,13 @@ export const ohm_dai = new LPBond({
       reserveAddress: "0x5556f86FA961960287991772cC71d5Db9093dB45",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0x642f2BB50f3b96D3eD9458a9990022C0BF0D8CB0",
-      reserveAddress: "0x138c5aed34b465cF32b6fC252a52F3b9c9fcdf07",
+      bondAddress: "0xD26A485a6f1E42e9BB3CE922fA3bfc2766dd604d",
+      reserveAddress: "0x47eecd292bc39b7c3d9b203239ad55d29a289355",
     },
   },
   lpUrl:
    `https://pancakeswap.finance/add/${addresses[NetworkID.Mainnet].DAI_ADDRESS}/${addresses[NetworkID.Mainnet].PID_ADDRESS}`,
 });
-//export const ohm_eth = new LPBond({
-// name: "OX-BNB",
-//  displayName: "OX-BNB LP",
-//  bondToken: "OX-BNB",
-//  bondIconSvg: OhmDaiImg,
-//  bondContractABI: BondOhmDaiContract,
-//  reserveContract: ReserveOhmDaiContract,
-//  networkAddrs: {
-//    [NetworkID.Mainnet]: {
-//      bondAddress: "0x7F1b0Dab5C7c8d7a63758946f853049bC53f4306",
-//      reserveAddress: "0x96b6d5482313eECC031aFEb2Fb32da2BA7439BA2",
-//    },
-//    [NetworkID.Testnet]: {
-//      bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
-//      reserveAddress: "0x1B408886aBBDfdBDC0CC5FFF2D0E982E593F4672",
-//    },
-//  },
-//  lpUrl:
-//   `https://pancakeswap.finance/add/${addresses[NetworkID.Mainnet].BNB_ADDRESS}/${addresses[NetworkID.Mainnet].PID_ADDRESS}`,
-//});
-
-//export const frax = new StableBond({
-//  name: "frax",
-//  displayName: "FRAX",
-//  bondToken: "FRAX",
-//  bondIconSvg: FraxImg,
-//  bondContractABI: FraxBondContract,
-//  networkAddrs: {
-//    [NetworkID.Mainnet]: {
-//      bondAddress: "0x8510c8c2B6891E04864fa196693D44E6B6ec2514",
-//      reserveAddress: "0x853d955acef822db058eb8505911ed77f175b99e",
-//    },
-//    [NetworkID.Testnet]: {
-//      bondAddress: "0xF651283543fB9D61A91f318b78385d187D300738",
-//      reserveAddress: "0x1B408886aBBDfdBDC0CC5FFF2D0E982E593F4672",
-//    },
-//  },
-//});
 
 export const lusd = new StableBond({
   name: "USDT",
@@ -142,33 +77,11 @@ export const lusd = new StableBond({
       reserveAddress: "0x55d398326f99059ff775485246999027b3197955",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0xD39BD969Fb0d9B9CF78eDe489A1911Fdd1c4aa90",
-      reserveAddress: "0x337610d27c682e347c9cd60bd4b3b107c9d34ddd",
+      bondAddress: "0xc15d418c6b86ffa4FFe03d2DF51cCc90C8fE67F7",
+      reserveAddress: "0x428F8d3118df077954BA6419c4d8afbE3a5031Ad",
     },
   },
 });
-
-//export const pid_lusd = new LPBond({
-//  name: "pid_lusd_lp",
-//  displayName: "OHM-LUSD LP",
-//  bondToken: "LUSD",
-//  bondIconSvg: OhmLusdImg,
-//  bondContractABI: BondOhmLusdContract,
-//  reserveContract: ReserveOhmLusdContract,
-//  networkAddrs: {
-//    [NetworkID.Mainnet]: {
-//      bondAddress: "0xFB1776299E7804DD8016303Df9c07a65c80F67b6",
-//      reserveAddress: "0xfDf12D1F85b5082877A6E070524f50F6c84FAa6b",
-//    },
-//    [NetworkID.Testnet]: {
-//      // NOTE (appleseed-lusd): using ohm-dai rinkeby contracts
-//      bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
-//      reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
-//    },
-//  },
-//  lpUrl:
-//    "https://pancakeswap.finance/add/0x383518188C0C6d7730D91b2c03a03C837814a899/0x5f98805A4E8be255a32880FDeC7F6728C6568bA0",
-//});
 
 // HOW TO ADD A NEW BOND:
 // Is it a stableCoin bond? use `new StableBond`

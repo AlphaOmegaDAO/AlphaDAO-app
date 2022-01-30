@@ -2,11 +2,11 @@
   "abi": [
     {
       "inputs": [
-        { "internalType": "address", "name": "_AlphaOX", "type": "address" },
+        { "internalType": "address", "name": "_Alpha", "type": "address" },
         { "internalType": "address", "name": "_xOX", "type": "address" },
         { "internalType": "uint256", "name": "_epochLength", "type": "uint256" },
         { "internalType": "uint256", "name": "_firstEpochNumber", "type": "uint256" },
-        { "internalType": "uint256", "name": "_firstEpochBlock", "type": "uint256" }
+        { "internalType": "uint256", "name": "_nextEpochBlock", "type": "uint256" }
       ],
       "stateMutability": "nonpayable",
       "type": "constructor"
@@ -31,7 +31,7 @@
     },
     {
       "inputs": [],
-      "name": "AlphaOX",
+      "name": "Alpha",
       "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
       "stateMutability": "view",
       "type": "function"

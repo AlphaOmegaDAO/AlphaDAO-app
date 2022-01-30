@@ -3,7 +3,7 @@
     {
       "inputs": [
         { "internalType": "address", "name": "_LPToken", "type": "address" },
-        { "internalType": "address", "name": "_AlphaOXToken", "type": "address" },
+        { "internalType": "address", "name": "_AlphaToken", "type": "address" },
         { "internalType": "address", "name": "_rewardPool", "type": "address" },
         { "internalType": "uint256", "name": "_rewardPerBlock", "type": "uint256" },
         { "internalType": "uint256", "name": "_blocksToWait", "type": "uint256" }
