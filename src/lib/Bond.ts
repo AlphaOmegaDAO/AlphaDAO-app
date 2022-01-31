@@ -117,7 +117,7 @@ export class LPBond extends Bond {
     const valuation = await bondCalculator.valuation(tokenAddress, tokenAmount);
     const markdown = await bondCalculator.markdown(tokenAddress);
     let tokenUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
-    //  console.error(`lp price ---------${tokenAmount}------${token.address}------${addresses[networkID].TREASURY_ADDRESS}---------${tokenAddress}-----${bondCalculator.address}---------${token.address}----${markdown}---------`)
+     // console.error(`lp price ---------${tokenAmount}------${token.address}------${addresses[networkID].TREASURY_ADDRESS}---------${tokenAddress}-----${bondCalculator.address}---------${token.address}----${markdown}---------`)
 
     return tokenUSD;
   }

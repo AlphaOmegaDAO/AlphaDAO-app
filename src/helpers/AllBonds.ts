@@ -35,7 +35,7 @@ export const dai = new StableBond({
   networkAddrs: {
     [NetworkID.Mainnet]: {
       bondAddress: "0x48c7A72198eA09e64CAEf65D808d762721C0bABA",
-      reserveAddress: addresses[NetworkID.Mainnet].BUSD_ADDRESS,
+      reserveAddress: addresses[NetworkID.Mainnet].DAI_ADDRESS,
     },
     [NetworkID.Testnet]: {
       bondAddress: "0x63a3f3DC740c9255b9d994661e692529AC77cA86",
@@ -53,12 +53,12 @@ export const ohm_dai = new LPBond({
   reserveContract: ReserveOhmDaiContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
-      bondAddress: "0x8FcdB03855082798be12bEB435ec9aAAeFC77AF1",
-      reserveAddress: "0x5556f86FA961960287991772cC71d5Db9093dB45",
+      bondAddress: "",
+      reserveAddress: "",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0x63a3f3DC740c9255b9d994661e692529AC77cA86",
-      reserveAddress: "0xdf7899f13eaf2404ef8838235b98c417e0a38b72",
+      bondAddress: "0x5556f86FA961960287991772cC71d5Db9093dB45",
+      reserveAddress: "0x5556f86FA961960287991772cC71d5Db9093dB45",
     },
   },
   lpUrl:
@@ -73,8 +73,8 @@ export const lusd = new StableBond({
   bondContractABI: DaiBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
-      bondAddress: "0x428F8d3118df077954BA6419c4d8afbE3a5031Ad",
-      reserveAddress: addresses[NetworkID.Mainnet].USDT_ADDRESS,
+      bondAddress: "0xed0c1FfD2097F832707DbA60594Ce510b5211cC4",
+      reserveAddress: "0x55d398326f99059ff775485246999027b3197955",
     },
     [NetworkID.Testnet]: {
       bondAddress: "0xD229B7891c8630Fa321E50810161039eE81102EA",
