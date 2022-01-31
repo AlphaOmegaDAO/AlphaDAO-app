@@ -195,14 +195,11 @@ function Home() {
     <div className="boodyBox fxColumn">
      
       <div className="titleColor">
-        Decentralized Alpha Omega DAO
-      </div>
-      <div className="titleColor">
-        Reserve Currency
+        Alpha Omega DAO
       </div>
       <div style={{ height: 30 }}></div>
       <div className="contentStyle">
-      Alpha DAO is a community-owned decentralized financial infrastructure to bring stability, ownership and free education to the world. </div>
+      Alpha DAO is a community-owned decentralized educational infrastructure to bring stability, ownership and free education to the world. </div>
       <div className="fxBetween">
         <a href="/stake" className="btnBox_1">Enter App</a>
         <a href="https://docs.alphadao.financial/alpha-omega-dao/faq" className="btnBox_2 a" target="_blank">Documentation</a>
