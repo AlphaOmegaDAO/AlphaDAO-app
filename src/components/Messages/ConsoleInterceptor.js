@@ -2,7 +2,7 @@ import { error } from "../../slices/MessagesSlice";
 import store from "../../store";
 
 // List of error messages we wish to intercept
-const interceptedConsoleMessages = ["PLEASE standby and allow 3 epochs to pass, while the scripts deploy to BSC mainnet"];
+const interceptedConsoleMessages = ["PLEASE connect your wallet to BSC mainnet"];
 
 // Intercepts an error sent to console and dispatches it to the message framework.
 var consoleInterceptor = function (message) {

@@ -69,10 +69,10 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [connected, setConnected] = useState(false);
   // NOTE (appleseed): if you are testing on rinkeby you need to set chainId === 4 as the default for non-connected wallet testing...
   // ... you also need to set getTestnetURI() as the default uri state below
-  const [chainID, setChainID] = useState(97);
+  const [chainID, setChainID] = useState(56);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(getTestnetURI());
+  const [uri, setUri] = useState(getMainnetURI());
 
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -132,11 +132,11 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     console.error(
       "You are switching networks",
       EnvHelper.getOtherChainID(),
-      otherChainID === EnvHelper.getOtherChainID() || otherChainID === 97,
+      otherChainID === EnvHelper.getOtherChainID() || otherChainID === 56,
     );
     if (chainID !== otherChainID) {
       console.warn("You are switching networks", EnvHelper.getOtherChainID());
-      if (otherChainID === EnvHelper.getOtherChainID() || otherChainID === 97) {
+      if (otherChainID === EnvHelper.getOtherChainID() || otherChainID === 56) {
         setChainID(otherChainID);
         otherChainID === EnvHelper.getOtherChainID() ? setUri(getMainnetURI()) : setUri(getTestnetURI());
         return true;
@@ -160,7 +160,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("PLEASE standby and allow 3 epochs to pass, while the scripts deploy to BSC mainnet");
+      console.error("PLEASE connect your wallet to BSC mainnet");
       return;
     }
     // Save everything after we've validated the right network.

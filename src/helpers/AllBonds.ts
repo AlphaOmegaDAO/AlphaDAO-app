@@ -34,7 +34,7 @@ export const dai = new StableBond({
   bondContractABI: DaiBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
-      bondAddress: "0x8A8dD632f9461138CAA15f57d0F107eFFa38dD47",
+      bondAddress: "0x48c7A72198eA09e64CAEf65D808d762721C0bABA",
       reserveAddress: addresses[NetworkID.Mainnet].BUSD_ADDRESS,
     },
     [NetworkID.Testnet]: {
@@ -73,8 +73,8 @@ export const lusd = new StableBond({
   bondContractABI: DaiBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
-      bondAddress: "0x1972f90FeD66a94708970c9Fee89438A53ef763F",
-      reserveAddress: "0x55d398326f99059ff775485246999027b3197955",
+      bondAddress: "0x428F8d3118df077954BA6419c4d8afbE3a5031Ad",
+      reserveAddress: addresses[NetworkID.Mainnet].USDT_ADDRESS,
     },
     [NetworkID.Testnet]: {
       bondAddress: "0xD229B7891c8630Fa321E50810161039eE81102EA",
