@@ -160,7 +160,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     const connectedAddress = await connectedProvider.getSigner().getAddress();
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to BSC mainnet");
+      console.error("PLEASE standby and allow 3 epochs to pass, while the scripts deploy to BSC mainnet");
       return;
     }
     // Save everything after we've validated the right network.
