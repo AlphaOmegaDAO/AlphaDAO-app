@@ -18,7 +18,7 @@ const externalUrls = [
   // },
   {
     title: "Docs",
-    url: "https://bourbondefi.gitbook.io/bourbon-finance/",
+    url: "https://docs.alphadao.financial/alpha-omega-dao/",
     icon: <SvgIcon color="primary" component={DocsIcon} />,
   },
   //{

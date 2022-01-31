@@ -12,7 +12,7 @@ const run = () => {
 
 console.log("🔬 Watching Themes...");
 watch("./src/themes", { recursive: true }, function (evt, name) {
-  console.log("%s changed.", name);
+  console.log("%S changed.", name);
   run();
 });
 run();

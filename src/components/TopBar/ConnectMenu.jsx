@@ -38,12 +38,12 @@ function ConnectMenu({ theme }) {
   const open = Boolean(anchorEl);
   const id = open ? "ohm-popper-pending" : undefined;
 
-  const primaryColor = theme === "light" ? "#49A1F2" : "#ffe300";
+  const primaryColor = theme === "light" ? "#49A1F2" : "#9b9b9b";
   const buttonStyles =
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
   const getEtherscanUrl = txnHash => {
-    return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
+    return chainID === 56 ? "https://testnet.bscscan.com/address/tx/" + txnHash : "https://bscscan.com/tx/" + txnHash;
   };
 
   useEffect(() => {

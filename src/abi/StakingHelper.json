@@ -2,56 +2,30 @@
   "abi": [
     {
       "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "stake",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_staking",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_WHISKEY",
-          "type": "address"
-        }
+        { "internalType": "address", "name": "_staking", "type": "address" },
+        { "internalType": "address", "name": "_Alpha", "type": "address" }
       ],
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
     {
       "inputs": [],
-      "name": "staking",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "name": "Alpha",
+      "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
       "stateMutability": "view",
       "type": "function"
     },
     {
+      "inputs": [ { "internalType": "uint256", "name": "_amount", "type": "uint256" } ],
+      "name": "stake",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
-      "name": "WHISKEY",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "name": "staking",
+      "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
       "stateMutability": "view",
       "type": "function"
     }

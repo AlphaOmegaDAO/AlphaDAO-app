@@ -171,41 +171,41 @@ export const minutesAgo = (x: number) => {
  * ... using parseInt on number params. It only allows parseInt on string params. So we converted usage to
  * ... Math.trunc which accomplishes the same result as parseInt.
  */
-export const subtractDates = (dateA: Date, dateB: Date) => {
-  let msA: number = dateA.getTime();
-  let msB: number = dateB.getTime();
+//export const subtractDates = (dateA: Date, dateB: Date) => {
+//  let msA: number = dateA.getTime();
+// let msB: number = dateB.getTime();
 
-  let diff: number = msA - msB;
+//  let diff: number = msA - msB;
 
-  let days: number = 0;
-  if (diff >= 86400000) {
-    days = Math.trunc(diff / 86400000);
-    diff -= days * 86400000;
-  }
+//  let days: number = 0;
+//  if (diff >= 86400000) {
+//    days = Math.trunc(diff / 86400000);
+//    diff -= days * 86400000;
+//  }
 
-  let hours: number = 0;
-  if (days || diff >= 3600000) {
-    hours = Math.trunc(diff / 3600000);
-    diff -= hours * 3600000;
-  }
+//  let hours: number = 0;
+//  if (days || diff >= 3600000) {
+//    hours = Math.trunc(diff / 3600000);
+//    diff -= hours * 3600000;
+//  }
 
-  let minutes: number = 0;
-  if (hours || diff >= 60000) {
-    minutes = Math.trunc(diff / 60000);
-    diff -= minutes * 60000;
-  }
+//  let minutes: number = 0;
+//  if (hours || diff >= 60000) {
+//    minutes = Math.trunc(diff / 60000);
+//    diff -= minutes * 60000;
+//  }
 
-  let seconds: number = 0;
-  if (minutes || diff >= 1000) {
-    seconds = Math.trunc(diff / 1000);
-  }
-  return {
-    days,
-    hours,
-    minutes,
-    seconds,
-  };
-};
+//  let seconds: number = 0;
+//  if (minutes || diff >= 1000) {
+//    seconds = Math.trunc(diff / 1000);
+//  }
+//  return {
+//    days,
+//    hours,
+//    minutes,
+//    seconds,
+//  };
+//};
 
 
 export const getDisplayBalance = (balance: BigNumber, decimals = 18, fractionDigits = 4) => {

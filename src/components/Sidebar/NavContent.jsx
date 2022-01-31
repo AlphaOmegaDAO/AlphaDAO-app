@@ -7,7 +7,7 @@ import styled from 'styled-components';
 // import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 // import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
 // import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
-import { ReactComponent as PoolTogetherIcon } from "../../assets/icons/33-together.svg";
+//import { ReactComponent as PoolTogetherIcon } from "../../assets/icons/33-together.svg";
 import { trim, shorten } from "../../helpers";
 import { useAddress, useWeb3Context } from "src/hooks/web3Context";
 import useBonds from "../../hooks/Bonds";
@@ -48,9 +48,9 @@ function NavContent() {
     if (currentPath.indexOf("stake") >= 0 && page === "stake") {
       return true;
     }
-    if (currentPath.indexOf("33-together") >= 0 && page === "33-together") {
-      return true;
-    }
+   // if (currentPath.indexOf("33-together") >= 0 && page === "33-together") {
+   //   return true;
+   // }
     if (currentPath.indexOf("nft") >= 0 && page === "nft") {
       return true;
     }
@@ -68,7 +68,7 @@ function NavContent() {
       <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
         <div className="dapp-menu-top">
           <Box className="branding-header">
-            <Link href="https://bourbondao.com" target="_blank">
+            <Link href="https://alphadao.financial" target="_blank">
               {/* <SvgIcon
                 color="primary"
                 component={OlympusIcon}
@@ -228,7 +228,7 @@ const ANavLink = styled(Link)`
   &:hover,&.active{
     text-decoration:none;
     h6{
-    color:#ffe300;
+    color:#9b9b9b;
     }
     ${ANavIcon}{
       background-image: url(${props => props.bg2});

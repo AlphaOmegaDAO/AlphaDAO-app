@@ -78,7 +78,7 @@ function Home() {
   const open = Boolean(anchorEl);
   const id = open ? "ohm-popper-pending" : undefined;
 
-  const primaryColor =  "#ffe300";
+  const primaryColor =  "#9b9b9b";
   const buttonStyles =
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
@@ -193,36 +193,20 @@ function Home() {
 
     </div>
     <div className="boodyBox fxColumn">
-      <img src={Bg} alt="" className="bg" />
+     
       <div className="titleColor">
-        Decentralized Bourbon
+        Decentralized Alpha Omega DAO
       </div>
       <div className="titleColor">
         Reserve Currency
       </div>
       <div style={{ height: 30 }}></div>
-      {/* <div className="DaoJishi">
-        {isOpen ? <>
-          <span>Launch in</span><TimeCountdown onComplete={onComplete} base={new Date} deadline={new Date(openOverTimes)} />
-          
-        </>:<>
-          <span>ITO Application Ends In</span><TimeCountdown onComplete={onComplete} base={new Date} deadline={new Date(openStartTimes)} />
-        </>} 
-      </div> */}
-
-      {/* <div style={{ display: "flex", justifyContent: "center", }}>
-       
-       <a href="https://medium.com/@PIDAOFinance/initial-telegram-offering-the-pidao-fair-launch-event-fafc6ec009aa" style={{ color: "#fff" }} target="_blank">ITO Rules</a>
-        <div style={{ width: 20 }} />
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfM6zyJyhaOcp-QmOzZmleU4wVthPP13x-HamiKO5cMiTwHUw/viewform" style={{ color: "#fff" }} target="_blank">Apply Now</a>
-      
-      </div> */}
       <div className="contentStyle">
-        Bourbon DAO is a decentralized reserve currency protocol based on the WHISKEY token and aims at building a community-owned decentralized financial infrastructure for the crypto world.
-      </div>
+      Alpha DAO is a community-owned decentralized financial infrastructure to bring stability, ownership and free education to the world. </div>
       <div className="fxBetween">
-        <Link to="/stake#" className="btnBox_1">Enter App</Link>
-        <a href="https://bourbondefi.gitbook.io/bourbon-finance/" className="btnBox_2 a" target="_blank">Documentation</a>
+        <a href="/stake" className="btnBox_1">Enter App</a>
+        <a href="https://docs.alphadao.financial/alpha-omega-dao/faq" className="btnBox_2 a" target="_blank">Documentation</a>
+
       </div>
       <div className="fxBetween2 mgTop">
         <div className="fxColumn2">
@@ -245,7 +229,6 @@ function Home() {
         </div>
       </div>
     </div>
-    {/* 底部链接栏 */}
     <div className="bottomBor a">
       <a href="https://twitter.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_1} alt="" className="bottomImgs2" /></a>
       <a href="https://github.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_2} alt="" className="bottomImgs2" /></a>
@@ -266,8 +249,6 @@ function Home() {
           <a href="https://omniscia.io/olympusdao-algorithmic-currency-protocol/" target="_blank"><img src={ShenJiImg2} alt="" className="shenji3" /></a> */}
         </div>
       </div> : null}
-
-    {/* 支付弹窗 */}
 
     {Popup ?
       <div className="Max_Box">
@@ -385,14 +366,13 @@ const MinInp_Box = styled.div`
   flex-direction: column;
 `
 
-//判定等待组件
 function Pading_Box (){
   return<PadingBox>
     <PandingImg src={PdImg}/>
     <PandingContent>Evaluating, please wait a moment～</PandingContent>
   </PadingBox>
 }
-//判定白名单
+
 function PadingBaiMingDan_Box ({title="You are not on the whitelist"}){
   return<PadingBox>
     <PandingImg src={WuImg}/>

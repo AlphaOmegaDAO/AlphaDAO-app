@@ -31,8 +31,8 @@ import SCREWBALLLogo from '../../assets/iconspid.png'
 import LpTokenSymbol from './LpTokenSymbol';
 
 export const logosBySymbol: {[title: string]: string} = {
-  'WHISKEY':WHISKEYLogo,
-  'SCREWBALL':SCREWBALLLogo,
+  'OX':WHISKEYLogo,
+  'xOX':SCREWBALLLogo,
   'DAI':DAILogo,
   'USDC':USDCLogo,
   'USDT':USDTLogo,
