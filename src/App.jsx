@@ -34,7 +34,7 @@ import './style.scss';
 const DEBUG = false;
 
 // 🛰 providers
-if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum');
+if (DEBUG) console.log('📡 Connecting to Mainnet BSC');
 // 🔭 block explorer URL
 // const blockExplorer = targetNetwork.blockExplorer;
 

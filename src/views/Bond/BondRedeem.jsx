@@ -63,7 +63,7 @@ function BondRedeem({ bond }) {
         >
           {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, "Claim")}
         </Button>
-        <Button
+      {/*  <Button
           variant="contained"
           color="primary"
           id="bond-claim-autostake-btn"
@@ -75,7 +75,7 @@ function BondRedeem({ bond }) {
           }}
         >
           {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", "Claim and Autostake")}
-        </Button>
+        </Button> */} 
       </Box>
 
       <Slide direction="right" in={true} mountOnEnter unmountOnExit {...{ timeout: 533 }}>

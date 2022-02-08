@@ -44,17 +44,6 @@ export const loadAppDetails = createAsyncThunk(
   }
 `;
 
-    // const graphData = await apollo(protocolMetricsQuery);
-
-    // if (!graphData || graphData == null) {
-    //   console.error("Returned a null response when querying TheGraph");
-    //   return;
-    // }
-    // const stakingTVL = parseFloat(graphData.data.protocolMetrics[0]?.totalValueLocked || 0);
-    // NOTE (appleseed): marketPrice from Graph was delayed, so get CoinGecko price
-    // const marketPrice = parseFloat(graphData.data.protocolMetrics[0].ohmPrice);
-
-    // const stakingTVL = 123
     let marketPrice;
     try {
       const originalPromiseResult = await dispatch(
@@ -67,11 +56,6 @@ export const loadAppDetails = createAsyncThunk(
       return;
     }
 
-    // const marketCap = parseFloat(graphData.data.protocolMetrics[0]?.marketCap);
-    // const circSupply = parseFloat(graphData.data.protocolMetrics[0]?.PIDCirculatingSupply);
-    // const treasuryMarketValue = parseFloat(graphData.data.protocolMetrics[0]?.treasuryMarketValue);
-    // const currentBlock = parseFloat(graphData.data._meta.block.number);
-
     if (!provider) {
       console.error("failed to connect to provider, please connect your wallet");
       return {
@@ -79,7 +63,6 @@ export const loadAppDetails = createAsyncThunk(
         marketPrice,
         marketCap: 0,
         circSupply: 0,
-        
         totalSupply: 0,
         treasuryMarketValue: 0,
       };
@@ -92,19 +75,11 @@ export const loadAppDetails = createAsyncThunk(
       provider,
     );
 
-    // const oldStakingContract = new ethers.Contract(
-    //   addresses[networkID].OLD_STAKING_ADDRESS as string,
-    //   OlympusStaking,
-    //   provider,
-    // );
     const sohmMainContract = new ethers.Contract(addresses[networkID].SPID_ADDRESS as string, sOHMv2, provider);
     const ohmMainContract = new ethers.Contract(addresses[networkID].PID_ADDRESS as string, sOHMv2, provider);
     const DistributorContract = new ethers.Contract(addresses[networkID].DISTRIBUTOR_ADDRESS as string, DistributorContractAbi, provider);
-    // const sohmOldContract = new ethers.Contract(addresses[networkID].OLD_SPID_ADDRESS as string, sOHM, provider);
-
     const endBlock = (await DistributorContract.nextEpochBlock()).toNumber()
     const totalSupply = Number(getDisplayBalance(await ohmMainContract.totalSupply(), 9));
-
 
     // Calculating staking
     const epoch = await stakingContract.epoch();
@@ -112,7 +87,6 @@ export const loadAppDetails = createAsyncThunk(
     const circ = await sohmMainContract.circulatingSupply();
     const stakingRebase = stakingReward / circ;
     
-
     const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
     const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
 
@@ -133,19 +107,10 @@ export const loadAppDetails = createAsyncThunk(
 
     const Staked = circ / 1e9 / circSupply * 100
     const treasuryMarketValue = await treasuryBalanceAll(networkID, provider)
-    // console.error('董事会资产')
     // console.error(Staked)
     // console.error(treasuryMarketValue)
     const stakingTVL = marketCap * (Staked/100) 
     // console.error('--------totalValueLocked-------------')
-
-    // const treasuryContract = new ERC20(addresses[networkID].TREASURY_ADDRESS,provider,'BUSD')
-
-    // const stakingContract = new ethers.Contract(
-    //   addresses[networkID].STAKING_ADDRESS as string,
-    //   OlympusStakingv2,
-    //   provider,
-    // );
 
     return {
       currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
@@ -206,8 +171,8 @@ export const findOrLoadMarketPrice = createAsyncThunk(
 );
 
 /**
- * - fetches the OHM price from CoinGecko (via getTokenPrice)
- * - falls back to fetch marketPrice from ohm-dai contract
+ * - fetches the OX price from CoinGecko (via getTokenPrice)
+ * - falls back to fetch marketPrice from ox-BUSD contract
  * - updates the App.slice when it runs
  */
 const loadMarketPrice = createAsyncThunk("app/loadMarketPrice", async ({ networkID, provider }: IBaseAsyncThunk) => {

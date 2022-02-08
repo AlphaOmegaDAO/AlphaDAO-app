@@ -12,28 +12,11 @@ import discord from '../../assets/ohm/discord.png';
 
 export default function Social() {
   return (
-    // <div className="social-row">
-    //   <Link href="https://github.com/OlympusDAO" target="_blank">
-    //     <SvgIcon color="primary" component={GitHub} />
-    //   </Link>
-
-    //   <Link href="https://olympusdao.medium.com/" target="_blank">
-    //     <SvgIcon color="primary" component={Medium} />
-    //   </Link>
-
-    //   <Link href="https://twitter.com/OlympusDAO" target="_blank">
-    //     <SvgIcon color="primary" component={Twitter} />
-    //   </Link>
-
-    //   <Link href="https://discord.gg/6QjjtUcfM4" target="_blank">
-    //     <SvgIcon color="primary" component={Discord} />
-    //   </Link>
-    // </div>
     <div className="social-row " >
       <a href="https://twitter.com/AlphaOmegaDAO" target="_blank" className="bottomImgs" style={{marginLeft:5,marginRight:15}}><img src={img1_1} alt="" className="bottomImgs2" style={{width:30,height:30}}/></a>
       <a href="https://github.com/AlphaOmegaDAO" target="_blank" className="bottomImgs" style={{marginLeft:15,marginRight:15}}><img src={img1_2} alt="" className="bottomImgs2" style={{width:30,height:30}}/></a>
       <a href="https://discord.gg/TxkJYnFCmk" target="_blank" className="bottomImgs" style={{marginLeft:15,marginRight:15}}><img src={discord} alt="" className="bottomImgs2" style={{width:30,height:30}}/></a>
-      <a href="https://t.me/alphaomegadao" target="_blank" className="bottomImgs" style={{marginLeft:15,marginRight:15}}><img src={img1_4} alt="" className="bottomImgs2" style={{width:30,height:30}}/></a>
+      <a href="https://telegram.me/collablandbot?start=VFBDI1RFTCNDT01NIy0xMDAxNjYwNTc5OTQ1" target="_blank" className="bottomImgs" style={{marginLeft:15,marginRight:15}}><img src={img1_4} alt="" className="bottomImgs2" style={{width:30,height:30}}/></a>
     </div>
   );
 }

@@ -143,7 +143,7 @@ function Home() {
   const ShowhideClick = () => {
     setmenu(!menu);
   }
-  //支付弹窗
+  //Payment Popup
   const [Popup, setPopup] = useState(false);
   const PopupClick = () => {
     let timeId = null;
@@ -181,10 +181,7 @@ function Home() {
       >
         {buttonText}
       </Button>
-        {/* <a href="https://pidao.gitbook.io/homepage/contracts/audits/peckshield-audit-report" target="_blank"><img src={ShenJiImg1} alt="" className="shenji" /></a>
-        <a href="https://pidao.gitbook.io/homepage/contracts/audits/omniscia-audit-report" target="_blank"><img src={ShenJiImg2} alt="" className="shenji" /></a> */}
       </div>
-      {/* 移动端顶部列表 */}
       <div className="CaiDanImgBox">
         <img src={CaiDan} alt="" onClick={() => ShowhideClick()} className="caidanimg" />
       </div>
@@ -230,20 +227,12 @@ function Home() {
       <a href="https://twitter.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_1} alt="" className="bottomImgs2" /></a>
       <a href="https://github.com/AlphaOmegaDAO" target="_blank" className="bottomImgs a2"><img src={img1_2} alt="" className="bottomImgs2" /></a>
       <a href="https://discord.gg/TxkJYnFCmk" target="_blank" className="bottomImgs a2"><img src={discord} alt="" className="bottomImgs2" /></a>
-      <a href="https://t.me/alphaomegadao" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
-      {/* <a href="https://discord.com/invite/hPRwxePEYV" target="_blank" className="bottomImgs a"><img src={DiscordImg} alt="" className="bottomImgs2" /></a> */}
+      <a href="https://telegram.me/collablandbot?start=VFBDI1RFTCNDT01NIy0xMDAxNjYwNTc5OTQ1" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
     </div>
     {menu ?
       <div className="moban" onClick={() => ShowhideClick()} >
         <div className="CaiDanlieBiao">
           <img src={Logoimg} alt="" className="logo2" />
-         {/* <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/whitepapers/pidao-pro">PIDAO Pro</a></div> */}
-          {/* <div className="lis2"><Link className="a" to="/stake">Stake</Link></div>
-          <div className="lis2"><Link className="a" to="/bonds">Bond</Link></div> */}
-         {/* <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/pidao-finance/faqs">FAQs</a></div>
-          <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/community/governance">Get Involved</a></div> */}
-          {/* <a href="https://github.com/peckshield/publications/blob/master/audit_reports/PeckShield-Audit-Report-OlympusDAO-v1.0.pdf" target="_blank" ><img src={ShenJiImg1} alt="" className="shenji2" /></a>
-          <a href="https://omniscia.io/olympusdao-algorithmic-currency-protocol/" target="_blank"><img src={ShenJiImg2} alt="" className="shenji3" /></a> */}
         </div>
       </div> : null}
 
@@ -269,7 +258,7 @@ const PAYSTATUS=({idoBalance,isPay,isOpen,busdAmount,openIsPayTime})=>{
     isPay
   })
   if(openIsPayTime === true){
-    return <PadingBaiMingDan_Box title={'ITO whitelist updating, please stay tuned with notice in the telegram group'}/>
+    return <PadingBaiMingDan_Box title={'Whitelist updating, please stay tuned with notice in the telegram group'}/>
   }
   if(idoBalance === null || isOpen === null){
     return <Pading_Box/>
@@ -284,7 +273,7 @@ const PAYSTATUS=({idoBalance,isPay,isOpen,busdAmount,openIsPayTime})=>{
     return <PadingBaiMingDan_Box/>
   }
 }
-//输入框组件
+//Input Box Component
 function Inp_Box({idoBalance,busdAmount}) {
   const { provider, address, connected, connect, chainID,disconnect } = useWeb3Context();
   const dispatch = useDispatch();
@@ -326,7 +315,7 @@ function Inp_Box({idoBalance,busdAmount}) {
       <input type="text" placeholder={`${busdAmount}BUSD`} disabled className="InpStyle" />
     </div>
     <div className="Content_Box3">
-    PIDAO project will launch on 12:00 8th Nov. 2021, you will be able to claim your PID token manually on the website. 
+    Alpha and Omega DAO project will launch on 03-03-03 at 333, you will be able to claim your OX token manually on the website. 
     </div>
 
     {address && hasAllowance() ? (

@@ -25,13 +25,13 @@ import MOBOXLogo from '../../assets/tokensymbol/mobox.png'
 import ETHLogo from '../../assets/tokensymbol/ETH@2x.png';
 import DAILogo from '../../assets/tokensymbol/DAI@2x.png'
 import USDCLogo from '../../assets/tokensymbol/USDC@2x.png'
-import WHISKEYLogo from '../../assets/iconpid.png'
+import OXLogo from '../../assets/iconpid.png'
 import SCREWBALLLogo from '../../assets/iconspid.png'
 
 import LpTokenSymbol from './LpTokenSymbol';
 
 export const logosBySymbol: {[title: string]: string} = {
-  'OX':WHISKEYLogo,
+  'OX':OXLogo,
   'xOX':SCREWBALLLogo,
   'DAI':DAILogo,
   'USDC':USDCLogo,
