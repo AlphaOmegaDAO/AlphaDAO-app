@@ -2,8 +2,8 @@ import { StableBond, LPBond, NetworkID, CustomBond } from "src/lib/Bond";
 import { addresses } from "src/constants";
 
 import { ReactComponent as DaiImg } from "src/assets/tokens/DAI.svg";
-//import { ReactComponent as OhmDaiImg } from "src/assets/tokens/OHM-DAI.svg";
-import { ReactComponent as OhmDaiImg } from "src/assets/ohm/logo.svg";
+import { ReactComponent as OhmDaiImg } from "src/assets/tokens/OHM-DAI.svg";
+//import { ReactComponent as OhmDaiImg } from "src/assets/ohm/logo.svg";
 import { ReactComponent as FraxImg } from "src/assets/tokens/FRAX.svg";
 import { ReactComponent as OhmFraxImg } from "src/assets/tokens/OHM-FRAX.svg";
 import { ReactComponent as OhmLusdImg } from "src/assets/tokens/OHM-LUSD.svg";
