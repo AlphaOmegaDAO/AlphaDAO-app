@@ -86,7 +86,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           options: {
             rpc: {
               56: getMainnetURI(),
-              4: getTestnetURI(),
+              97: getTestnetURI(),
             },
           },
         },

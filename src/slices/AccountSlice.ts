@@ -112,22 +112,7 @@ export const loadAccountDetails = createAsyncThunk(
     let idoAllowance = null
     let IsPay = false
     let IsOpen=false
-    if(addresses[networkID].IDO_ADDRESS){
-      try{
-        const iodContract = new ethers.Contract(addresses[networkID].IDO_ADDRESS as string, IDOAbi, provider);
-      //  idoBalance = (await iodContract.Whitelist(address)).toNumber() / 1e9 
-        busdAmount = ethers.utils.formatUnits(await iodContract.getBusdAmount(address))
-        const busdContract = new ethers.Contract(addresses[networkID].BUSD_ADDRESS as string, ierc20Abi, provider);
-        idoAllowance = await busdContract.allowance(address, iodContract.address);
-        IsPay = await iodContract.IsPay(address)
-        IsOpen= await iodContract.IsOpen()
-        
-      }catch(e){
-        console.error(e)
-        idoAllowance=0
-        idoBalance=0 
-      }
-    }
+    
     return {
       ido:{
         isOpen:IsOpen,
@@ -271,10 +256,10 @@ const accountSlice = createSlice({
         state.bonds[bond] = action.payload;
         state.loading = false;
       })
-     // .addCase(calculateUserBondDetails.rejected, (state, { error }) => {
-     //   state.loading = false;
-     //   console.log(error);
-     // });
+      .addCase(calculateUserBondDetails.rejected, (state, { error }) => {
+        state.loading = false;
+        console.log(error);
+      });
   },
 });
 
