@@ -106,11 +106,11 @@ export const ohm_dai = new LPBond({
 // Add new bonds to this array!!
 // export const allBonds = [dai, frax, eth, ohm_dai, ohm_frax, lusd, pid_lusd];
 
-export const allBonds = [dai,lusd]
+export const allBonds = [dai,Usdc,lusd,ohm_dai]
 export const treasuryBalanceAll = async ( networkID: NetworkID, provider: StaticJsonRpcProvider) => {
   return (await Promise.all(allBonds.map(async (item) => {
-    // console.error(await item.getTreasuryBalance(networkID,provider))
-    // console.error(item.name)
+   // console.error(await item.getTreasuryBalance(networkID,provider))
+   // console.error(item.name)
     return await item.getTreasuryBalance(networkID,provider)
   }))).reduce((total,num)=>total + num)
 }
