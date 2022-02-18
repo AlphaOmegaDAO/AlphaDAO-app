@@ -159,7 +159,7 @@ function TreasuryDashboard() {
             <Grid item lg={6} md={6} sm={12} xs={12}>
               <Paper className="ohm-card">
                 <Typography variant="h6" color="textSecondary">
-                  OX Staked
+                  % OX Staked
                 </Typography>
                 <Typography variant="h5">{staked ? `${trim(staked, 2)}%` : <Skeleton type="text" />}</Typography>
               </Paper>

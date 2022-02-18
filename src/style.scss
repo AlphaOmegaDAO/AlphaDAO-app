@@ -35,6 +35,8 @@ body {
     z-index: 1;
     background-size: cover;
     font-family: "Square";
+
+    background-image: url('assets/ohm/bg.png');
     // overflow: hidden;
     transition: all ease 0.33ms;
     // @media(max-wdith: 1000px) {
@@ -46,7 +48,9 @@ body {
     border-right: 0 !important;
 }
 
+
 .ohm-card {
+    background: #38417627 !important;
     max-width: 833px;
     .card-header {
         width: 100%;

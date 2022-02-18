@@ -164,8 +164,12 @@ function Home() {
     <div className="headBox">
       <img src={Logoimg} alt="" className="logo" />
       <ul className="uls">
-        <li className="lis"><Link className="a" to="/stake#">Stake</Link></li>
-        <li className="lis"><Link className="a" to="/bonds#">Bond</Link></li>
+        <li className="lis"><Link className="a" to="/stake">Stake</Link></li>
+        <li className="lis"><Link className="a" to="/bonds">Bond</Link></li>
+        <li className="lis"><Link className="a" to="/dashboard">Dashboard</Link></li>
+        <li className="lis"><Link className="a" to="/dashboard" target="_blank">Alpha DAO</Link></li>
+        <li className="lis"><Link className="a" to="#">Omega DAO</Link></li>
+        <li className="lis"><Link className="a" to="#" target="_blank">Paideia</Link></li>
       </ul>
       <div>
       <Button
@@ -192,11 +196,11 @@ function Home() {
     <div className="boodyBox fxColumn">
      
       <div className="titleColor">
-        Alpha Omega DAO
+        Alpha DAO
       </div>
       <div style={{ height: 30 }}></div>
       <div className="contentStyle">
-      Alpha DAO is a community-owned decentralized educational infrastructure to bring stability, ownership and free education to the world. </div>
+      Alpha DAO is one part of the  over all educational protocol, it will serve as the treasury reserve for the bonding of educational material and offer staking rewards, including the Paideia stable coin called Pai. </div>
       <div className="fxBetween">
         <a href="/stake" className="btnBox_1">Enter App</a>
         <a href="https://docs.alphadao.financial/alpha-omega-dao/faq" className="btnBox_2 a" target="_blank">Documentation</a>

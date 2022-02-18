@@ -27,6 +27,10 @@
     justify-items: center;
   }
 
+  .ohm-card {
+    background: #38417627 !important;
+    }
+
   .ohm-card .header {
     min-height: 3em;
   }
@@ -47,7 +51,7 @@
   font-size: 1em;
   display: flex;
   align-items: center;
-  color: #f08080;
+  color: #8087f0;
   line-height: 30px;
   svg {
     margin-right: 8px;
@@ -56,7 +60,7 @@
 }
 
 .migrate-sohm-button.complete {
-  color: #35ee66 !important;
+  color: #1f264c !important;
 }
 
 .stake-top-metrics {

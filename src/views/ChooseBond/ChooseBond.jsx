@@ -64,7 +64,7 @@ function ChooseBond() {
       <Zoom in={true}>
         <Paper className="ohm-card">
           <Box className="card-header">
-            <Typography variant="h5">Bond (1,1)</Typography>
+            <Typography variant="h4">OX Discounts</Typography>
           </Box>
 
           <Grid container item xs={12} style={{ margin: "10px 0px 20px" }} className="bond-hero">

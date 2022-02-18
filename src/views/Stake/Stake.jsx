@@ -84,7 +84,9 @@ function Stake() {
   const stakingTVL = useSelector(state => {
     return state.app.stakingTVL;
   });
-
+  const staked = useSelector((state) => {
+    return state.app.Staked;
+  });  
   const pendingTransactions = useSelector(state => {
     return state.pendingTransactions;
   });
@@ -160,30 +162,17 @@ function Stake() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <Typography variant="h5">Single Stake (3, 3)</Typography>
-                <RebaseTimer />
-
-                {address && oldSohmBalance > 0.01 && (
-                  <Link
-                    className="migrate-sohm-button"
-                    style={{ textDecoration: "none" }}
-                    href="https://docs.alphadao.financial/"
-                    aria-label="migrate-sohm"
-                    target="_blank"
-                  >
-                    <NewReleases viewBox="0 0 24 24" />
-                    <Typography>Migrate xOX!</Typography>
-                  </Link>
-                )}
+                <Typography variant="h4">Staking</Typography>
+                <div border="3"><RebaseTimer /></div>
               </div>
             </Grid>
 
-            <Grid item>
-              <div className="stake-top-metrics">
+           <Grid item>
+            <div className="stake-top-metrics">
                 <Grid container spacing={2} alignItems="flex-end">
                   <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-apy">
-                      <Typography variant="h5" color="textSecondary">
+                      {/*   <Typography variant="h5" color="textSecondary">
                         APY
                       </Typography>
                       <Typography variant="h4">
@@ -192,14 +181,18 @@ function Stake() {
                         ) : (
                           <Skeleton width="150px" />
                         )}
-                      </Typography>
-                    </div>
-                  </Grid>
+                      </Typography>*/}
+                      <Typography variant="h6" color="textSecondary">
+                  % OX Staked
+                </Typography>
+                <Typography variant="h5">{staked ? `${trim(staked, 2)}%` : <Skeleton type="text" />}</Typography>
+                    </div> 
+                  </Grid>  
 
                   <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-tvl">
                       <Typography variant="h5" color="textSecondary">
-                        Total Value Deposited
+                        Total Staking
                       </Typography>
                       <Typography variant="h4">
                         {stakingTVL ? (

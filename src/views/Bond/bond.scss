@@ -3,10 +3,9 @@
   width: 100%;
   height: 100%;
   z-index: 69;
-
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .MuiBackdrop-root {
-      background: rgba(100, 100, 100, 0.1) !important;
+      background: rgba(62, 61, 142, 0.1) !important;
       backdrop-filter: blur(33px) !important;
       -webkit-backdrop-filter: blur(33px) !important;
       .ohm-card {
@@ -23,7 +22,7 @@
   /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
   @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
     .MuiBackdrop-root {
-      background: rgba(100, 100, 100, 0.95);
+      background: rgba(58, 72, 154, 0.95);
       .ohm-card {
         height: auto;
       }
@@ -34,9 +33,7 @@
       opacity: 0.9;
     }
   }
-  .ohm-card {
-    max-width: 803px;
-  }
+
 
   .bond-header {
     display: flex;
@@ -91,7 +88,7 @@
   margin: 5px !important;
 }
 
-.mobile #bond-view {
+.mobile #bond-view  {
   .ohm-card {
     .card-content {
       justify-content: space-evenly !important;
