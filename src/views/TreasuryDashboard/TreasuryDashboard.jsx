@@ -113,7 +113,7 @@ function TreasuryDashboard() {
                   />
                 </Typography>
                 <Typography variant="h5">
-                  {currentIndex ? trim(currentIndex, 0) / 1000 + ' xOX' : <Skeleton type="text" />}
+                  {currentIndex ? trim(currentIndex, 0) / 10000 + ' xOX' : <Skeleton type="text" />}
                 </Typography>
               </Paper>
             </Grid>
@@ -147,7 +147,7 @@ function TreasuryDashboard() {
             <Grid item lg={6} md={6} sm={12} xs={12}>
               <Paper className="ohm-card">
                 <Typography variant="h6" color="textSecondary">
-                  Treasury Market Value
+                  Treasury Market Value of 
                 </Typography>
                 <Typography variant="h5">
                   {/* appleseed-fix */}
