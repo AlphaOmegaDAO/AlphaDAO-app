@@ -92,7 +92,7 @@ export const loadAppDetails = createAsyncThunk(
 
     // Current index
     const currentIndex = await stakingContract.index();
-
+      // console.error(currentIndex)
     const bondBalance = (await Promise.all(allBonds.map(async (bonds) => {
       const address = await bonds.getAddressForBond(networkID);
       const balance = await ohmMainContract.balanceOf(address);

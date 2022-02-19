@@ -113,7 +113,7 @@ function TreasuryDashboard() {
                   />
                 </Typography>
                 <Typography variant="h5">
-                  {currentIndex ? trim(currentIndex, 0) / 10000 + ' xOX' : <Skeleton type="text" />}
+                  {currentIndex ? trim(currentIndex, 0) / 1000 + ' xOX' : <Skeleton type="text" />}
                 </Typography>
               </Paper>
             </Grid>

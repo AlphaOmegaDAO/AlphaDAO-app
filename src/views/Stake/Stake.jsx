@@ -211,7 +211,7 @@ function Stake() {
                         Current Index
                       </Typography>
                       <Typography variant="h4">
-                        {currentIndex ? <>{trim(currentIndex, 0) / 10000} OX</> : <Skeleton width="150px" />}
+                        {currentIndex ? <>{trim(currentIndex * nextRewardValue,4) } xOX</> : <Skeleton width="150px" />}
                       </Typography>
                     </div>
                   </Grid>
