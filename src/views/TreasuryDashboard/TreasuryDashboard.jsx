@@ -147,7 +147,7 @@ function TreasuryDashboard() {
             <Grid item lg={6} md={6} sm={12} xs={12}>
               <Paper className="ohm-card">
                 <Typography variant="h6" color="textSecondary">
-                  Market Value of Treasury Assets
+                  Treasury Market Value
                 </Typography>
                 <Typography variant="h5">
                   {/* appleseed-fix */}

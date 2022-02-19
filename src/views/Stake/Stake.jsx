@@ -172,7 +172,7 @@ function Stake() {
                 <Grid container spacing={2} alignItems="flex-end">
                   <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-apy">
-                      {/*   <Typography variant="h5" color="textSecondary">
+                      <Typography variant="h5" color="textSecondary">
                         APY
                       </Typography>
                       <Typography variant="h4">
@@ -181,11 +181,7 @@ function Stake() {
                         ) : (
                           <Skeleton width="150px" />
                         )}
-                      </Typography>*/}
-                      <Typography variant="h6" color="textSecondary">
-                  % OX Staked
-                </Typography>
-                <Typography variant="h5">{staked ? `${trim(staked, 2)}%` : <Skeleton type="text" />}</Typography>
+                      </Typography>
                     </div> 
                   </Grid>  
 
