@@ -162,7 +162,7 @@ function Stake() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <Typography variant="h4">Staking</Typography>
+                <Typography variant="h4">Savings</Typography>
                 <div border="3"><RebaseTimer /></div>
               </div>
             </Grid>
@@ -189,7 +189,7 @@ function Stake() {
                   <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-tvl">
                       <Typography variant="h5" color="textSecondary">
-                        Total Staking
+                        Total Savings
                       </Typography>
                       <Typography variant="h4">
                         {stakingTVL ? (
@@ -226,7 +226,7 @@ function Stake() {
                   <div className="wallet-menu" id="wallet-menu">
                     {modalButton}
                   </div>
-                  <Typography variant="h6">Connect your wallet to stake OX</Typography>
+                  <Typography variant="h6">Connect your wallet to get OX rewards</Typography>
                 </div>
               ) : (
                 <>
@@ -341,7 +341,7 @@ function Stake() {
                     </div>
 
                     <div className="data-row">
-                      <Typography variant="body1">Your Staked Balance</Typography>
+                      <Typography variant="body1">Your Savings Balance</Typography>
                       <Typography variant="body1">
                         {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} xOX</>}
                       </Typography>

@@ -164,12 +164,12 @@ function Home() {
     <div className="headBox">
       <img src={Logoimg} alt="" className="logo" />
       <ul className="uls">
-        <li className="lis"><Link className="a" to="/stake">Stake</Link></li>
-        <li className="lis"><Link className="a" to="/bonds">Bond</Link></li>
+        <li className="lis"><Link className="a" to="/stake">Savings</Link></li>
+        <li className="lis"><Link className="a" to="/bonds">Discounts</Link></li>
         <li className="lis"><Link className="a" to="/dashboard">Dashboard</Link></li>
         <li className="lis"><Link className="a" to="/dashboard" target="_blank">Alpha DAO</Link></li>
         <li className="lis"><Link className="a" to="#">Omega DAO</Link></li>
-        <li className="lis"><Link className="a" to="#" target="_blank">Paideia</Link></li>
+        <li className="lis"><Link className="a" to="https://www.paideia.global" target="_blank">Paideia</Link></li>
       </ul>
       <div>
       <Button
@@ -208,7 +208,7 @@ function Home() {
       </div>
       <div className="fxBetween2 mgTop">
         <div className="fxColumn2">
-          <div className="minTatleColor">Total Staked</div>
+          <div className="minTatleColor">Total Savings</div>
           <div style={{minWidth:80,textAlign:'center'}} className="valueColor">
             {stakedTotal ? trim(stakedTotal, 2): <Skeleton type="text" />}
             </div>

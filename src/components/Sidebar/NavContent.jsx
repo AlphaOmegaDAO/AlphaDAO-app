@@ -88,7 +88,7 @@ function NavContent() {
               >
                 <Typography variant="h6" className="fxCenter">
                   <ANavIcon bg1={Stakeimg} />
-                  Stake
+                  Saving Rewards
                 </Typography>
               </ANavLink>
               <ANavLink
@@ -102,13 +102,13 @@ function NavContent() {
               >
                 <Typography variant="h6" className="fxCenter">
                   <ANavIcon bg1={Bondimg} />
-                  Bond
+                  Discount
                 </Typography>
               </ANavLink>
 
               <div className="dapp-menu-data discounts">
                 <div className="bond-discounts">
-                  <Typography variant="body2">Bond discounts</Typography>
+                  <Typography variant="body2">OX discounts</Typography>
                   {bonds.map((bond, i) => (
                     <ANavLink component={NavLink} to={`/bonds/${bond.name}`} key={i} className={"bond"}>
                       {!bond.bondDiscount ? (
