@@ -109,20 +109,7 @@ function NavContent() {
               <div className="dapp-menu-data discounts">
                 <div className="bond-discounts">
                   <Typography variant="body2">OX discounts</Typography>
-                  {bonds.map((bond, i) => (
-                    <ANavLink component={NavLink} to={`/bonds/${bond.name}`} key={i} className={"bond"}>
-                      {!bond.bondDiscount ? (
-                        <Skeleton variant="text" width={"150px"} />
-                      ) : (
-                        <Typography variant="body2">
-                          {bond.displayName}
-                          <span className="bond-pair-roi">
-                            {bond.bondDiscount && trim(bond.bondDiscount * 100, 2)}%
-                          </span>
-                        </Typography>
-                      )}
-                    </ANavLink>
-                  ))}
+                  Bonds are temporarily disabled.
                 </div>
               </div>
             </div>
