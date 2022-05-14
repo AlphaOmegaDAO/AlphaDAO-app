@@ -108,8 +108,7 @@ function NavContent() {
 
               <div className="dapp-menu-data discounts">
                 <div className="bond-discounts">
-                  <Typography variant="body2">OX discounts</Typography>
-                  Bonds are temporarily disabled.
+                  <Typography variant="body2">Bonds are temporarily disabled.</Typography>
                 </div>
               </div>
             </div>
