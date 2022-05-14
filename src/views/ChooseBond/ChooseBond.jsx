@@ -114,9 +114,7 @@ function ChooseBond() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {bonds.map(bond => (
-                      <BondTableData key={bond.name} bond={bond} />
-                    ))}
+                    Bonds are temporarily disabled.
                   </TableBody>
                 </Table>
               </TableContainer>
