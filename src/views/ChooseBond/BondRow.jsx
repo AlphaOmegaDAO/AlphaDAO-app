@@ -107,11 +107,7 @@ export function BondTableData({ bond }) {
         )}
       </TableCell>
       <TableCell>
-        <Link component={NavLink} to={`/bonds/${bond.name}`}>
-          <Button variant="outlined" color="primary">
-            <Typography variant="h6">Bond</Typography>
-          </Button>
-        </Link>
+
       </TableCell>
     </TableRow>
   );
